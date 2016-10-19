@@ -1,0 +1,7 @@
+*.aux
+*.nav
+*.out
+Vortrag/slides.pdf
+*.snm
+*.gz
+*.toc
