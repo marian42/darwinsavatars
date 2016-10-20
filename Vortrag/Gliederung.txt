@@ -8,7 +8,6 @@ Einführung:
 
 EVCs
 	- Datenstruktur
-		- Sims paper TODO
 		- Morphologie
 			- Graph-basierter Genotyp
 				- Visualisierung
@@ -47,29 +46,51 @@ EVCs
 					- führt zu "lokalen Kontrollsystemem", die bestimmte Körperteile kontrollieren (Rekursion von Körperteilen führt zur mehrfachen Instanziierung des gleichen neuronalen Teilnetzwerks)
 					- macht Entwicklung von koordinierter Bewegung wahrscheinlicher
 	- Simulation der Physik: PhysX
-		- TODO: wie wird Reibung modelliert?
 	- Evolutionäre Generierung der Kreaturen
 		- Entwickelt werden: Morphologie + Muskeln + Gehirn
 		- Eklärung von Evolutionären Algorithmen
-			- TODO
 			- Genotyp ist die Datenstruktur, die den Zusammenbau der Kreatur beschreibt
 			- Phenotyp ist die daraus resultierende Kreatur
 			- Neue Kreaturen werden erschaffen durch zufällige Mutation oder durch Kombination von mehreren erfolgreichen Genotypen
+			- Vorgehensweise:
+				1. Starte mit einer Menge an (zufälligen) Kreaturen
+				2. Messe Fitness
+				3. Verwerfe die schlechtesteten 80%
+				4. Fülle die Population mit Mutationen oder Nachkommen auf
+					- Kreaturen mit hoher Fitness erzeugen mehr Nachkommen
+				5. Wiederhole ab 2. für die nächste Generation
+				- Wenn die Fitness einzelner (Top-20%) Kreaturen zu schlecht ist, werden diese durch neue, zufällige, ersetzt 
 			- Fitness steigt über mehrere Generationen
 		- Fitness-Funktion:
 			- Laufgeschwindigkeit
 				- das ist auch gleichzeitig das Spielziel
 			- zusätzlich: ästhetische Betrachtung (bevorzuge "schöne" Kreaturen)
 			- zum Berechnen der Fitfunktion ist eine Physik-Simulation notwendig
+		- Mutationen:
+			- Verändern von Attributen
+				- Booleans werden geflippt
+				- Skalare werden um einen Gauß-verteilten Wert verschoben (kleine Veränderungen sind häufiger)
+				- Diskrete Variablen mit kleiner Anzahl von möglichen Werten werden zufällig neu ausgelost
+			- Hinzufügen oder Entfernen von neuen Knoten
+			- Hinzufügen oder Entfernen von neuen Kanten
+			- nach der Mutation und Paarung werden nicht angeschlossene Knoten und Kanten gelöscht
+		- Paarung von zwei Kreaturen
+			- Erstelle Liste der Knoten beider Eltern
+			- A: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch den des anderen Elternteils an der gleichen Position in der Liste
+				- Kanten behalten ihre relative Richtung
+			- B: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen
 		- Zahlenwerte
 			- mehrere parallele Prozesse
-			- Startpopulation mit 100 (zufälligen) Kreaturen
+			- Populationsgröße: 100
+			- Überlebens-Anteil: 20%
 			- 500 Generationen
 			- etwa bei der Hälfte aller Durchläufe entstehen brauchbare Ergebnisse
 		- Wie lange dauert dieser Prozess? TODO
 			- Physiksimulation muss zur Berechnung jeder Fitnessfunktion ausgeführt werden
 				- sehr viele Physiksimulationen für die Entwicklung einer einzelnen Kreatur
+			- Fitness wird im Verlauf der Simulation abgeschätzt, bei schlechter Fitness wird die Simulation vorzeitig beendet, um Rechenzeit zu sparen
 		- Bugs in der Physik-Engine wie Energie-Leaks oder Rundungsfehler werden von den Kreaturen erkannt und ausgenutzt und müssen vermieden werden
+		- Verhindere, dass Kreaturen schnell werden durch Umfallen, indem die Fortbewegung ohne Muskelbewegung gemessen wird
 
 Spielmechanik
 	- Erfolgreiche Generierung eines Gehirns demonstriert, dass das Spielziel erreichbar ist
