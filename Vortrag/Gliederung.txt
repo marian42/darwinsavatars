@@ -13,6 +13,9 @@ EVCs
 			- Graph-basierter Genotyp
 				- Visualisierung
 				- Symmetrie wird durch Graph-Datenstruktur bevorzugt
+				- Informationen einer Kante:
+					- Position, Ausrichtung, Skalierung, Spiegelung (für Symmetrie)
+				- "recursive limit" Parameter eines Knotens gibt an, wie oft er rekursiv repliziert werden kann
 				- Mögliche Körperteile sind alle PhysX-Primitiven
 					- Quader, Kugeln, Kapseln
 				- Mögliche Gelenke sind einige der PhysX-Joints
@@ -26,17 +29,33 @@ EVCs
 					- Jeder Muskel ist auch ein Sensor ("propriozeptives Feedbacksignal"), Sensorwert ist Ausdehnung des Muskels
 			- Gehirn
 				- Graph-Struktur ("Knoten und Drähte")
-					- ähnlich eines neuronalen Netzes
+					- neuronales Netz
 				- Signale gehen von Sensoren aus und wandern zu Ausgängen
-				- Knoten sind entweder Sensoren, Ausgänge oder mathematische Operationen
+				- Knoten (Neuronen) sind entweder Sensoren, Ausgänge oder mathematische Operationen
 				- Jeder Muskel hat zwei Knoten im Gehirn, einen Sensor, einen Aktuator
-				- Mögliche Operationen: Sinus, Komplement, Konstante, Skalierung, Multiplizieren, Dividieren, Addieren, Subtrahieren, Ableiten, Schwellwert, Umschalten, Verzögern, Absolute Differenz
+				- Sensor gibt die Ausdehnung des Muskels an
+				- Weitere mögliche Sensoren (bei Sims) sind:
+					- Winkel eines Gelenks
+					- Kontaktsensor
+					- Lichtsensor
+				- Mögliche Operationen: Sinus, Komplement, Konstante, Skalierung, Multiplizieren, Dividieren, Addieren, Subtrahieren, Ableiten, Schwellwert, Umschalten, Verzögern, Absolute Differenz					
+					- Große Anzahl von möglichen math. Funktionen untypisch für neuronale Netze
+					- maximal 3 Inputs pro Neuron
+				- darf wiederkehrend sein (Kreise im Graph)
+				- Beispiele aus Sims paper verwenden
+				- (Sims:) Neuronen gehören jeweils zu einem Knoten des Kreatur-Graphs und werden zusammen mit Knoten von Körperteilen repliziert
+					- führt zu "lokalen Kontrollsystemem", die bestimmte Körperteile kontrollieren (Rekursion von Körperteilen führt zur mehrfachen Instanziierung des gleichen neuronalen Teilnetzwerks)
+					- macht Entwicklung von koordinierter Bewegung wahrscheinlicher
 	- Simulation der Physik: PhysX
 		- TODO: wie wird Reibung modelliert?
 	- Evolutionäre Generierung der Kreaturen
+		- Entwickelt werden: Morphologie + Muskeln + Gehirn
 		- Eklärung von Evolutionären Algorithmen
 			- TODO
-		- Entwickelt werden: Morphologie + Muskeln + Gehirn
+			- Genotyp ist die Datenstruktur, die den Zusammenbau der Kreatur beschreibt
+			- Phenotyp ist die daraus resultierende Kreatur
+			- Neue Kreaturen werden erschaffen durch zufällige Mutation oder durch Kombination von mehreren erfolgreichen Genotypen
+			- Fitness steigt über mehrere Generationen
 		- Fitness-Funktion:
 			- Laufgeschwindigkeit
 				- das ist auch gleichzeitig das Spielziel
@@ -50,6 +69,7 @@ EVCs
 		- Wie lange dauert dieser Prozess? TODO
 			- Physiksimulation muss zur Berechnung jeder Fitnessfunktion ausgeführt werden
 				- sehr viele Physiksimulationen für die Entwicklung einer einzelnen Kreatur
+		- Bugs in der Physik-Engine wie Energie-Leaks oder Rundungsfehler werden von den Kreaturen erkannt und ausgenutzt und müssen vermieden werden
 
 Spielmechanik
 	- Erfolgreiche Generierung eines Gehirns demonstriert, dass das Spielziel erreichbar ist
@@ -67,6 +87,7 @@ Spielmechanik
 	- Mögliche Erweiterungen
 		- Erlaube NPC nur binäre Kontrolle (wie bei Menschen)
 		- Andere Zielsetzungen (Springen, Schwimmen, Kämpfen, Hindernisse, ...)
+			- Springen und Schwimmen mit EVCs wurde bereits demonstriert (Sims)
 		- Paper diskutiert weitere Spielmechaniken, die nicht direkt mit CI zusammenhängen
 			- Sammeln und Tauschen von Kreaturen
 			- Online-Wettbewerbe
