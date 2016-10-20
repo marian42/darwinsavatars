@@ -1,0 +1,90 @@
+Einführung:
+	- Prozedurale Generierung (Geschichte)
+	- Spiel: Darwin's Avatars
+		- Screenshot + Spielkonzept
+	- Bisherige Spiele mit dem Fokus auf Steuern von Kreaturen
+		- QWOP, Incredipede
+	- Übersicht: Funktionsweise des Spiels
+
+EVCs
+	- Datenstruktur
+		- Sims paper TODO
+		- Morphologie
+			- Graph-basierter Genotyp
+				- Visualisierung
+				- Symmetrie wird durch Graph-Datenstruktur bevorzugt
+				- Mögliche Körperteile sind alle PhysX-Primitiven
+					- Quader, Kugeln, Kapseln
+				- Mögliche Gelenke sind einige der PhysX-Joints
+					- fest, Scharnier (Rotation), Kugel (Rotation auf 3 Achsen), Schiene, zylindrisch (Schiene + Rotation)
+				- Grenzen der Bewegungsfreiheit sind implizit durch Physik (Kollisionen) gegeben
+			- Muskeln
+				- hier untypisch für EVCs: Kraft wird NICHT direkt auf die Gelenke angewendet
+				- statdessen: Muskeln sind Verbindungslinien zwischen zwei Punkten auf der Oberfläche der Gliedmaßen
+				- physikalisch modelliert als Feder
+					- Aktivierung des Muskels entspricht Änderung der Federkonstante
+					- Jeder Muskel ist auch ein Sensor ("propriozeptives Feedbacksignal"), Sensorwert ist Ausdehnung des Muskels
+			- Gehirn
+				- Graph-Struktur ("Knoten und Drähte")
+					- ähnlich eines neuronalen Netzes
+				- Signale gehen von Sensoren aus und wandern zu Ausgängen
+				- Knoten sind entweder Sensoren, Ausgänge oder mathematische Operationen
+				- Jeder Muskel hat zwei Knoten im Gehirn, einen Sensor, einen Aktuator
+				- Mögliche Operationen: Sinus, Komplement, Konstante, Skalierung, Multiplizieren, Dividieren, Addieren, Subtrahieren, Ableiten, Schwellwert, Umschalten, Verzögern, Absolute Differenz
+	- Simulation der Physik: PhysX
+		- TODO: wie wird Reibung modelliert?
+	- Evolutionäre Generierung der Kreaturen
+		- Eklärung von Evolutionären Algorithmen
+			- TODO
+		- Entwickelt werden: Morphologie + Muskeln + Gehirn
+		- Fitness-Funktion:
+			- Laufgeschwindigkeit
+				- das ist auch gleichzeitig das Spielziel
+			- zusätzlich: ästhetische Betrachtung (bevorzuge "schöne" Kreaturen)
+			- zum Berechnen der Fitfunktion ist eine Physik-Simulation notwendig
+		- Zahlenwerte
+			- mehrere parallele Prozesse
+			- Startpopulation mit 100 (zufälligen) Kreaturen
+			- 500 Generationen
+			- etwa bei der Hälfte aller Durchläufe entstehen brauchbare Ergebnisse
+		- Wie lange dauert dieser Prozess? TODO
+			- Physiksimulation muss zur Berechnung jeder Fitnessfunktion ausgeführt werden
+				- sehr viele Physiksimulationen für die Entwicklung einer einzelnen Kreatur
+
+Spielmechanik
+	- Erfolgreiche Generierung eines Gehirns demonstriert, dass das Spielziel erreichbar ist
+	- Generiertes Gehirn kann für Computergegner verwendet werden
+	- Mensch tritt gegen NPC-Kopie der gleichen Kreatur an
+	- Rennstrecke ist geradlinig
+	- Verlassen der Rennstrecke wird durch unsichtbare Wände verhindert
+		- TODO: gibt es diese Wände auch während der Evolution?
+	- Das Spiel ist zu Ende, wenn beide Kreaturen die Ziellinie erreicht haben, oder nach Ablauf einer Zeitgrenze
+		- Zeitgrenze wird festgelegt durch die Geschwindigkeit des entwickelten Gehirns (* 2)
+	- Tastendrücke aktivieren Muskeln, immer 0 oder 1
+		- NPC-Gehirne hingegen dürfen Muskeln kontinuirlich verändern
+	- Menschen haben als einzige "Eingabe" die visuelle Abbildung der Kreatur und der Bewegung
+	- NPCs hingegen haben ausschließlich den Zustand der Muskeln als Eingabe
+	- Mögliche Erweiterungen
+		- Erlaube NPC nur binäre Kontrolle (wie bei Menschen)
+		- Andere Zielsetzungen (Springen, Schwimmen, Kämpfen, Hindernisse, ...)
+		- Paper diskutiert weitere Spielmechaniken, die nicht direkt mit CI zusammenhängen
+			- Sammeln und Tauschen von Kreaturen
+			- Online-Wettbewerbe
+
+Beispiele von EVCs
+	- ggf. Vorstellen von typischen Fortbewegungsstrategien, die entstehen
+
+Auswertung der Playtests
+	
+Ergebnisse
+	- Spielkonzept ist tragfähig und führt zu Spielspaß
+	- hoher Wiederspielwert durch unbegrenzte Menge an Kreaturen und damit neuen Herausforderungen
+	- Entwickeln der Kreaturen dauert zu lange für Echtzeitanwendungen
+	- Menschen sind Computern unterlegen
+	- Anwendung des Konzepts auf andere Spielmechaniken ist vielversprechend
+
+Zusammenfassung
+
+Take Home Message
+
+Demo
