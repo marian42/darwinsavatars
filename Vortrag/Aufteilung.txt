@@ -1,0 +1,34 @@
+Einführung: Marian
+
+EVCs
+	- Datenstruktur  Christopher
+		- Morphologie
+			- Graph-basierter Genotyp
+			- Muskeln
+			- Gehirn
+	- Evolutionäre Generierung der Kreaturen  Marian
+	
+	
+Spielmechanik  Marian
+	
+
+Beispiele von EVCs  Marian
+	- ggf. Vorstellen von typischen Fortbewegungsstrategien, die entstehen
+
+Auswertung der Playtests Christopher
+	
+Ergebnisse  Christopher
+	- Spielkonzept ist tragfähig und führt zu Spielspaß
+	- hoher Wiederspielwert durch unbegrenzte Menge an Kreaturen und damit neuen Herausforderungen
+	- Entwickeln der Kreaturen dauert zu lange für Echtzeitanwendungen
+	- Menschen sind Computern unterlegen
+	- Anwendung des Konzepts auf andere Spielmechaniken ist vielversprechend
+
+	
+	
+	
+Zusammenfassung von allem
+
+Take Home Message
+
+Demo
