@@ -1,0 +1,192 @@
+Notizen zu Sims Arbeit 'Evolving Virtual Creatures':
+
+Struktur: 	Unterscheidung zwischen Phänotyp und Genotyp
+			-> Der Phänotyp ist die Anordnung der 3D-Objekte 
+			-> Der Genotyp ist der Bauplan für das Modell. 
+
+
+Bauplan: 	Der Bauplan ist ein Graph bestehend aus Knoten und Kanten,
+	 	wobei die Knoten jeweils verschiedene Körpersegmente 
+		und die Kanten die Beziehung zwischen zwei verschiedenen Segmenten
+		repräsentieren.
+		Besonderheiten sind 
+			-> Rekursionen, d.h. wiederholte Anordnung gleichartiger
+			   Segmenttypen
+			-> Mehrfache Beziehungen (Kanten) zwischen zwei Segmenten 
+			   (Knoten), d.h. bspw. Zwei Beinsegmente an einem Körperbasis-
+			   segment
+
+
+Parameter:	Dimensionen [dimensions] 		- Form der Segmente
+		Verknüfpungsart [joint-type] 		- Verknüpfung zwischen zwei Segmenten, 
+					       		  also entweder ein Gelenk (welchen Typs?),
+					       		  oder eine steife Verknüpfung
+		Verknüpfungsgrenzen [joint-limits] 	- Schränkt den Grad der Gelenkfunktion
+							  (sofern vorhanden) ein
+		Rekursionsgrenzen [recursive-limit]	- setzt einen maximalen Wert vor der die
+							  Anzahl der rekursiv generierten Segmente
+							  begrenzt
+		Neuronen [neurons]			- Eine Menge von Neuronen werden in jedem Knoten
+							  eingesetzt. Sie bestimmen das Verhalten des 
+							  Modells
+		Beziehungen [connections]		- Bereits oben näher erläutert, außerdem enthalten
+							  sie Informationen zur Position, Ausrichtung,
+							  Skalierung und Reflektion des anliegenden
+							  Segments
+		Abschlüsse [terminal-only]		- Spezielle Segmente werden angefügt erst nach
+							  erreichen der Rekursionsgrenze
+
+
+Kontrolle: 	Eine Art Gehirn steuert das Verhalten des Modells. Dabei wird unterschieden in 
+			-> Sensoren, diese zerteilen sich in 3 verschiedene Typen.
+				      (1) Gelenkwinkelsensoren [joint angle sensors] liefern den aktuellen	
+					  Winkel zwischen den zwei beobachteten Segmenten
+				      (2) Kontaktsensoren [contact sensors] liefern die Werte (1.0) bei 
+					  Kontakt und (-1.0) wenn kein Kontakt stattfindet. In dieser 
+					  Arbeit beobachten Kontaktsensoren die gesamte Oberfläche eines
+					  Segments
+				      (3) Lichtsensoren [photosensors] reagieren auf Lichteinfall. Sie 
+					  können die Position der Lichtquelle ausmachen. Dazu werden gleich
+					  drei Lichtsensoren an der Oberfläche des Modells angebracht 
+			-> Effektoren, sie üben die Muskelkontraktion aus. Sie sind in ihrer Stärke beschränkt 
+			-> Neuronen, diese regeln das eigentliche Verhalten. Dazu werden verschiedene 
+			   Funktionen bereitgestellt. Neuronen werden dargestellt als Knoten mit Eingangs-
+			   und Ausgangssignal. Die Funktionen werden also auf das Eingangssignal angewendet 
+			   und generieren ein (möglicherweise) verändertes Ausgangssignal. Beispiele für 
+			   solche Funktionen sind Summen- und Produktbildung d. Eingangssignale, logische
+			   Funktionen, sowie weitere mathematische Funktionen, aber auch Funktionen die in 
+			   einer bestimmten Frequenz verschiedene Werte annehmen (Oszilloskop)
+		Diese Bausteine werden im Genotyp des Modells eingesetzt und verleihen dem Modell überhaupt 
+		erst die Möglichkeit Aktionen auszuführen
+
+
+
+Simulation: 	Untersuchung von Kollisionserkennung und -reaktion, sowie Viskositätseffekte
+			-> Einbettung in Physik-Engine
+
+Verhalten:	Effektoren führen Bewegungsmuster innerhalb des Gehirns im Modell aus.
+		Ein Fitnesswert wird bestimmt der die Qualität des Modells hinsichtlich einer
+		bestimmten Aufgabe misst. Modelle mit Fitnesswert 0 werden aussortiert, ihnen ist
+		es nicht möglich die vorgesetzte Aufgabe überhaupt auszuführen. Der Fitnesswert wird 
+		nach der Simulation eines Modells bestimmt. Innerhalb dieser Simulation muss das Modell
+			-> Schwimmen, dazu wird ein Viskositätseffekt aktiviert. Gravitation wird dabei 
+			   aufgehoben. Der Fitnesswert bestimmt sich hierbei durch die Geschwindigkeit
+			   in der sich das Modell fortbewegen kann
+			-> Laufen, dabei wird keine Vorgabe gegeben wie das Modell laufen soll, die Aufgabe
+			   ist viel mehr die Fortbewegung. Erneut wird der Fitnesswert durch die erreichte 
+			   Geschwindigkeit bestimmt
+			-> Springen, gemessen wird die maximal erreichte Höhe des untersten Körpersegments.
+			   Alternativ kann die durchschnittliche Höhe des untersten Körpersegments während 
+			   der gesamten Zeit der Simulation gemessen werden
+			-> Folgen, durch Verwendung der Lichtsensoren ist das Modell in der Lage sich auf 
+			   eine Lichtquelle zuzubewegen, bzw. einer zu folgen. Die Annäherungsgeschwindigkeit
+			   beschreibt dabei den Fitnesswert
+
+Evolution: 	Das Übelebensverhältnis [survival-ratio] gibt an wie viel Prozent der Gruppe der aktuellen 
+		Evolutionsstufe erhalten bleibt pro Generation. Die Gruppe bestand üblicherweise aus 300
+		Modellen, wobei das Verhältnis 1:5 war. Wenn von einer Gruppe weniger als 60 (300/5) Modelle
+		einen Fitnesswert von größer 0 besitzen werden weitere Genotypen generiert. Die Modelle die 
+		den größten Fitnesswert besitzen reproduzieren sich auch am Häufigsten. D.h. ihr Genotyp 
+		wird am häufigsten für die nächste Evolutionsstufe verwendet. Die Genotypen werden kopiert
+		und kombiniert
+
+Mutation:	(1)	Kleine Mutationen treten häufiger als drastische Mutationen auf. Den Skalarwerten 
+			werden zufällige Werte hinzuaddiert. Die Veränderungen treten relativ zum originalen 
+			Wert auf. Wenn nur eine kleine Anzahl an Mutationen möglich ist, wird zufällig ein 
+			Wert aus der Menge der möglichen Werte ausgewählt.
+		(2)	Ein neuer zufällig generierter Knoten wird dem Graphen zugefügt. Solange dieser Knoten
+			nicht mit einem anderen Knoten aus dem Graphen verbunden ist hat er keine Auswirkung 
+			auf den Phänotyp. Dieser Schritt dient der Steigerung der Komplexität des Graphen.
+		(3)	Die Parameter der Verbindungen zwischen den knoten werden wie in Schritt 1 mutiert.
+			Außerdem werden in einer bestimmten Häufigkeit die Verbindungen verschoben, sodass
+			andere Knoten erreicht werden
+		(4)	Es werden zufällig neue Verbindungen dem Graphen zugefügt und bestehende Verbindungen 
+			gelöscht. Dabei werden nur Verbindungen zwischen Strukturknoten hinzugefügt, bzw. 
+			entfernt.
+		(5)	Nicht verbundene Knoten werden gelöscht. Die können alternativ auf erhalten bleiben für
+			die nächste Stufe der Evolution aber zumindest wenn neu hinzugefügte Knoten immer noch 
+			nicht verbunden sind werden die gelöscht um den Graphen nicht unnötig aufzublähen.
+
+Verschmelzung:	Auch [Mating] genannt wird das Verschmelzen zweier Genotypen, bzw. deren Graphdarstellung genannt.
+		Zwei verschiedene Methoden gibt es dafür:
+			-> Kreuzung [crossover] verschmelzt die Graphen der beiden Eltern indem zuerst die Knoten 
+			   der Graphen in einer Reihe aufgestellt werden und anschließend die Knoten vom ersten 
+			   Elternteil kopiert werden und einer oder mehrere Kreuzungspunkte entscheiden wann vom 
+			   anderen Elternteil kopiert werden soll. Die Verbindungen zwischen den Knoten werden 
+			   jeweils mit kopiert. Zeigt eine Verbindung auf einen Knoten der nicht mit kopiert
+			   wurde, so wird die Verbindungen zufällig neu geordnet.
+			-> Verknüpfen [grafts] heißt, dass eine Verbindung von einem zufällig ausgewählten Knoten
+			   aus dem Graphen des ersten Elternteils zu einem zufälligen Knoten aus dem Graphen vom
+			   zweiten Elternteil gezogen wird. Zuvor werden die Knoten wie beim Crossover 
+			   nebeneinander platziert. Die Verbindungen bleiben soweit alle erhalten, nicht verbundene
+			   Knoten werden aus dem Graphen entfernt.
+		Eine Evolutionsstufe erstellt also neue Graphen durch eine dieser beiden Methoden oder durch einfache
+		Mutation. In der Arbeit wurden pro Evolutionsstufe 40% durch Mutation angepasst, 30% durch Kreuzung
+		und 30% durch Verknüpfung. Nach der Generierung der neuen Genotypen wird der neue Phänotyp erstellt 
+		ein Fitnesswert berechnet.
+
+Fitnesstest:	Wird parallel ausgeführt. Dazu werden einzelne Prozessoren jeweils mit der Berechnung eines 
+		Fitnesstests ausgelastet um eine möglichst große Effizienz zu erreichen
+
+Abschluss:	Für jedes der 4 möglichen Verhaltensarten werden Evolutionen ausgeführt. Die Evolutionen beinhalten
+		rund 50-100 Generationen, wobei die besten Ergebnisse weiter untersucht wurden. Die Modelle mit dem
+		Verhalten Schwimmen bewegten sich zumeist durch Paddelbewegungen fort, Laufen funktionierte zumeist 
+		durch hoppeln oder kriechen, oder Schlangenänhlich. Springen sah bei den meisten Modellen gleich aus,
+		einer Lichtquelle zu folgen wurde sowohl in Wasser als auch in trockener Umgebung getestet mit 
+		gleicher Fortbewegungstechnik wie bei den anderen Verhaltensarten und meist erfolgreichem Verfolgen
+		der Lichtquelle
+
+_________________________________________________________________________________________________________________________
+
+
+Notizen zu Lessins, Fussels & Miikulainens Arbeit 'Open-Ended Behavioral Complexity for Evolved Virtual Creatures':
+
+Inhalte die in Lessins und Risis Arbeit detailliert erläutert werden sind hier nicht aufgeführt.
+
+Knotentypen: 	Sinuskurven, Komplement, Konstant, [Skalierung?], Multiplikation, Division, Summe, Differenz, Runden
+		Verzögerung und absolute Differenz		
+
+ESP:		Verhaltenskomplexität wird festgelegt durch ESP:
+			-> Einbetten [encapsulation] Gelernte Fähigkeiten werden eingebettet, sodass zukünftige Fähigkeiten
+			   einfach eingefügt werden können
+			-> Verhaltensplan [syllabus] bricht die Fähigkeiten die das Modell beherrschen soll in kleine
+			   Unterfähigkeiten
+			-> Gegenseitiger Ausschluss [pandemonium] zwischen zwei Fähigkeiten wird benötigt, wenn nicht beide 
+			   Fähigkeiten zur gleichen Zeit angewendet werden dürfen
+
+Syllabus:	Ziel ist es eine Sequenz von Fähigkeiten nach und nach dem Modell beizubringen. Wenn ein Modell sich frei 
+		bewegen können soll, so ist es notwendig, dass das Modell sich zunächst vorwärts bewegen kann, anschließend 
+		sich nach rechts drehen kann, dann auch nach links und abschließend auf ein Ziel zu bewegt.
+
+Encapsulation:	Bereits gelernte Fähigkeiten werden gesichert und gleichzeitig ist es leicht möglich neue Fähigkeiten im Hirn
+		zu entwickeln. Zunähst einmal werden alte Knoten von jeglicher Veränderung gesperrt. Zwischen Muskelknoten und
+		Operationen auf das Signal der Proprioceptoren wird eine Schicht von multiplizier-Knoten eingefügt. Diese 
+		leiten das Signal weiter zu Sigma Knoten die zunächst ohne Funktion sind. Sie dienen der Kompatiblität für
+		weitere Evolutionen, bzw. Lernen neuer Fähigkeiten. Die Multiplizier-Knoten bekommen ihr Signal von einem Sigma-
+		Knoten, der für die eigentliche Fähigkeit zuständig ist. So werden die Signale des früheren Hirn mit der neuen 
+		Fähigkeit verbunden. Dadurch kann nun die neue Fähigkeit als Einheit ein- bzw. ausgeschaltet werden und zwar 
+		in einer Art und Weise, als wäre die Fähigkeit ein einfacher Muskel.
+
+Pandemonium:	Verschiedene Fähigkeiten sollten niemals zur gleichen Zeit ausgeführt werden. Beispielsweise soll sich ein 
+		Modell niemals zur gleichen Zeit nach rechts und nach links drehen. Auch Vorwärts- und Rückwärtsbewegung kann
+		nicht kombiniert werden. Das Pandemonium (im Graph durch die rot gestrichelte Linie erkennbar) realisiert diesen
+		gegenseitigen Ausschluss. Das Signal der einen Fähigkeit wird dadurch in voller Stärke weitergegeben, während 
+		die komplementäre Fähigkeit unterdrückt wird.
+
+Ergebnis:	Ziel der Arbeit ist die Erstellung eines Plans zum schrittweisen Erlernen von atomaren Fähigkeiten. Es ergibt
+		sich ein Graph der die Sensoren von den einzelnen Fähigkeiten und den Muskeln trennt. Im Beispiel ergibt
+		sich ein Modell, welches eine Vielzahl von Fähigkeiten besitzt: Fortbewegung - vorwärts, Rechtsdrehung, 
+		Linksdrehung, außerdem Bewegung auf ein Ziel zu, bzw. von einem Ziel weg (Photosensoren werden dazu benutzt).
+		Zuletzt ist das Modell dazu befähigt zu springen, eine Attacke auszuüben und ein Ziel anzugreifen und zu 
+		entscheiden, ob es fliehen oder attackieren soll. Diese Fähigkeiten bauen allesamt auf zuvor gelernte 
+		Fähigkeiten auf. Der Fitnesstest gewinnt dabei ebenfalls an Komplexität. Der letzte Fitnesstest der Auskunft
+		über alle Fähigkeiten gibt ist mehrstufig. Er beurteilt die Teilfähigkeiten und die Entscheidung zur passenden
+		Aktion.
+
+_____________________________________________________________________________________________________________________________
+
+Notizen zu Lessins und Risis Arbeit 'Darwin's Avatars: a Novel Combination of Gameplay and Procedural Content Generation':
+
+			
+_____________________________________________________________________________________________________________________________
+
