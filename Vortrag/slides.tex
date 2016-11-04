@@ -245,6 +245,87 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 
 
 \begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	Entwickle \textbf{Körperteile + Muskeln + Gehirn} gleichzeitig\\ \pause
+	\vspace{2em}
+	
+	Methode: \textbf{Evolutionärer Algorithmus} \pause
+	\begin{enumerate}
+		\item Mutation
+		\item Reproduktion
+		\item Selektion
+	\end{enumerate}
+	\pause
+	\vspace{2em}
+	\textbf{Fitness:} Laufgeschwindigkeit \pause  + Ästhetik
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	\textbf{Algorithmus}\\
+	\vspace{1em}
+	
+	\begin{itemize}
+		\item Starte mit einer Population von 100 zufälligen Kreaturen \\
+		\vspace{1em}
+		\item In jeder Generation:
+		\begin{enumerate}
+			\item Messe Fitness
+			\item Verwerfe die schlechtesten $80\%$
+			\item Fülle Population mit Mutationen oder Nachkommen auf
+		\end{enumerate}
+		\vspace{1em}
+		\item Wiederhole für 500 Generationen\\
+	\end{itemize}
+	\vspace{2em}
+	Ergebnis: Fitness der Population nimmt zu \checkmark
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Mutation: Zufällige Veränderung einer bestehenden Kreatur}
+	\vspace{1em}
+	\begin{itemize}
+		\item Booleans werden geflippt
+		\item Zahlen werden zufällig verschoben (Gauß-verteilt)
+		\item Diskrete Werte werden neu gewürfelt
+		\item Hinzufügen / Entfernen von Knoten und Kanten
+	\end{itemize}
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+	Erstelle eine Liste der Knoten beider Eltern \\
+	\vspace{1em}
+	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch den des anderen Elternteils an der gleichen Position in der Liste (Kanten behalten ihre relative Richtung) \\
+	\vspace{1em}
+	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen \\
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht \\
+	\vspace{2em}
+	TODO: Text durch Visualisierung ersetzen!!!
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Evolution in der Praxis}
+	\begin{itemize}
+		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig
+		\item Parallele Berechnung
+		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen
+		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt
+		\item Verhindere triviale Lösungen (Umfallen)
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Teil 3}
 \textbf{Kernbotschaft und Abschluss der Präsentation}\\
 \end{frame}
@@ -260,12 +341,12 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\vspace{1em}
 	\textbf{Ergebnis}
 	\begin{itemize}
-		\item Tragfähiges Spielkonzept \pause
+		\item Tragfähiges, erweiterbares Spielkonzept \pause
 		\item Menschen sind evolutionärem Gehirn unterlegen \pause
 	\end{itemize}
 	\vspace{1em}
 	\begin{block}{Take Home Message}
-		Evolutionäre Kreaturen können verwendet werden, um interessante Spielgegenstände zu generieren, allerdings nicht in Echtzeit.	
+		Evolutionäre Kreaturen können verwendet werden, um interessante Spielgegenstände zu generieren, allerdings nicht in Echtzeit.
 	\end{block}
 	
 \end{frame}
