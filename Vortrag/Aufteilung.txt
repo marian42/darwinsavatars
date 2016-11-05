@@ -17,16 +17,6 @@ Beispiele von EVCs  Marian
 
 Auswertung der Playtests Christopher
 	
-Ergebnisse  Christopher
-	- Spielkonzept ist tragfähig und führt zu Spielspaß
-	- hoher Wiederspielwert durch unbegrenzte Menge an Kreaturen und damit neuen Herausforderungen
-	- Entwickeln der Kreaturen dauert zu lange für Echtzeitanwendungen
-	- Menschen sind Computern unterlegen
-	- Anwendung des Konzepts auf andere Spielmechaniken ist vielversprechend
-
-	
-	
-	
 Zusammenfassung von allem
 
 Take Home Message
