@@ -129,12 +129,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-
-\begin{frame}
-	\frametitle{Teil 1}
-	\textbf{Beginn der Präsentation}\\
-\end{frame}
-
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/games/rogue.jpg}}
 \begin{frame}[plain]
 \end{frame}
@@ -158,11 +152,39 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 \usebackgroundtemplate{}
 
 \begin{frame}
-	\frametitle{Spiel}
-	\textbf{Darwin's Avatars}\\
-	\vspace{0.5em}
-	\includegraphics[width=\textwidth]{img/games/darwin.png}
+	\begin{columns}[c]
+		\column{.3\textwidth}
+		\centering		
+		\includegraphics[width=\textwidth]{img/games/qwop.png} \\
+		\vspace{1.5em}
+		\textbf{Bewegungssteurung}
+		\column{.1\textwidth}
+		\centering
+		\textbf{\huge +}
+		\column{0.2\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/games/nms3.jpg} \\
+		\vspace{1.5em}
+		\textbf{Prozedurale Kreaturen}
+		\column{.1\textwidth}
+		\centering
+		\textbf{\huge =}
+		\column{.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/games/darwin.png} \\
+		\vspace{1.5em}
+		\textbf{Darwin's Avatars}
+	\end{columns}
+	
 \end{frame}
+
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/games/darwin2.png}}
+
+\begin{frame}
+	\frametitle{Darwin's Avatars}	
+\end{frame}
+
+\usebackgroundtemplate{}
 
 \begin{frame}
 	\frametitle{Darwin's Avatars}
@@ -176,11 +198,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		\item Spieler steuert die Kreatur \pause
 		\item Messe Zeit bzw. Geschwindigkeit
 	\end{itemize}	
-\end{frame}
-
-\begin{frame}
-	\frametitle{Teil 2}
-	\textbf{Visualisierung eines Sachverhalts}\\
 \end{frame}
 
 \begin{frame}
@@ -408,8 +425,123 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 %Ende meiner Folien
 
 \begin{frame}
-\frametitle{Teil 3}
-\textbf{Kernbotschaft und Abschluss der Präsentation}\\
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	Entwickle \textbf{Körperteile + Muskeln + Gehirn} gleichzeitig\\ \pause
+	\vspace{2em}
+	
+	Methode: \textbf{Evolutionärer Algorithmus} \pause
+	\begin{enumerate}
+		\item Mutation
+		\item Reproduktion
+		\item Selektion
+	\end{enumerate}
+	\pause
+	\vspace{2em}
+	\textbf{Fitness:} Laufgeschwindigkeit \pause  + Ästhetik
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	\textbf{Algorithmus}\\
+	\vspace{1em}
+	
+	\begin{itemize}
+		\item Starte mit einer Population von 100 zufälligen Kreaturen \\
+		\vspace{1em}
+		\item In jeder Generation:
+		\begin{enumerate}
+			\item Messe Fitness
+			\item Verwerfe die schlechtesten $80\%$
+			\item Fülle Population mit Mutationen oder Nachkommen auf
+		\end{enumerate}
+		\vspace{1em}
+		\item Wiederhole für 500 Generationen\\
+	\end{itemize}
+	\vspace{2em}
+	Ergebnis: Fitness der Population nimmt zu \checkmark
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Mutation: Zufällige Veränderung einer bestehenden Kreatur}
+	\vspace{1em}
+	\begin{itemize}
+		\item Booleans werden geflippt
+		\item Zahlen werden zufällig verschoben (Gauß-verteilt)
+		\item Diskrete Werte werden neu gewürfelt
+		\item Hinzufügen / Entfernen von Knoten und Kanten
+	\end{itemize}
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+	Erstelle eine Liste der Knoten beider Eltern \\
+	\vspace{1em}
+	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch den des anderen Elternteils an der gleichen Position in der Liste (Kanten behalten ihre relative Richtung) \\
+	\vspace{1em}
+	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen \\
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht \\
+	\vspace{2em}
+	TODO: Text durch Visualisierung ersetzen!!!
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Evolution in der Praxis}
+	\begin{itemize}
+		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig
+		\item Parallele Berechnung
+		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen
+		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt
+		\item Verhindere triviale Lösungen (Umfallen)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Beispiele von EVCs}
+	
+	TODO Marian
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Spielmechanik}
+	
+	\includegraphics[width=0.5\textwidth]{img/games/darwin.png}
+	\vspace{1em}
+	
+	\textbf{Ablauf}: Mensch und Computer steuern Kopien der gleichen Kreatur \\
+	\vspace{1em}
+	\textbf{Mensch}: Taste für jeden Muskel \\
+	\textbf{Computer}: Generiertes Gehirn \\
+	\vspace{1em}
+	\textbf{Spielende}: Beide erreichen das Ziel \textbf{oder} Zeit läuft ab \\
+	\vspace{1em}
+	Mensch und Computer haben unterschiedliche Sensoren und Aktoren.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Auswertung der Playtests}
+	
+	TODO Christopher
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Mögliche Erweiterungen}
+	
+	\textbf{Ziele}:\\ Springen, Schwimmen, Kämpfen, Klettern... \\
+	\vspace{2em}
+	\textbf{Spielmechaniken}:\\ Sammeln und Tauschen von Kreaturen, Online-Multiplayer \\
+	\vspace{2em}
+	\textbf{Fairness}:\\ Binäre Eingaben für Computer
 \end{frame}
 
 \begin{frame}
@@ -423,12 +555,12 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\vspace{1em}
 	\textbf{Ergebnis}
 	\begin{itemize}
-		\item Tragfähiges Spielkonzept \pause
+		\item Tragfähiges, erweiterbares Spielkonzept \pause
 		\item Menschen sind evolutionärem Gehirn unterlegen \pause
 	\end{itemize}
 	\vspace{1em}
 	\begin{block}{Take Home Message}
-		Evolutionäre Kreaturen können verwendet werden, um interessante Spielgegenstände zu generieren, allerdings nicht in Echtzeit.	
+		Evolutionäre virtuelle Kreaturen sind interessante Spielgegenstände. Sie können allerdings nicht in Echtzeit generiert werden.
 	\end{block}
 	
 \end{frame}
