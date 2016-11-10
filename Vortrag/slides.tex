@@ -95,6 +95,7 @@ per-mode=symbol-or-fraction,
 ]{siunitx}
 \sisetup{math-micro=\text{µ},text-micro=µ}
 \usepackage{isotope}
+\usepackage{tikz}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -205,7 +206,19 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.7\textwidth]{img/g1.png} \pause
+		\resizebox{0.8\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.7cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below left of = 1] {};
+			\node[main node] (3) [below right of = 1] {};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right] node[left] {} (2)
+				edge [bend left] node[left] {} (3)			
+			;
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/1.png}
@@ -217,7 +230,18 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.4\textwidth]{img/g1a.png}
+		\resizebox{0.4\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.85cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 20] node[left] {} (2)
+				edge [bend left = 20] node[left] {} (2)			
+			;
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/1.png}
@@ -229,7 +253,14 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.7\textwidth]{img/g2.png} \pause
+		\resizebox{0.5\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=3cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
+			\end{tikzpicture}
+		}
+		
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{img/2.png}
@@ -241,7 +272,15 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.7\textwidth]{img/g3.png} \pause
+		\resizebox{0.8\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=10cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			
+			\draw (1) to [out=165,in=105,looseness=8, min distance=0.5cm] (1);
+			\draw (1) to [out=15,in=75,looseness=8, min distance=0.5cm] (1);
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/3.png}
@@ -253,22 +292,24 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/g4.png} \pause
+		\resizebox{0.5\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			
+			\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
+			\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 20] node[left] {} (2)
+				edge [bend left = 20] node[left] {} (2)			
+			;
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/4.png}
-	\end{columns}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Kodierung von Evolved Virtual Creatures (EVCs)}
-	\begin{columns}[c]
-		\column{.4\textwidth}
-		\centering
-		\includegraphics[width=0.9\textwidth]{img/g5_blank.png}
-		\column{.6\textwidth}
-		\centering
-		
 	\end{columns}
 \end{frame}
 
@@ -277,7 +318,25 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/g5.png}
+		\resizebox{0.5\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			\node[main node] (3) [above of = 1] {};
+			
+			\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+			
+			\draw (1) to [] (3);
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 10] node[left] {} (2)
+			edge [bend left = 10] node[left] {} (2)
+			edge [bend right = 30] node[left] {} (2)
+			edge [bend left = 30] node[left] {} (2)
+			;
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{img/5.png}
