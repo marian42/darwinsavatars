@@ -114,8 +114,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 
 \usepackage{multicol}
 
-
-
 \begin{document}
 
 \begin{frame}[noframenumbering]
@@ -563,15 +561,182 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
 	
 	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
-	Erstelle eine Liste der Knoten beider Eltern \\
 	\vspace{1em}
-	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch den des anderen Elternteils an der gleichen Position in der Liste (Kanten behalten ihre relative Richtung) \\
-	\vspace{1em}
-	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen \\
+	
+	\begin{columns}
+		\column{.5\textwidth}
+			\centering
+			\resizebox{0.9\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				\node[main node] (5) [right of = 4] {};
+				
+				\path[] (1) edge [bend left = 40] node[left] {} (2);
+				\path[] (1) edge [bend left = 80] node[left] {} (3);
+				\path[] (3) edge [bend left = 30] node[left] {} (4);
+				\path[] (3) edge [bend left = 60] node[left] {} (4);
+				\path[] (4) edge [bend left = 40] node[left] {} (5);
+				
+				\draw (3) to [out=120,in=70,looseness=8] (3);
+				
+				\end{tikzpicture}
+			}
+		\column{.5\textwidth}
+			\centering
+			\resizebox{0.7\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				
+				\path[] (1) edge [bend left = 10] node[left] {} (2);
+				\path[] (1) edge [bend left = 30] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (2) edge [bend left = 30] node[left] {} (3);
+				\path[] (2) edge [bend left = 60] node[left] {} (4);
+				
+				\draw (4) to [out=110,in=70,looseness=8] (4);
+				
+				\end{tikzpicture}
+			}			
+	\end{columns}
+	
+	\vspace{0.6em}
+	
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{img/pfeile.png}
+	\end{center}
+	
+	
+	\resizebox{0.46\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\tiny\bfseries}]
+		
+		\node[main node] (1) {};
+		\node[main node] (2) [right of = 1] {};
+		\node[main node] (3) [right of = 2] {};
+		\node[main node] (4) [right of = 3] {};
+		\node[main node] (5) [right of = 4] {};
+		
+		\path[] (1) edge [bend left = 40] node[left] {} (2);
+		\path[] (1) edge [bend left = 80] node[left] {} (3);
+		\path[] (3) edge [bend left = 30] node[left] {} (4);
+		\path[] (3) edge [bend left = 60] node[left] {} (4);
+		
+		\path[] (2) edge [bend left = 30] node[left] {} (3);
+		\path[] (2) edge [bend left = 60] node[left] {} (4);
+		
+		\draw (4) to [out=110,in=70,looseness=8] (4);
+		
+		\end{tikzpicture}
+	}
+	
+	\vspace{1em}	
+	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch die des anderen Elternteils an der gleichen Position
 	\vspace{2em}
-	Ungenutzte Knoten und Kanten werden gelöscht \\
-	\vspace{2em}
-	TODO: Text durch Visualisierung ersetzen!!!
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+		\vspace{1em}
+		
+		\begin{columns}
+			\column{.5\textwidth}
+			\centering
+			\resizebox{0.9\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				\node[main node] (5) [right of = 4] {};
+				
+				\path[] (1) edge [bend left = 40] node[left] {} (2);
+				\path[] (1) edge [bend left = 80] node[left] {} (3);
+				\path[] (3) edge [bend left = 30] node[left] {} (4);
+				\path[] (3) edge [bend left = 60] node[left] {} (4);
+				\path[] (4) edge [bend left = 40] node[left] {} (5);
+				
+				\draw (3) to [out=120,in=70,looseness=8] (3);
+				
+				\end{tikzpicture}
+			}
+			\column{.5\textwidth}
+			\centering
+			\resizebox{0.7\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				
+				\path[] (1) edge [bend left = 10] node[left] {} (2);
+				\path[] (1) edge [bend left = 30] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (2) edge [bend left = 30] node[left] {} (3);
+				\path[] (2) edge [bend left = 60] node[left] {} (4);
+				
+				\draw (4) to [out=110,in=70,looseness=8] (4);				
+				\end{tikzpicture}
+			}			
+		\end{columns}
+		
+		\vspace{0.4em}
+		
+		\begin{center}
+			\includegraphics[width=0.35\textwidth]{img/pfeile2.png}
+		\end{center}
+		
+		\begin{center}
+			\resizebox{0.8\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\tiny\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				\node[main node] (5) [right of = 4] {};
+				\node[main node] (6) [right of = 5] {};
+				\node[main node] (7) [right of = 6] {};
+				\node[main node] (8) [right of = 7] {};
+				\node[main node] (9) [right of = 8] {};
+				
+				\path[] (1) edge [bend left = 40] node[left] {} (2);
+				\path[] (1) edge [bend left = 80] node[left] {} (3);
+				\path[] (3) edge [bend left = 30] node[left] {} (4);
+				\path[] (3) edge [bend left = 60] node[left] {} (4);
+				\path[] (4) edge [bend left = 40] node[left] {} (5);
+				
+				\draw (3) to [out=120,in=70,looseness=8] (3);
+				
+				\path[] (6) edge [bend left = 10] node[left] {} (7);
+				\path[] (6) edge [bend left = 30] node[left] {} (7);
+				\path[] (6) edge [bend left = 50] node[left] {} (7);
+				\path[] (6) edge [bend left = 50] node[left] {} (7);
+				\path[] (7) edge [bend left = 30] node[left] {} (8);
+				\path[] (7) edge [bend left = 60] node[left] {} (9);
+				
+				\draw (9) to [out=110,in=70,looseness=8] (9);
+				
+				\path[] (4) edge [bend left = 60] node[left] {} (7);				
+				\end{tikzpicture}
+			}		
+		\end{center}
+		
+		\vspace{0.6em}	
+		
+	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen
 \end{frame}
 
 \begin{frame}
