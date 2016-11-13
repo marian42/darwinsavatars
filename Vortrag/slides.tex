@@ -281,6 +281,41 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 \end{frame}
 
 \begin{frame}
+	\frametitle{Neuronen genauer betrachtet}
+	\begin{columns}
+		\column{.25\textwidth}
+		\\
+		\vspace{6.5em}
+		\raggedleft 0.853 \\
+		\vspace{4em}
+		0.628 \\ 0.254 \\
+		\vspace{3em}
+		0.1 \\ 0.435 \\ 0
+		\column{.4\textwidth}
+		\begin{figure}
+			\includegraphics[width=0.5\textwidth]{img/neuron0.png} \pause
+		\end{figure}
+		\begin{figure}
+			\includegraphics[width=0.5\textwidth]{img/neuron1.png} \pause
+		\end{figure}
+		\begin{figure}
+			\includegraphics[width=0.5\textwidth]{img/neuron2.png} \pause
+		\end{figure}
+		\begin{figure}
+			\includegraphics[width=0.5\textwidth]{img/neuron3.png} \pause
+		\end{figure}
+		\column{.35\textwidth}
+		x \in  [0,1] \\
+		\vspace{4em}
+		1 - 0.853 = 0.147  \\
+		\vspace{4em}
+		max(0.628, 0.254) \\ = 0.628 \\
+		\vspace{3em}
+		0.1 + 0.435 + 0 \\ = 0.535 \\
+	\end{columns}
+\end{frame}
+
+\begin{frame}
 	\frametitle{Erweiterter Graph einer Kreatur}
 	\includegraphics[width=0.9\textwidth]{img/evolved_graph.png} 
 \end{frame}
@@ -298,6 +333,110 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		\centering
 		\includegraphics[width=\textwidth]{img/1.png}
 	\end{columns}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	Entwickle \textbf{Körperteile + Muskeln + Gehirn} gleichzeitig\\ \pause
+	\vspace{2em}
+	
+	Methode: \textbf{Evolutionärer Algorithmus} \pause
+	\begin{enumerate}
+		\item Mutation
+		\item Reproduktion
+		\item Selektion
+	\end{enumerate}
+	\pause
+	\vspace{2em}
+	\textbf{Fitness:} Laufgeschwindigkeit \pause  + Ästhetik
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	\textbf{Algorithmus}\\
+	\vspace{1em}
+	
+	\begin{itemize}
+		\item Starte mit einer Population von 100 zufälligen Kreaturen \\
+		\vspace{1em}
+		\item In jeder Generation:
+		\begin{enumerate}
+			\item Messe Fitness
+			\item Verwerfe die schlechtesten $80\%$
+			\item Fülle Population mit Mutationen oder Nachkommen auf
+		\end{enumerate}
+		\vspace{1em}
+		\item Wiederhole für 500 Generationen\\
+	\end{itemize}
+	\vspace{2em}
+	Ergebnis: Fitness der Population nimmt zu \checkmark
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Mutation: Zufällige Veränderung einer bestehenden Kreatur}
+	\vspace{1em}
+	\begin{itemize}
+		\item Booleans werden geflippt
+		\item Zahlen werden zufällig verschoben (Gauß-verteilt)
+		\item Diskrete Werte werden neu gewürfelt
+		\item Hinzufügen / Entfernen von Knoten und Kanten
+	\end{itemize}
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+	Erstelle eine Liste der Knoten beider Eltern \\
+	\vspace{1em}
+	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch den des anderen Elternteils an der gleichen Position in der Liste (Kanten behalten ihre relative Richtung) \\
+	\vspace{1em}
+	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen \\
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht \\
+	\vspace{2em}
+	TODO: Text durch Visualisierung ersetzen!!!
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Evolution in der Praxis}
+	\begin{itemize}
+		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig
+		\item Parallele Berechnung
+		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen
+		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt
+		\item Verhindere triviale Lösungen (Umfallen)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Beispiele von EVCs}
+	
+	TODO Marian
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Spielmechanik}
+	
+	\includegraphics[width=0.5\textwidth]{img/games/darwin.png}
+	\vspace{1em}
+	
+	\textbf{Ablauf}: Mensch und Computer steuern Kopien der gleichen Kreatur \\
+	\vspace{1em}
+	\textbf{Mensch}: Taste für jeden Muskel \\
+	\textbf{Computer}: Generiertes Gehirn \\
+	\vspace{1em}
+	\textbf{Spielende}: Beide erreichen das Ziel \textbf{oder} Zeit läuft ab \\
+	\vspace{1em}
+	Mensch und Computer haben unterschiedliche Sensoren und Aktoren.
 \end{frame}
 
 \begin{frame}
@@ -422,116 +561,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\end{columns}
 \end{frame}
 
-%Ende meiner Folien
-
-\begin{frame}
-	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
-	Entwickle \textbf{Körperteile + Muskeln + Gehirn} gleichzeitig\\ \pause
-	\vspace{2em}
-	
-	Methode: \textbf{Evolutionärer Algorithmus} \pause
-	\begin{enumerate}
-		\item Mutation
-		\item Reproduktion
-		\item Selektion
-	\end{enumerate}
-	\pause
-	\vspace{2em}
-	\textbf{Fitness:} Laufgeschwindigkeit \pause  + Ästhetik
-\end{frame}
-
-\begin{frame}
-	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
-	\textbf{Algorithmus}\\
-	\vspace{1em}
-	
-	\begin{itemize}
-		\item Starte mit einer Population von 100 zufälligen Kreaturen \\
-		\vspace{1em}
-		\item In jeder Generation:
-		\begin{enumerate}
-			\item Messe Fitness
-			\item Verwerfe die schlechtesten $80\%$
-			\item Fülle Population mit Mutationen oder Nachkommen auf
-		\end{enumerate}
-		\vspace{1em}
-		\item Wiederhole für 500 Generationen\\
-	\end{itemize}
-	\vspace{2em}
-	Ergebnis: Fitness der Population nimmt zu \checkmark
-\end{frame}
-
-\begin{frame}
-	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
-	
-	\textbf{Mutation: Zufällige Veränderung einer bestehenden Kreatur}
-	\vspace{1em}
-	\begin{itemize}
-		\item Booleans werden geflippt
-		\item Zahlen werden zufällig verschoben (Gauß-verteilt)
-		\item Diskrete Werte werden neu gewürfelt
-		\item Hinzufügen / Entfernen von Knoten und Kanten
-	\end{itemize}
-	\vspace{2em}
-	Ungenutzte Knoten und Kanten werden gelöscht
-\end{frame}
-
-\begin{frame}
-	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
-	
-	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
-	Erstelle eine Liste der Knoten beider Eltern \\
-	\vspace{1em}
-	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch den des anderen Elternteils an der gleichen Position in der Liste (Kanten behalten ihre relative Richtung) \\
-	\vspace{1em}
-	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen \\
-	\vspace{2em}
-	Ungenutzte Knoten und Kanten werden gelöscht \\
-	\vspace{2em}
-	TODO: Text durch Visualisierung ersetzen!!!
-\end{frame}
-
-\begin{frame}
-	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
-	
-	\textbf{Evolution in der Praxis}
-	\begin{itemize}
-		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig
-		\item Parallele Berechnung
-		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen
-		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt
-		\item Verhindere triviale Lösungen (Umfallen)
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Beispiele von EVCs}
-	
-	TODO Marian
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{Spielmechanik}
-	
-	\includegraphics[width=0.5\textwidth]{img/games/darwin.png}
-	\vspace{1em}
-	
-	\textbf{Ablauf}: Mensch und Computer steuern Kopien der gleichen Kreatur \\
-	\vspace{1em}
-	\textbf{Mensch}: Taste für jeden Muskel \\
-	\textbf{Computer}: Generiertes Gehirn \\
-	\vspace{1em}
-	\textbf{Spielende}: Beide erreichen das Ziel \textbf{oder} Zeit läuft ab \\
-	\vspace{1em}
-	Mensch und Computer haben unterschiedliche Sensoren und Aktoren.
-\end{frame}
-
-\begin{frame}
-	\frametitle{Auswertung der Playtests}
-	
-	TODO Christopher
-\end{frame}
 
 
 \begin{frame}
