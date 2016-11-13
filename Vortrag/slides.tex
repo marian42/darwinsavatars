@@ -95,6 +95,7 @@ per-mode=symbol-or-fraction,
 ]{siunitx}
 \sisetup{math-micro=\text{µ},text-micro=µ}
 \usepackage{isotope}
+\usepackage{tikz}
 
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -112,8 +113,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 \date{9. Dezember 2016} % Date, can be changed to a custom date
 
 \usepackage{multicol}
-
-
 
 \begin{document}
 
@@ -145,7 +144,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 \begin{frame}[plain]
 \end{frame}
 
-\usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/games/nms2.jpg}}
+\usebackgroundtemplate{\includegraphics[width=\paperwidth]{img/games/nms2.png}}
 \begin{frame}[plain]
 \end{frame}
 
@@ -163,7 +162,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		\textbf{\huge +}
 		\column{0.2\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{img/games/nms3.jpg} \\
+		\includegraphics[width=\textwidth]{img/games/nms3.png} \\
 		\vspace{1.5em}
 		\textbf{Prozedurale Kreaturen}
 		\column{.1\textwidth}
@@ -205,7 +204,42 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.7\textwidth]{img/g1.png} \pause
+		\resizebox{0.8\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.7cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below left of = 1] {};
+			\node[main node] (3) [below right of = 1] {};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right] node[left] {} (2)
+				edge [bend left] node[left] {} (3)			
+			;
+			\end{tikzpicture}
+		}
+		\column{.6\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/1.png}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Kodierung von Evolved Virtual Creatures (EVCs)}
+	\begin{columns}[c]
+		\column{.4\textwidth}
+		\centering
+		\resizebox{0.4\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.85cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 20] node[left] {} (2)
+				edge [bend left = 20] node[left] {} (2)			
+			;
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/1.png}
@@ -217,19 +251,14 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.4\textwidth]{img/g1a.png}
-		\column{.6\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{img/1.png}
-	\end{columns}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Kodierung von Evolved Virtual Creatures (EVCs)}
-	\begin{columns}[c]
-		\column{.4\textwidth}
-		\centering
-		\includegraphics[width=0.7\textwidth]{img/g2.png} \pause
+		\resizebox{0.5\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=3cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
+			\end{tikzpicture}
+		}
+		
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{img/2.png}
@@ -241,7 +270,15 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.7\textwidth]{img/g3.png} \pause
+		\resizebox{0.8\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=10cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			
+			\draw (1) to [out=165,in=105,looseness=8, min distance=0.5cm] (1);
+			\draw (1) to [out=15,in=75,looseness=8, min distance=0.5cm] (1);
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/3.png}
@@ -253,10 +290,54 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\begin{columns}[c]
 		\column{.4\textwidth}
 		\centering
-		\includegraphics[width=0.9\textwidth]{img/g4.png} \pause
+		\resizebox{0.5\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			
+			\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
+			\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 20] node[left] {} (2)
+				edge [bend left = 20] node[left] {} (2)			
+			;
+			\end{tikzpicture}
+		}
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/4.png}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[noframenumbering]
+	\frametitle{Kodierung von Evolved Virtual Creatures (EVCs)}
+	\begin{columns}[c]
+		\column{.4\textwidth}
+		\centering
+		\resizebox{0.5\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			\node[main node] (3) [above of = 1] {};
+			
+			\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+			
+			\draw (1) to [] (3);
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 10] node[left] {} (2)
+			edge [bend left = 10] node[left] {} (2)
+			edge [bend right = 30] node[left] {} (2)
+			edge [bend left = 30] node[left] {} (2)
+			;
+			\end{tikzpicture}
+		}
+		\column{.6\textwidth}
+		\centering
+		\includegraphics[width=0.8\textwidth]{img/5.png}
 	\end{columns}
 \end{frame}
 
@@ -561,6 +642,286 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\end{columns}
 \end{frame}
 
+<<<<<<< HEAD
+=======
+%Ende meiner Folien
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	Entwickle \textbf{Körperteile + Muskeln + Gehirn} gleichzeitig\\ \pause
+	\vspace{2em}
+	
+	Methode: \textbf{Evolutionärer Algorithmus} \pause
+	\begin{enumerate}
+		\item Mutation
+		\item Reproduktion
+		\item Selektion
+	\end{enumerate}
+	\pause
+	\vspace{2em}
+	\textbf{Fitness:} Laufgeschwindigkeit \pause  + Ästhetik
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	\textbf{Algorithmus}\\
+	\vspace{1em}
+	
+	\begin{itemize}
+		\item Starte mit einer Population von 100 zufälligen Kreaturen \\
+		\vspace{1em}
+		\item In jeder Generation:
+		\begin{enumerate}
+			\item Messe Fitness
+			\item Verwerfe die schlechtesten $80\%$
+			\item Fülle Population mit Mutationen oder Nachkommen auf
+		\end{enumerate}
+		\vspace{1em}
+		\item Wiederhole für 500 Generationen\\
+	\end{itemize}
+	\vspace{2em}
+	Ergebnis: Fitness der Population nimmt zu \checkmark
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Mutation: Zufällige Veränderung einer bestehenden Kreatur}
+	\vspace{1em}
+	\begin{itemize}
+		\item Booleans werden geflippt
+		\item Zahlen werden zufällig verschoben (Gauß-verteilt)
+		\item Diskrete Werte werden neu gewürfelt
+		\item Hinzufügen / Entfernen von Knoten und Kanten
+	\end{itemize}
+	\vspace{2em}
+	Ungenutzte Knoten und Kanten werden gelöscht
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+	\vspace{1em}
+	
+	\begin{columns}
+		\column{.5\textwidth}
+			\centering
+			\resizebox{0.9\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				\node[main node] (5) [right of = 4] {};
+				
+				\path[] (1) edge [bend left = 40] node[left] {} (2);
+				\path[] (1) edge [bend left = 80] node[left] {} (3);
+				\path[] (3) edge [bend left = 30] node[left] {} (4);
+				\path[] (3) edge [bend left = 60] node[left] {} (4);
+				\path[] (4) edge [bend left = 40] node[left] {} (5);
+				
+				\draw (3) to [out=120,in=70,looseness=8] (3);
+				
+				\end{tikzpicture}
+			}
+		\column{.5\textwidth}
+			\centering
+			\resizebox{0.7\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				
+				\path[] (1) edge [bend left = 10] node[left] {} (2);
+				\path[] (1) edge [bend left = 30] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (2) edge [bend left = 30] node[left] {} (3);
+				\path[] (2) edge [bend left = 60] node[left] {} (4);
+				
+				\draw (4) to [out=110,in=70,looseness=8] (4);
+				
+				\end{tikzpicture}
+			}			
+	\end{columns}
+	
+	\vspace{0.6em}
+	
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{img/pfeile.png}
+	\end{center}
+	
+	
+	\resizebox{0.46\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\tiny\bfseries}]
+		
+		\node[main node] (1) {};
+		\node[main node] (2) [right of = 1] {};
+		\node[main node] (3) [right of = 2] {};
+		\node[main node] (4) [right of = 3] {};
+		\node[main node] (5) [right of = 4] {};
+		
+		\path[] (1) edge [bend left = 40] node[left] {} (2);
+		\path[] (1) edge [bend left = 80] node[left] {} (3);
+		\path[] (3) edge [bend left = 30] node[left] {} (4);
+		\path[] (3) edge [bend left = 60] node[left] {} (4);
+		
+		\path[] (2) edge [bend left = 30] node[left] {} (3);
+		\path[] (2) edge [bend left = 60] node[left] {} (4);
+		
+		\draw (4) to [out=110,in=70,looseness=8] (4);
+		
+		\end{tikzpicture}
+	}
+	
+	\vspace{1em}	
+	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch die des anderen Elternteils an der gleichen Position
+	\vspace{2em}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+		\vspace{1em}
+		
+		\begin{columns}
+			\column{.5\textwidth}
+			\centering
+			\resizebox{0.9\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				\node[main node] (5) [right of = 4] {};
+				
+				\path[] (1) edge [bend left = 40] node[left] {} (2);
+				\path[] (1) edge [bend left = 80] node[left] {} (3);
+				\path[] (3) edge [bend left = 30] node[left] {} (4);
+				\path[] (3) edge [bend left = 60] node[left] {} (4);
+				\path[] (4) edge [bend left = 40] node[left] {} (5);
+				
+				\draw (3) to [out=120,in=70,looseness=8] (3);
+				
+				\end{tikzpicture}
+			}
+			\column{.5\textwidth}
+			\centering
+			\resizebox{0.7\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				
+				\path[] (1) edge [bend left = 10] node[left] {} (2);
+				\path[] (1) edge [bend left = 30] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (1) edge [bend left = 50] node[left] {} (2);
+				\path[] (2) edge [bend left = 30] node[left] {} (3);
+				\path[] (2) edge [bend left = 60] node[left] {} (4);
+				
+				\draw (4) to [out=110,in=70,looseness=8] (4);				
+				\end{tikzpicture}
+			}			
+		\end{columns}
+		
+		\vspace{0.4em}
+		
+		\begin{center}
+			\includegraphics[width=0.35\textwidth]{img/pfeile2.png}
+		\end{center}
+		
+		\begin{center}
+			\resizebox{0.8\textwidth}{!}{
+				\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\tiny\bfseries}]
+				
+				\node[main node] (1) {};
+				\node[main node] (2) [right of = 1] {};
+				\node[main node] (3) [right of = 2] {};
+				\node[main node] (4) [right of = 3] {};
+				\node[main node] (5) [right of = 4] {};
+				\node[main node] (6) [right of = 5] {};
+				\node[main node] (7) [right of = 6] {};
+				\node[main node] (8) [right of = 7] {};
+				\node[main node] (9) [right of = 8] {};
+				
+				\path[] (1) edge [bend left = 40] node[left] {} (2);
+				\path[] (1) edge [bend left = 80] node[left] {} (3);
+				\path[] (3) edge [bend left = 30] node[left] {} (4);
+				\path[] (3) edge [bend left = 60] node[left] {} (4);
+				\path[] (4) edge [bend left = 40] node[left] {} (5);
+				
+				\draw (3) to [out=120,in=70,looseness=8] (3);
+				
+				\path[] (6) edge [bend left = 10] node[left] {} (7);
+				\path[] (6) edge [bend left = 30] node[left] {} (7);
+				\path[] (6) edge [bend left = 50] node[left] {} (7);
+				\path[] (6) edge [bend left = 50] node[left] {} (7);
+				\path[] (7) edge [bend left = 30] node[left] {} (8);
+				\path[] (7) edge [bend left = 60] node[left] {} (9);
+				
+				\draw (9) to [out=110,in=70,looseness=8] (9);
+				
+				\path[] (4) edge [bend left = 60] node[left] {} (7);				
+				\end{tikzpicture}
+			}		
+		\end{center}
+		
+		\vspace{0.6em}	
+		
+	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen
+\end{frame}
+
+\begin{frame}
+	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
+	
+	\textbf{Evolution in der Praxis}
+	\begin{itemize}
+		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig
+		\item Parallele Berechnung
+		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen
+		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt
+		\item Verhindere triviale Lösungen (Umfallen)
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Beispiele von EVCs}
+	
+	TODO Marian
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Spielmechanik}
+	
+	\includegraphics[width=0.5\textwidth]{img/games/darwin.png}
+	\vspace{1em}
+	
+	\textbf{Ablauf}: Mensch und Computer steuern Kopien der gleichen Kreatur \\
+	\vspace{1em}
+	\textbf{Mensch}: Taste für jeden Muskel \\
+	\textbf{Computer}: Generiertes Gehirn \\
+	\vspace{1em}
+	\textbf{Spielende}: Beide erreichen das Ziel \textbf{oder} Zeit läuft ab \\
+	\vspace{1em}
+	Mensch und Computer haben unterschiedliche Sensoren und Aktoren.
+\end{frame}
+
+\begin{frame}
+	\frametitle{Auswertung der Playtests}
+	
+	TODO Christopher
+\end{frame}
+>>>>>>> a67ed1ef4a72f4fef3c7ffcce9d9c4716a8a2734
 
 
 \begin{frame}
