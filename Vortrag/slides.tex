@@ -374,16 +374,16 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		0.1 \\ 0.435 \\ 0
 		\column{.4\textwidth}
 		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{img/neuron0.png} \pause
+			\includegraphics[width=0.5\textwidth]{img/neuron0.png} 
 		\end{figure}
 		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{img/neuron1.png} \pause
+			\includegraphics[width=0.5\textwidth]{img/neuron1.png} 
 		\end{figure}
 		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{img/neuron2.png} \pause
+			\includegraphics[width=0.5\textwidth]{img/neuron2.png} 
 		\end{figure}
 		\begin{figure}
-			\includegraphics[width=0.5\textwidth]{img/neuron3.png} \pause
+			\includegraphics[width=0.5\textwidth]{img/neuron3.png} 
 		\end{figure}
 		\column{.35\textwidth}
 		x \in  [0,1] \\
@@ -393,6 +393,78 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		max(0.628, 0.254) \\ = 0.628 \\
 		\vspace{3em}
 		0.1 + 0.435 + 0 \\ = 0.535 \\
+	\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{[TEX-Alternative] Neuronen genauer betrachtet}
+	\usetikzlibrary{arrows,automata}
+	\usetikzlibrary{positioning}
+	\begin{columns}
+		\column{.5\textwidth}
+		\centering
+		\resizebox{0.65\textwidth}{!}{
+			\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+			
+			\node[circle,draw] (1) {wav};
+			\coordinate [right of=1] (h1);
+			\coordinate [left of=1] (h2);
+			\coordinate [above of=h2] (h3);
+			\coordinate [below of=h2] (h4);
+		    \draw [->] (1) to[] node[align=center] {\tiny x \in [0,1] \\ } (h1);
+		    \draw [->, opacity=0] (h2) to[] node[auto] {} (1); 
+		    \draw [->, opacity=0] (h3) to[] node[auto] {} (1);
+		    \draw [->, opacity=0] (h4) to[] node[auto] {} (1);			
+		
+			\end{tikzpicture}
+		}
+		\resizebox{0.65\textwidth}{!}{
+			\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		
+			\node[circle,draw] (1) {com};
+			\coordinate [right of=1] (h1);
+			\coordinate [left of=1] (h2);
+			\coordinate [above of=h2] (h3);
+			\coordinate [below of=h2] (h4);
+			\draw [->] (1) to[] node[align=center] {\tiny 0.147 \\ } (h1);
+			\draw [->] (h2) to[] node[auto] {\tiny 0.853} (1);
+			\draw [->, opacity=0] (h3) to[] node[auto] {} (1);
+			\draw [->, opacity=0] (h4) to[] node[auto] {} (1); 			
+		
+			\end{tikzpicture}
+		}
+		\column{.5\textwidth}
+		\centering
+		\resizebox{0.65\textwidth}{!}{
+			\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+			
+			\node[circle,draw] (1) {max};
+			\coordinate [right of=1] (h1);
+			\coordinate [left of=1] (h2);
+			\coordinate [above of=h2] (h3);
+			\coordinate [below of=h2] (h4);
+			\draw [->] (1) to[] node[align=center] {\tiny 0.628 \\ } (h1);
+			\draw [->] (h2) to[] node[auto] {\tiny 0.628} (1);
+			\draw [->] (h3) to[] node[auto] {\tiny 0.254} (1);
+			\draw [->, opacity=0] (h4) to[] node[auto] {} (1); 			
+			
+			\end{tikzpicture}
+		}
+		\resizebox{0.65\textwidth}{!}{
+			\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+			
+			\node[circle,draw] (1) {+};
+			\coordinate [right of=1] (h1);
+			\coordinate [left of=1] (h2);
+			\coordinate [above of=h2] (h3);
+			\coordinate [below of=h2] (h4);
+			\draw [->] (1) to[] node[align=center] {\tiny 0.535 \\ } (h1);
+			\draw [->] (h2) to[] node[auto] {\tiny 0.1} (1);
+			\draw [->] (h3) to[] node[auto] {\tiny 0.435} (1);
+			\draw [->] (h4) to[] node[auto] {\tiny 0} (1); 			
+			
+			\end{tikzpicture}
+		}
 	\end{columns}
 \end{frame}
 
@@ -642,9 +714,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\end{columns}
 \end{frame}
 
-<<<<<<< HEAD
-=======
-%Ende meiner Folien
 
 \begin{frame}
 	\frametitle{Evolutionäre Generierung von Evolved Virtual Creatures}
@@ -893,11 +962,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\end{itemize}
 \end{frame}
 
-\begin{frame}
-	\frametitle{Beispiele von EVCs}
-	
-	TODO Marian
-\end{frame}
 
 
 \begin{frame}
@@ -915,13 +979,6 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\vspace{1em}
 	Mensch und Computer haben unterschiedliche Sensoren und Aktoren.
 \end{frame}
-
-\begin{frame}
-	\frametitle{Auswertung der Playtests}
-	
-	TODO Christopher
-\end{frame}
->>>>>>> a67ed1ef4a72f4fef3c7ffcce9d9c4716a8a2734
 
 
 \begin{frame}
