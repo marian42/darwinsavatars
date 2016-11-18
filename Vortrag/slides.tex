@@ -217,6 +217,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			;
 			\end{tikzpicture}
 		}
+		\pause
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/1.png}
@@ -258,7 +259,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
 			\end{tikzpicture}
 		}
-		
+		\pause
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{img/2.png}
@@ -279,6 +280,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			\draw (1) to [out=15,in=75,looseness=8, min distance=0.5cm] (1);
 			\end{tikzpicture}
 		}
+		\pause
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/3.png}
@@ -305,6 +307,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			;
 			\end{tikzpicture}
 		}
+		\pause
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/4.png}
@@ -335,6 +338,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			;
 			\end{tikzpicture}
 		}
+		\pause
 		\column{.6\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{img/5.png}
@@ -345,7 +349,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 
 \begin{frame}
 	\frametitle{Kontrolle der Kreaturen}
-	\textbf{Neuronales Netz}: Abbildung von Rechenoperationen durch eine Graphen\\ \pause
+	\textbf{Neuronales Netz}: Abbildung von Rechenoperationen durch einen Graphen\\ \pause
 	\begin{itemize}
 		\item Neuronen können Funktionen auf ein Eingangssignal anwenden \pause
 		\begin{itemize}
@@ -358,7 +362,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		\end{itemize}
 		\item Ausgänge: Effektoren 
 		\begin{itemize}
-			\item erhalten einen Wert und führen davon abhängig eine Bewegung aus
+			\item Erhalten einen Wert und führen davon abhängig eine Bewegung aus
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -510,9 +514,9 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\frametitle{Evolutionäre Generierung von virtuellen Kreaturen}
 	\textbf{Algorithmus}\\
 	\vspace{1em}
-	
+	\pause
 	\begin{itemize}
-		\item Starte mit einer Population von 100 zufälligen Kreaturen \\
+		\item Starte mit einer Population von 100 zufälligen Kreaturen \pause \\
 		\vspace{1em}
 		\item In jeder Generation:
 		\begin{enumerate}
@@ -520,10 +524,12 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			\item Verwerfe die schlechtesten $80\%$
 			\item Fülle Population mit Mutationen oder Nachkommen auf
 		\end{enumerate}
+		\pause
 		\vspace{1em}
 		\item Wiederhole für 500 Generationen\\
 	\end{itemize}
 	\vspace{2em}
+	\pause
 	Ergebnis: Fitness der Population nimmt zu \checkmark
 \end{frame}
 
@@ -531,6 +537,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\frametitle{Evolutionäre Generierung von virtuellen Kreaturen}
 	
 	\textbf{Mutation: Zufällige Veränderung einer bestehenden Kreatur}
+	\pause
 	\vspace{1em}
 	\begin{itemize}
 		\item Booleans werden geflippt
@@ -539,13 +546,14 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		\item Hinzufügen / Entfernen von Knoten und Kanten
 	\end{itemize}
 	\vspace{2em}
+	\pause
 	Ungenutzte Knoten und Kanten werden gelöscht
 \end{frame}
 
 \begin{frame}
 	\frametitle{Evolutionäre Generierung von virtuellen Kreaturen}
 	
-	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+	\textbf{Paarung: Zufällige Kombination von zwei Kreaturen (Methode A)} \\
 	\vspace{1em}
 	
 	\begin{columns}
@@ -592,6 +600,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			\end{tikzpicture}
 		}			
 	\end{columns}
+	\pause
 	
 	\vspace{0.6em}
 	
@@ -622,7 +631,8 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 		\end{tikzpicture}
 	}
 	
-	\vspace{1em}	
+	\vspace{1em}
+	\pause	
 	\textbf{Methode A}: Nehme Knoten eines Elternteils und erstetze zufällige Knoten durch die des anderen Elternteils an der gleichen Position
 	\vspace{2em}
 \end{frame}
@@ -630,7 +640,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 \begin{frame}
 	\frametitle{Evolutionäre Generierung von virtuellen Kreaturen}
 	
-	\textbf{Paarung: Zufällige Kombination von zwei bestehenden Kreaturen} \\
+	\textbf{Paarung: Zufällige Kombination von zwei Kreaturen (Methode B)} \\
 	\vspace{1em}
 	
 	\begin{columns}
@@ -676,6 +686,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 			\end{tikzpicture}
 		}			
 	\end{columns}
+	\pause
 	
 	\vspace{0.4em}
 	
@@ -721,6 +732,7 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	
 	\vspace{0.6em}	
 	
+	\pause
 	\textbf{Methode B}: Konkateniere beide Listen und "verknote" Kanten zwischen beiden Teilen
 \end{frame}
 
@@ -729,10 +741,10 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	
 	\textbf{Evolution in der Praxis}
 	\begin{itemize}
-		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig
-		\item Parallele Berechnung
-		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen
-		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt
+		\item Physiksimulation zur Berechnung jeder Fitnessfunktion notwendig \pause
+		\item Parallele Berechnung \pause
+		\item Optimierung: Breche Simulationen ab, die keinen Erfolg versprechen \pause
+		\item Rundungsfehler, Bugs, Energie-Leaks werden gefunden und ausgenutzt \pause
 		\item Verhindere triviale Lösungen (Umfallen)
 	\end{itemize}
 \end{frame}
@@ -751,12 +763,12 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 	\includegraphics[width=0.5\textwidth]{img/games/darwin.png}
 	\vspace{1em}
 	
-	\textbf{Ablauf}: Mensch und Computer steuern Kopien der gleichen Kreatur \\
+	\textbf{Ablauf}: Mensch und Computer steuern Kopien der gleichen Kreatur \pause \\
+	\vspace{1em}
+	\textbf{Spielende}: Beide erreichen das Ziel \textbf{oder} Zeit läuft ab \pause \\
 	\vspace{1em}
 	\textbf{Mensch}: Taste für jeden Muskel \\
-	\textbf{Computer}: Generiertes Gehirn \\
-	\vspace{1em}
-	\textbf{Spielende}: Beide erreichen das Ziel \textbf{oder} Zeit läuft ab \\
+	\textbf{Computer}: Generiertes Gehirn \pause \\
 	\vspace{1em}
 	Mensch und Computer haben unterschiedliche Sensoren und Aktoren.
 \end{frame}
@@ -886,9 +898,9 @@ christopher.riesner@tu-dortmund.de\\ marian.kleineberg@tu-dortmund.de % Your ema
 \begin{frame}
 	\frametitle{Mögliche Erweiterungen}
 	
-	\textbf{Ziele}:\\ Springen, Schwimmen, Kämpfen, Klettern... \\
+	\textbf{Ziele}:\\ Springen, Schwimmen, Kämpfen, Klettern... \pause \\
 	\vspace{2em}
-	\textbf{Spielmechaniken}:\\ Sammeln und Tauschen von Kreaturen, Online-Multiplayer \\
+	\textbf{Spielmechaniken}:\\ Sammeln und Tauschen von Kreaturen, Online-Multiplayer \pause \\
 	\vspace{2em}
 	\textbf{Fairness}:\\ Binäre Eingaben für Computer
 \end{frame}
