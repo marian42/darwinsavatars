@@ -1,0 +1,127 @@
+%------------------------------------------------
+% Latex-Grundgerüst für Seminarausarbeitungen
+%
+% zu Erzeugen mit
+%   pdflatex ausarbeitung.tex
+%
+% von Carsten Gutwenger
+% angepasst von Igor Vatolkin
+%------------------------------------------------
+
+\documentclass[a4paper,12pt,twoside]{article}
+\usepackage[a4paper,left=3.5cm,right=2.5cm,bottom=3.5cm,top=3cm]{geometry}
+
+% Encoding der .tex-Datei
+% muss je nach Editor-Einstellungen eventuell angepasst werden!
+%   latin1    Unix/Windows
+%   ansinew   Alternative für Windows
+%   applemac  Apple
+%   utf8      Alternative für Unix/Windows/Apple
+\usepackage[latin1]{inputenc}
+
+\usepackage[ngerman]{babel}                                 % deutsche Sprache
+\usepackage[T1]{fontenc}                                    % Unterstützung für Umlaute mit Fonts
+\usepackage[pdftex]{graphicx,color}                         % Einbetten von Grafiken, Farbe
+\usepackage[format=plain,small,bf,indention=7.5mm]{caption} % verbesserte Beschriftung von Abbildungen
+\usepackage{subfig}                                         % subfigures
+\usepackage{url}                                            % \url{}-Kommando
+\usepackage{fancyhdr,float}                                 % Kopf-/Fußzeilen
+\usepackage[pdftex,pdfpagelabels]{hyperref}                 % Hyperlinks im PDF
+\usepackage{natbib,doi}                                     % Literaturverzeichnis, DOIs
+\usepackage[section,boxed]{algorithm}                       % Floating-Umgebung für Algorithmen
+\usepackage{algpseudocode}                                  % Pseudocode für Algorithmen
+
+\captionsetup{farskip=10pt,topadjust=0pt,captionskip=10pt,nearskip=0pt,margin=10pt}
+
+\pagestyle{fancy}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\slshape \leftmark}}
+\fancyhead[LO]{\nouppercase{\slshape \rightmark}}
+\fancyfoot[C]{}
+
+
+\begin{document}
+
+%------------------------------------------------
+% Titelseite
+%------------------------------------------------
+
+\begin{titlepage}
+\vspace*{-2cm}
+\newlength{\links}
+\setlength{\links}{-1.5cm} \sf \LARGE
+
+\hspace*{\links}
+\begin{minipage}{12.5cm}
+\includegraphics[width=8cm]{tud_logo_rgb}
+\end{minipage}
+
+\vspace*{4cm}
+
+\large
+\begin{center}
+{\Large Seminarausarbeitung} \\[1ex]
+{\LARGE\textbf{Darwin's Avatars}}\\[3ex]
+Marian Kleineberg, Christopher Riesner\\[1ex]
+\today\\[7ex]
+im Rahmen des Proseminars\\[1ex]
+{\Large\textbf{Computational Intelligence in Spielen}}\\[1ex]
+von Dr.~Igor Vatolkin\\[1ex]
+Wintersemester 2016/17
+\end{center}
+
+\vspace*{5cm}
+\hspace*{\links}
+\begin{minipage}[b]{15cm}
+\normalsize \raggedright
+
+\textbf{Basierend auf:}\\
+D.Lessin, S.Risi, Darwin's Avatars: a Novel Combination of Gameplay and Procedural Content Generation, GECCO '15, July 11 - 16
+\end{minipage}
+
+\definecolor{TUGreen}{rgb}{0.517,0.721,0.094}
+\vfill
+\hspace*{\links}
+\begin{minipage}[b]{8cm}
+\normalsize \raggedright
+Fakultät für Informatik\\
+Lehrstuhl für Algorithm Engineering (Ls11)\\
+Technische Universität Dortmund\\
+\url{http://ls11-www.cs.tu-dortmund.de}
+\end{minipage}
+
+\end{titlepage}
+
+%------------------------------------------------
+% Inhaltsverzeichnis
+%------------------------------------------------
+
+\tableofcontents
+\clearpage
+
+
+%------------------------------------------------
+% Einführung
+%------------------------------------------------
+
+\section{Einführung}
+
+In dieser Ausarbeitung wird ein Spiel betrachtet, in dem es darum geht für den Spieler fremde Kreaturen 
+zu steuern. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benötigt, mit der neue Kreaturen erzeugt werden können. Dies wird ermöglicht durch die prozedurale Generierung solcher Kreaturen. Dazu wird ein evolutionärer Algorithmus verwendet. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristiger Spielspaß.
+
+Darüber hinaus wird im evolutionären Algorithmus ein neuronales Netz entwickelt, welches einer KI die
+Steuerung der Kreatur ermöglicht. Es ergibt sich die Möglichkeit gegen eine KI, oder gegen einen weiteren menschlichen Spieler anzutreten.
+
+Beispiel für Referenzen: \cite{HanKno06} (Zeitschriftenartikel) und \cite{TarekEtAl07} (Konferenzartikel).
+
+
+%------------------------------------------------
+% Literaturverzeichnis
+%------------------------------------------------
+
+\bibliographystyle{plain}
+\bibliography{literatur}
+\addcontentsline{toc}{section}{\bibname}
+
+
+\end{document}
