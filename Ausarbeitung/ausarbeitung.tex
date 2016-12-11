@@ -1,5 +1,5 @@
 %------------------------------------------------
-% Latex-Grundgerüst für Seminarausarbeitungen
+% Latex-GrundgerÃ¼st fÃ¼r Seminarausarbeitungen
 %
 % zu Erzeugen mit
 %   pdflatex ausarbeitung.tex
@@ -11,25 +11,16 @@
 \documentclass[a4paper,12pt,twoside]{article}
 \usepackage[a4paper,left=3.5cm,right=2.5cm,bottom=3.5cm,top=3cm]{geometry}
 
-% Encoding der .tex-Datei
-% muss je nach Editor-Einstellungen eventuell angepasst werden!
-%   latin1    Unix/Windows
-%   ansinew   Alternative für Windows
-%   applemac  Apple
-%   utf8      Alternative für Unix/Windows/Apple
-\usepackage[latin1]{inputenc}
-
 \usepackage[ngerman]{babel}                                 % deutsche Sprache
-\usepackage[T1]{fontenc}                                    % Unterstützung für Umlaute mit Fonts
 \usepackage[pdftex]{graphicx,color}                         % Einbetten von Grafiken, Farbe
 \usepackage[format=plain,small,bf,indention=7.5mm]{caption} % verbesserte Beschriftung von Abbildungen
 \usepackage{subfig}                                         % subfigures
 \usepackage{url}                                            % \url{}-Kommando
-\usepackage{fancyhdr,float}                                 % Kopf-/Fußzeilen
+\usepackage{fancyhdr,float}                                 % Kopf-/FuÃŸzeilen
 \usepackage[pdftex,pdfpagelabels]{hyperref}                 % Hyperlinks im PDF
 \usepackage{natbib,doi}                                     % Literaturverzeichnis, DOIs
-\usepackage[section,boxed]{algorithm}                       % Floating-Umgebung für Algorithmen
-\usepackage{algpseudocode}                                  % Pseudocode für Algorithmen
+\usepackage[section,boxed]{algorithm}                       % Floating-Umgebung fÃ¼r Algorithmen
+\usepackage{algpseudocode}                                  % Pseudocode fÃ¼r Algorithmen
 
 \captionsetup{farskip=10pt,topadjust=0pt,captionskip=10pt,nearskip=0pt,margin=10pt}
 
@@ -39,6 +30,8 @@
 \fancyhead[LO]{\nouppercase{\slshape \rightmark}}
 \fancyfoot[C]{}
 
+\usepackage{polyglossia}
+\setdefaultlanguage{german}
 
 \begin{document}
 
@@ -84,9 +77,9 @@ D.Lessin, S.Risi, Darwin's Avatars: a Novel Combination of Gameplay and Procedur
 \hspace*{\links}
 \begin{minipage}[b]{8cm}
 \normalsize \raggedright
-Fakultät für Informatik\\
-Lehrstuhl für Algorithm Engineering (Ls11)\\
-Technische Universität Dortmund\\
+FakultÃ¤t fÃ¼r Informatik\\
+Lehrstuhl fÃ¼r Algorithm Engineering (Ls11)\\
+Technische UniversitÃ¤t Dortmund\\
 \url{http://ls11-www.cs.tu-dortmund.de}
 \end{minipage}
 
@@ -101,18 +94,18 @@ Technische Universität Dortmund\\
 
 
 %------------------------------------------------
-% Einführung
+% EinfÃ¼hrung
 %------------------------------------------------
 
-\section{Einführung}
+\section{EinfÃ¼hrung}
 
-In dieser Ausarbeitung wird ein Spiel betrachtet, in dem es darum geht für den Spieler fremde Kreaturen 
-zu steuern. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benötigt, mit der neue Kreaturen erzeugt werden können. Dies wird ermöglicht durch die prozedurale Generierung solcher Kreaturen. Dazu wird ein evolutionärer Algorithmus verwendet. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristiger Spielspaß.
+In dieser Ausarbeitung wird ein Spiel betrachtet, in dem es darum geht fÃ¼r den Spieler fremde Kreaturen 
+zu steuern. Damit der Spieler stets fÃ¼r ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benÃ¶tigt, mit der neue Kreaturen erzeugt werden kÃ¶nnen. Dies wird ermÃ¶glicht durch die prozedurale Generierung solcher Kreaturen. Dazu wird ein evolutionÃ¤rer Algorithmus verwendet. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristiger SpielspaÃŸ.
 
-Darüber hinaus wird im evolutionären Algorithmus ein neuronales Netz entwickelt, welches einer KI die
-Steuerung der Kreatur ermöglicht. Es ergibt sich die Möglichkeit gegen eine KI, oder gegen einen weiteren menschlichen Spieler anzutreten.
+DarÃ¼ber hinaus wird im evolutionÃ¤ren Algorithmus ein neuronales Netz entwickelt, welches einer KI die
+Steuerung der Kreatur ermÃ¶glicht. Es ergibt sich die MÃ¶glichkeit gegen eine KI, oder gegen einen weiteren menschlichen Spieler anzutreten.
 
-Beispiel für Referenzen: \cite{HanKno06} (Zeitschriftenartikel) und \cite{TarekEtAl07} (Konferenzartikel).
+Beispiel fÃ¼r Referenzen: \cite{HanKno06} (Zeitschriftenartikel) und \cite{TarekEtAl07} (Konferenzartikel).
 
 
 %------------------------------------------------
