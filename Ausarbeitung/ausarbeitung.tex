@@ -40,6 +40,10 @@
 \fancyfoot[C]{}
 
 
+\usepackage{tikz}
+\usepackage{csquotes}
+\definecolor{hellgruen}{rgb}{0.75,0.75,0.75}
+
 \begin{document}
 
 %------------------------------------------------
@@ -113,6 +117,205 @@ Darüber hinaus wird im evolutionären Algorithmus ein neuronales Netz entwickelt,
 Steuerung der Kreatur ermöglicht. Es ergibt sich die Möglichkeit gegen eine KI, oder gegen einen weiteren menschlichen Spieler anzutreten.
 
 Der evolutionäre Algorithmus entstammt einer früheren Arbeit von Lessin \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit und Ästhetik bewertet. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
+
+
+\section{Kodierung}
+
+\section{Kontrolle mit neuronalen Netzen}
+
+\section{Evolutionäre Generierung}
+
+EVKs werden mithilfe eines evolutionären Algorithmus generiert.
+Bei einem evolutionären Algorithmus werden nach dem Vorbild der Evolution in der Natur Entitäten, in diesem Fall EVKs, bezüglich einer Fitnessfunktion optimiert.
+Das Verfahren soll Entitäten von besonders hoher Fitness produzieren.
+In \textsc{Darwin's Avatars} ist die Fitness die Laufgeschwindigkeit der Kreaturen.
+Dabei ist besonders wichtig, dass die Fitnessfunktion mit dem Spielziel übereinstimmt.
+Zusätzlich zur Laufgeschwindigkeit werden für die Fitness ästhetische Eigenschaften berücksichtigt. 
+
+\subsection{Evolutionärer Algorithmus}
+Zunächst wird ein eine Population von zufälligen Kreaturen generiert.
+Alle Eigenschaften der Kreaturen werden zufällig gesetzt, dazu gehören der Graph der Körperteile, die Muskeln und das neuronale Netz.
+Die in der Arbeit verwendete Populationsgröße ist $500$.
+
+Nun wird in jeder Generation der Fitnesswert für jede Kreatur bestimmt.
+Dazu wird die Kreatur in der Physikengine \textsc{PhysX} simuliert und die Laufgeschwindigkeit gemessen.
+Dieser Teil des Verfahrens ist besonders rechenaufwändig.
+Nun wird ein Teil der Population, $80\%$, verworfen.
+Die Population wird mit Mutationen und Nachkommen der verbleibenden Kreaturen auf ihre ursprüngliche Größe aufgefüllt.
+
+Dieser Schritt wird je nach verfügbarer Rechenzeit solange wiederholt, bis die Fitness der besten Kreaturen gut genug ist.
+In dieser Arbeit werden $500$ Generationen berechnet.
+
+\subsection{Mutation}
+Die Mutation ist die zufällige Veränderung einer bestehenden Kreatur.
+Das Verfahren ist ähnlich zu der zufälligen Generierung einer neuen Kreatur, allerdings werden Werte bevorzugt, die nahe an denen der bestehenden Kreatur sind.
+Eine zufällige Auswahl der Eigenschaften der Kreatur wird geändert.
+Abhängig des Datentyps wird mit den Eigenschaften wie folgt verfahren:
+Booleans werden negiert. Kontinuierliche Werte werden zufällig verschoben. Der Wert der Änderung ist dabei Gauß-verteilt, kleine Änderungen sind also häufiger als große.
+Diskrete Werte werden zufällig neu gesetzt.
+Im neuronalen Netz und im Graphen der Körperteile werden Knoten und Kanten zufällig hinzugefügt und entfernt.
+
+\subsection{Paarung}
+Bei der Paarung werden zur Generierung einer neuen Kreatur zwei bestehende Kreaturen, die Eltern, berücksichtigt.
+Im Folgenden werden zwei Verfahren zur Paarung beschrieben, die in \textsc{Darwin's Avatars} Verwendung finden.
+
+In beiden Fällen wird der Graph der Kreatur zunächst in eine lineare Form gebracht.
+Die Menge Knoten wird als Liste aufgefasst.
+Die Ziele der Kanten werden durch ihre relative Position gespeichert.
+Eine Kante mit dem Wert $+2$ zeigt also auf den Knoten, der in der Liste der zweite Nachfolger des Ausgangsknotens ist.
+
+\begin{figure}
+	\begin{center}
+		\resizebox{0.48\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [right of = 1] {};
+			\node[main node] (3) [right of = 2] {};
+			\node[main node] (4) [right of = 3] {};
+			\node[main node] (5) [right of = 4] {};
+			
+			\path[] (1) edge [bend left = 40] node[left] {} (2);
+			\path[] (1) edge [bend left = 80] node[left] {} (3);
+			\path[] (3) edge [bend left = 30] node[left] {} (4);
+			\path[] (3) edge [bend left = 60] node[left] {} (4);
+			\path[] (4) edge [bend left = 40] node[left] {} (5);
+			
+			\end{tikzpicture}
+		}
+		\hspace{1em}
+		\resizebox{0.38\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) [fill = hellgruen] {};
+			\node[main node] (2) [right of = 1, fill = hellgruen] {};
+			\node[main node] (3) [right of = 2, fill = hellgruen] {};
+			\node[main node] (4) [right of = 3, fill = hellgruen] {};
+			
+			\path[] (1) edge [bend left = 10] node[left] {} (2);
+			\path[] (1) edge [bend left = 30] node[left] {} (2);
+			\path[] (1) edge [bend left = 50] node[left] {} (2);
+			\path[] (1) edge [bend left = 50] node[left] {} (2);
+			\path[] (2) edge [bend left = 30] node[left] {} (3);
+			\path[] (2) edge [bend left = 60] node[left] {} (4);
+			
+			\draw (4) to [out=110,in=70,looseness=8] (4);
+			
+			\end{tikzpicture}
+		}
+	\end{center}		
+	\begin{center}
+		\includegraphics[width=0.9\textwidth]{img/pfeile.png}
+	\end{center}	
+	\resizebox{0.46\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\tiny\bfseries}]
+		
+		\node[main node] (1) {};
+		\node[main node] (2) [right of = 1, fill = hellgruen] {};
+		\node[main node] (3) [right of = 2] {};
+		\node[main node] (4) [right of = 3, fill = hellgruen] {};
+		\node[main node] (5) [right of = 4] {};
+		
+		\path[] (1) edge [bend left = 40] node[left] {} (2);
+		\path[] (1) edge [bend left = 80] node[left] {} (3);
+		\path[] (3) edge [bend left = 30] node[left] {} (4);
+		\path[] (3) edge [bend left = 60] node[left] {} (4);
+		
+		\path[] (2) edge [bend left = 30] node[left] {} (3);
+		\path[] (2) edge [bend left = 60] node[left] {} (4);
+		
+		\draw (4) to [out=110,in=70,looseness=8] (4);
+		
+		\end{tikzpicture}
+	}
+
+	\label{paarung1}
+	\caption{Paarung durch \enquote{Kreuzung}: Der erste Elternteil wird kopiert und einzelne Knoten werden durch die Knoten des anderen Elternteils an der gleichen Position ersetzt.}
+\end{figure}
+
+Abbildung \ref{paarung1} zeigt die erste Methode zur Paarung, die \enquote{Kreuzung}.
+Zunächst wird eine Kopie des einen Elternteils angelegt.
+Nun wird eine zufällige Auswahl an Knoten, im Beispiel Knoten 2 und 4, durch die Knoten mit der gleichen Position des anderen Elternteils ersetzt.
+Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber ggf. auf einen anderen Knoten der gleichen relativen Position zeigen.
+
+\begin{figure}
+	\resizebox{0.48\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+		
+		\node[main node] (1) {};
+		\node[main node] (2) [right of = 1] {};
+		\node[main node] (3) [right of = 2] {};
+		\node[main node] (4) [right of = 3] {};
+		\node[main node] (5) [right of = 4] {};
+		
+		\path[] (1) edge [bend left = 40] node[left] {} (2);
+		\path[] (1) edge [bend left = 80] node[left] {} (3);
+		\path[] (3) edge [bend left = 30] node[left] {} (4);
+		\path[] (3) edge [bend left = 60] node[left] {} (4);
+		\path[] (4) edge [bend left = 40] node[left] {} (5);
+		
+		\end{tikzpicture}
+	}
+	\hspace{0.5em}
+	\resizebox{0.38\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+		
+		\node[main node] (1) [fill = hellgruen] {};
+		\node[main node] (2) [right of = 1, fill = hellgruen] {};
+		\node[main node] (3) [right of = 2, fill = hellgruen] {};
+		\node[main node] (4) [right of = 3, fill = hellgruen] {};
+		
+		\path[] (1) edge [bend left = 10] node[left] {} (2);
+		\path[] (1) edge [bend left = 30] node[left] {} (2);
+		\path[] (1) edge [bend left = 50] node[left] {} (2);
+		\path[] (1) edge [bend left = 50] node[left] {} (2);
+		\path[] (2) edge [bend left = 30] node[left] {} (3);
+		\path[] (2) edge [bend left = 60] node[left] {} (4);
+		
+		\draw (4) to [out=110,in=70,looseness=8] (4);				
+		\end{tikzpicture}
+	}
+
+	\begin{center}
+	\includegraphics[width=0.75\textwidth]{img/pfeile2.png}
+	\end{center}
+	
+	\begin{center}
+	\resizebox{0.8\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\tiny\bfseries}]
+		
+		\node[main node] (1) {};
+		\node[main node] (2) [right of = 1] {};
+		\node[main node] (3) [right of = 2] {};
+		\node[main node] (4) [right of = 3] {};
+		\node[main node] at (4, 0) (7) [fill = hellgruen] {};
+		\node[main node] (8) [right of = 7, fill = hellgruen] {};
+		\node[main node] (9) [right of = 8, fill = hellgruen] {};
+		
+		\path[] (1) edge [bend left = 40] node[left] {} (2);
+		\path[] (1) edge [bend left = 80] node[left] {} (3);
+		\path[] (3) edge [bend left = 30] node[left] {} (4);
+		\path[] (3) edge [bend left = 60] node[left] {} (8);
+		\path[] (7) edge [bend left = 30] node[left] {} (8);
+		\path[] (7) edge [bend left = 60] node[left] {} (9);
+		
+		\draw (4) to [out=110,in=70,looseness=8] (4);				
+		\end{tikzpicture}
+	}
+	\end{center}
+
+	\label{paarung2}
+	\caption{Paarung durch \enquote{Veredelung}: Teilketten beider Elternteile werden konkateniert und mit einer Kante verbunden.}
+\end{figure}
+
+Abbildung \ref{paarung2} zeigt die zweite Methode zur Paarung, die \enquote{Veredelung}.
+Es werden von beiden Elternteil Teilketten gebildet, ein Präfix vom ersten Elternteil und ein Suffix vom zweiten.
+Diese beiden Teilketten werden konkateniert.
+Eine bestehende Kante der linken Teilkette wird so abgeändert, dass sie auf einen Knoten der rechten Teilkette zeigt.
+
+Im Anschluss werden bei beiden Verfahren unerreichbare Knoten gelöscht. Kanten, die nach der Paarung auf Knoten außerhalb der Liste zeigen, werden zufällig neu gesetzt.
+
+
 
 %------------------------------------------------
 %Beispiel für Referenzen: \cite{HanKno06} (Zeitschriftenartikel) und \cite{TarekEtAl07} (Konferenzartikel).
