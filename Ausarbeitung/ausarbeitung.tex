@@ -121,6 +121,88 @@ Der evolutionäre Algorithmus entstammt einer früheren Arbeit von Lessin \cite{Le
 
 \section{Kodierung}
 
+Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Folgenden \textsc{Genotyp} benannt. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten über die Kreatur. Zu den Daten gehört neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, hebelähnlich, verdreht, oder kugelförmig ausfallen. Der Parameter \textsc{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Gelenke werden mit Muskeln bespannt, um Bewegung überhaupt erst zu ermöglichen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textsc{Phänotypen} beschrieben. Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt also zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Damit der Phänotyp eindeutig ist wird an dieser Stelle ein weiterer Parameter benötigt. Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textsc{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
+
+\begin{figure}
+		\resizebox{0.3\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.7cm,main 				  node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+
+		\node[main node] (1) {};
+		\node[main node] (2) [below left of = 1] {};
+		\node[main node] (3) [below right of = 1] {};
+
+		\path[every node/.style={font=\sffamily\small}]
+		(1) edge [bend right] node[left] {} (2)
+		edge [bend left] node[left] {} (3)			
+		;
+		\end{tikzpicture}
+		\small(a)
+	}
+		\resizebox{0.2\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.85cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 20] node[left] {} (2)
+			edge [bend left = 20] node[left] {} (2)			
+			;
+			\end{tikzpicture}
+			\small(b)
+		}
+	\resizebox{0.2\textwidth}{!}{
+		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+		
+		\node[main node] (1) {};
+		\node[main node] (2) [below of = 1] {};
+		
+		\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
+		\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+		
+		\path[every node/.style={font=\sffamily\small}]
+		(1) edge [bend right = 20] node[left] {} (2)
+		edge [bend left = 20] node[left] {} (2)			
+		;
+		\end{tikzpicture}
+		\small(c)
+	}
+		\resizebox{0.2\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			\node[main node] (3) [above of = 1] {};
+			
+			\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+			
+			\draw (1) to [] (3);
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 10] node[left] {} (2)
+			edge [bend left = 10] node[left] {} (2)
+			edge [bend right = 30] node[left] {} (2)
+			edge [bend left = 30] node[left] {} (2)
+			;
+			\end{tikzpicture}
+			\small(d)
+		}
+		\resizebox{0.24\textwidth}{!}{
+		\includegraphics[width=0.25\textwidth]{img/1.png}
+	}
+		\resizebox{0.24\textwidth}{!}{
+		\includegraphics[width=0.25\textwidth]{img/1.png}
+	}
+		\resizebox{0.24\textwidth}{!}{
+		\includegraphics[width=0.25\textwidth]{img/4.png}
+	}
+		\resizebox{0.24\textwidth}{!}{
+		\includegraphics[width=0.25\textwidth]{img/5.png}
+	}
+	\label{genotyp}
+\caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt, die Kanten visualisieren die Beziehungen zueinander.}
+\end{figure}
+
 \section{Kontrolle mit neuronalen Netzen}
 
 \section{Evolutionäre Generierung}
