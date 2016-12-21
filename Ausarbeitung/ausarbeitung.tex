@@ -205,6 +205,94 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 
 \section{Kontrolle mit neuronalen Netzen}
 
+Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Dieses neuronale Netz ermöglicht es die Kreatur durch eine KI zu steuern. Dafür werden mehrere Komponenten benötigt. 
+
+\subsection{Neuronen}
+
+\textsc{Neuronen} führen arithmetische, oder logische Operationen auf ein Eingangssignal aus und geben es anschließend an ihrem Ausgang wieder zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Die Neuronen arbeiten dabei im Wertebereich [0,1]. Mögliche Funktionen sind: Summe, Produkt, Division, Minimum aus Summe und 1, Größer als, 
+Minimum, Maximum, Wenn dann, Interpolieren, Sinus, Cosinus, Arcustangenz, Logarithmus, Exponent,
+Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Oszilloskop. Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater t abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. aus x wird also 1 - x. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
+
+\begin{figure}
+	\resizebox{0.24\textwidth}{!}{
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\node[circle,draw] (1) {wav};
+		\coordinate [right of=1] (h1);
+		\coordinate [left of=1] (h2);
+		\coordinate [above of=h2] (h3);
+		\coordinate [below of=h2] (h4);
+		\draw [->] (1) to[] node[align=center] {\tiny $\sin(t)$\\} (h1);
+		\draw [->, opacity=0] (h2) to[] node[auto] {} (1); 
+		\draw [->, opacity=0] (h3) to[] node[auto] {} (1);
+		\draw [->, opacity=0] (h4) to[] node[auto] {} (1);			
+		\end{tikzpicture}
+	}
+	\resizebox{0.24\textwidth}{!}{
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\node[circle,draw] (1) {com};
+		\coordinate [right of=1] (h1);
+		\coordinate [left of=1] (h2);
+		\coordinate [above of=h2] (h3);
+		\coordinate [below of=h2] (h4);
+		\draw [->] (1) to[] node[align=center] {\tiny 0.147 \\ } (h1);
+		\draw [->] (h2) to[] node[auto] {\tiny 0.853} (1);
+		\draw [->, opacity=0] (h3) to[] node[auto] {} (1);
+		\draw [->, opacity=0] (h4) to[] node[auto] {} (1); 			
+		\end{tikzpicture}
+	}
+	\resizebox{0.24\textwidth}{!}{
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\node[circle,draw] (1) {max};
+		\coordinate [right of=1] (h1);
+		\coordinate [left of=1] (h2);
+		\coordinate [above of=h2] (h3);
+		\coordinate [below of=h2] (h4);
+		\draw [->] (1) to[] node[align=center] {\tiny 0.628 \\ } (h1);
+		\draw [->] (h2) to[] node[auto] {\tiny 0.628} (1);
+		\draw [->] (h3) to[] node[auto] {\tiny 0.254} (1);
+		\draw [->, opacity=0] (h4) to[] node[auto] {} (1); 			
+		\end{tikzpicture}
+	}
+	\resizebox{0.24\textwidth}{!}{
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\node[circle,draw] (1) {+};
+		\coordinate [right of=1] (h1);
+		\coordinate [left of=1] (h2);
+		\coordinate [above of=h2] (h3);
+		\coordinate [below of=h2] (h4);
+		\draw [->] (1) to[] node[align=center] {\tiny 0.535 \\ } (h1);
+		\draw [->] (h2) to[] node[auto] {\tiny 0.1} (1);
+		\draw [->] (h3) to[] node[auto] {\tiny 0.435} (1);
+		\draw [->] (h4) to[] node[auto] {\tiny 0} (1); 			
+		\end{tikzpicture}
+	}
+	\label{neuronen}
+	\caption{Neuronen mit verschiedenem Eingangsgrad. Sinus, Komplement, Maximum und das Minimum aus 1 und Summe}
+\end{figure}
+
+\subsection{Sensoren}
+
+Das Eingangssignal kommt von einem weiteren wesentlichen Bestandteil des neuronalen Netz, den \textsc{Sensoren}. Jeder Muskel einer Kreatur besitzt einen Sensor, der die aktuelle Länge des Muskels misst. Dieser Wert variiert je nachdem, ob er gestreckt, oder zusammengezogen ist. Denkbar wären auch andere Sensoren. Sims \cite{Sims94} erweiterte die Kreaturen um Photosensoren, die es der Kreatur ermöglichen, sich auf eine Lichtquelle zu zubewegen. Auch Kontaktsensoren bieten sich an. In dem Spiel wird sich aber auf die Sensoren beschränkt, die die Länge des Muskels messen.
+
+\subsection{Effektoren}
+
+Die Neuronen berechnen also in Abhängigkeit von der Länge der Muskeln einen Wert. Dieser Wert landet bei den \textsc{Effektoren}. Wie auch die Sensoren gehören die Effektoren zu den Muskeln. Die Effektoren spannen in Abhängigkeit vom berechneten Wert den Muskel an, oder entspannen ihn. Durch diesen Kreislauf wird der Kreatur eine flüssige Bewegung ermöglicht. Die Sensoren und die Effektoren werden im Genotyp wie die Neuronen als Knoten dargestellt.
+
+\subsection{Grapherweiterung}
+
+Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{extendedgraph} zeigt einen solchen Genotypen. Die fetten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fetten Knoten gibt es in diesem Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält nur Neuronen die für die Kreatur ein einziges Mal zur Kontrolle benötigt werden. Denn dieser Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem bloß in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. 
+
+\begin{figure}
+	\resizebox{0.55\textwidth}{!}{
+	\includegraphics[width=0.9\textwidth]{img/evolved_graph.png}
+	}
+	\resizebox{0.45\textwidth}{!}{
+	\includegraphics[width=0.9\textwidth]{img/6.png}
+	}
+	\label{extendedgraph}
+	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 und der zugehörige Phänotyp}
+\end{figure}
+
 \section{Evolutionäre Generierung}
 
 EVKs werden mithilfe eines evolutionären Algorithmus generiert.
