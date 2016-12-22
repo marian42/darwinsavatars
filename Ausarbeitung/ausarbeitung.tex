@@ -407,11 +407,11 @@ Eine Kante mit dem Wert $+2$ zeigt auf den Knoten, der in der Liste der zweite N
 		\end{tikzpicture}
 	}
 
-	\label{paarung1}
 	\caption{Paarung durch \enquote{Kreuzung}: Der erste Elternteil wird kopiert und einzelne Knoten werden durch die Knoten des anderen Elternteils an der gleichen Position ersetzt.}
+	\label{fig:paarung1}
 \end{figure}
 
-Abbildung \ref{paarung1} zeigt die erste Methode zur Paarung, die \enquote{Kreuzung}.
+Abbildung \ref{fig:paarung1} zeigt die erste Methode zur Paarung, die \enquote{Kreuzung}.
 Zunächst wird eine Kopie des einen Elternteils angelegt.
 Nun wird eine zufällige Auswahl an Knoten, im Beispiel Knoten 2 und 4, durch die Knoten mit der gleichen Position des anderen Elternteils ersetzt.
 Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber ggf. auf einen anderen Knoten der gleichen relativen Position zeigen.
@@ -482,11 +482,11 @@ Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber g
 	}
 	\end{center}
 
-	\label{paarung2}
 	\caption{Paarung durch \enquote{Veredelung}: Teilketten beider Elternteile werden konkateniert und mit einer Kante verbunden.}
+	\label{fig:paarung2}
 \end{figure}
 
-Abbildung \ref{paarung2} zeigt die zweite Methode zur Paarung, die \enquote{Veredelung}.
+Abbildung \ref{fig:paarung2} zeigt die zweite Methode zur Paarung, die \enquote{Veredelung}.
 Es werden von beiden Elternteil Teilketten gebildet, ein Präfix vom ersten Elternteil und ein Suffix vom zweiten.
 Diese beiden Teilketten werden konkateniert.
 Eine bestehende Kante der linken Teilkette wird so abgeändert, dass sie auf einen Knoten der rechten Teilkette zeigt.
@@ -513,22 +513,37 @@ Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 		\centering
 		\includegraphics[width=\textwidth]{img/type1.png}
 		\caption{}
+		\label{fig:bsp1}
 	\end{subfigure}
 	~
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type2.png}
 		\caption{}
+		\label{fig:bsp2}
 	\end{subfigure}
 	~
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type3.png}
 		\caption{}
+		\label{fig:bsp3}
 	\end{subfigure}
 	\caption{Drei evolutionäre virtuelle Kreaturen}
 	\label{fig:beispiele}
 \end{figure}
+
+Die erste Kreatur \ref{fig:bsp1} besteht aus zwei Gliedmaßen und drei Muskeln.
+Sie kann durch Anheben des vorderen, schwereren Blocks lange Sprünge ausführen.
+
+Die zweite Kreatur \ref{fig:bsp2} besteht aus drei Gliedmaßen und vier Muskeln.
+Aufgrund der Symmetrie besteht die Gefahr, dass die Kreatur sich rückwärts bewegt, da die Bewegung in beide Richtungen für den Mensch oder den Rechner gleich schwierig ist.
+Die Kreatur springt vorwärts indem sie die beiden seitlichen Gliedmaßen anhebt.
+Außerdem besteht die Gefahr des Umfallens.
+
+Die dritte Kreatur \ref{fig:bsp3} besteht aus sieben Gliedmaßen und sechs Muskeln.
+Sie führt eine langsame, vierbeinige Fortbewegung aus.
+
 
 
 
