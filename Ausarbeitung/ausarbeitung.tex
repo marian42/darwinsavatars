@@ -50,6 +50,7 @@
 % Titelseite
 %------------------------------------------------
 
+\pagenumbering{gobble}
 \begin{titlepage}
 \vspace*{-2cm}
 \newlength{\links}
@@ -104,6 +105,7 @@ Technische Universität Dortmund\\
 \clearpage
 
 
+\pagenumbering{arabic}
 %------------------------------------------------
 % Einführung
 %------------------------------------------------
@@ -514,35 +516,74 @@ Das gleiche gilt für Triviallösungen, wie Fortbewegung durch Umfallen.
 Im Folgenden werden drei Beispiele von EVKs dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
 Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type1.png}
 		\caption{}
-	
-\end{subfigure}
+		\label{fig:bsp1}
+	\end{subfigure}
 	~
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type2.png}
 		\caption{}
-	
-\end{subfigure}
+		\label{fig:bsp2}
+	\end{subfigure}
 	~
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type3.png}
 		\caption{}
-	
-\end{subfigure}
+		\label{fig:bsp3}
+	\end{subfigure}
 	\caption{Drei evolutionäre virtuelle Kreaturen}
 	\label{fig:beispiele}
 \end{figure}
 
-reatur \ref{fig:bsp1} besteht aus zwei Gliedmaßen und drei Muskeln.
+Die erste Kreatur \ref{fig:bsp1} besteht aus zwei Gliedmaßen und drei Muskeln.
+Sie kann durch Anheben des vorderen, schwereren Blocks lange Sprünge ausführen.
+
+Die zweite Kreatur \ref{fig:bsp2} besteht aus drei Gliedmaßen und vier Muskeln.
+Aufgrund der Symmetrie besteht die Gefahr, dass die Kreatur sich rückwärts bewegt, da die Bewegung in beide Richtungen für den Mensch oder den Rechner gleich schwierig ist.
+Die Kreatur springt vorwärts indem sie die beiden seitlichen Gliedmaßen anhebt.
+Außerdem besteht die Gefahr des Umfallens.
+
+Die dritte Kreatur \ref{fig:bsp3} besteht aus sieben Gliedmaßen und sechs Muskeln.
+Sie führt eine langsame, vierbeinige Fortbewegung aus.
+
+\section{Spielmechanik}
+Im Spiel treten zwei Kopien der gleichen, im Vorfeld berechneten, EVK an.
+Eine Kopie wird durch das evolutionär generierte neuronale Netz gesteuert.
+Die andere Kopie wird durch den menschlichen Spieler gesteuert.
+Das Spielziel ist, möglichst schnell das Ziel zu erreichen.
+Das Spiel ist beendet, wenn beide Kreaturen das Ziel erreicht haben oder ein Zeitlimit abgelaufen ist.
+
+Der Mensch steuert seine Kreatur mit der Tastatur.
+Dabei ist jeder Muskel mit einer Taste verbunden.
+Im Gegensatz zum neuronalen Netz, das den Muskel kontinuierlich steuern kann, können Muskeln durch die Tastatur nur gar nicht oder vollständig aktiviert sein.
+Dies stellt einen Vorteil für den Computergegner dar, da diesem so eine genauere Kontrolle möglich ist.
 
 \section{Testergebnisse}
+\label{sec:ergebnisse}
+
+\section{Zusammenfassung}
+In \textsc{Darwin's Avatars} werden Spielgegenstände prozedural generiert.
+Dazu wird zunächst eine Kreatur, bestehend aus Gliedmaßen, Muskeln und Gehirn, evolutionär entwickelt, um möglichst geeignet für das Erreichen des Spielziels zu sein.
+Anschließend wird das Gehirn der Kreatur durch die Kontrolle des Spielers ersetzt.
+Die Testergebnisse in Kapitel \ref{sec:ergebnisse} zeigen, dass sich so ein tragfähiges Spielkonzept ergibt und die EVKs interessante Spielgegenstände darstellen.
+Ein weiteres Ergebnis der Tests ist, dass Menschen den evolutionären Gehirnen generell unterlegen sind.
+Ein Nachteil des evolutionären Vorgehens ist die hohe Rechenleistung, die zur Generierung einer einzelnen Kreatur nötig ist.
+So ist nicht praktikabel, die Kreaturen während des Spiels auf dem Rechner des Spielers zu generieren.
+
+Das Spielkonzept ist in verschiedener Hinsicht erweiterbar.
+Bei Sims werden neben der Fortbewegung weitere Aktivitäten beschrieben, auf die virtuelle Kreaturen trainiert werden können.
+Diese Aktivitäten lassen sich direkt in entsprechende Spielmodi übertragen.
+Dazu gehören Springen, Schwimmen, Klettern und Kämpfen.
+Abgesehen davon nennt Lessin als mögliche Spielmechanik das Sammeln und Tauschen von Kreaturen und Online-Multiplayer.
+Eine weitere mögliche Abwandlung wäre die Beschränkung des evolutionären Gehirns auf binäre Muskelsteuerung.
+So hätte der Computergegner die gleichen Voraussetzungen wie der Mensch.
 
 Für jede der bereits vorgestellten Kreatur wurden nun die erreichten Geschwindigkeiten der Spieler und der KI gemessen.
 
