@@ -544,6 +544,116 @@ reatur \ref{fig:bsp1} besteht aus zwei Gliedmaßen und drei Muskeln.
 
 \section{Testergebnisse}
 
+Für jede der bereits vorgestellten Kreatur wurden nun die erreichten Geschwindigkeiten der Spieler und der KI gemessen.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{img/ki1.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum11.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum12.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum13.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum14.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum15.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum16.png}
+	\end{subfigure}
+	\label{fig:test1}
+	\caption{Testergebnisse für Beispiel 1}
+\end{figure}
+
+In rot markiert sind die Ergebnisse die KI. Die Kreatur aus Beispiel 1 besitzt 3 Muskeln die an der y Achse aufgezählt sind. Gemessen wird die Zeit in Sekunden auf der x-Achse. Die erreichte Geschwindigkeit findet sich oberhalb des Diagramms. Die KI verwendete zur Fortbewegung eine simple Strategie. Sie benutze lediglich die Muskeln 0 und 1 abwechselnd in gleichbleibender Frequenz. Damit erreichte sie die größte Geschwindigkeit. Die menschlichen Spieler nutzten eine ähnliche Strategie, jedoch weniger erfolgreich, da ihre Frequenz nicht gleichbleibend war. Die Spieler 5 und 6 verwendeten als einzige auch den Muskel 2.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{img/ki2.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum21.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum22.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum23.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum24.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum25.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum26.png}
+	\end{subfigure}
+	\label{fig:test2}
+	\caption{Testergebnisse für Beispiel 2}
+\end{figure}
+
+Beim Beispiel zwei macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann die Muskeln in verschiedenen Intensitäten kontrahieren. Dies führt zu erheblich besseren Ergebnissen als die der menschlichen Spieler. Bei dieser etwas komplexeren Kreatur verwendeten die Spieler allesamt verschiedene Strategien. Spieler 4 hat mit der einfachsten Strategie der menschlichen Spieler die beste Geschwindigkeit erreicht.
+
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=0.49\textwidth]{img/ki3.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum31.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum32.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum33.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum34.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum35.png}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.49\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/hum36.png}
+	\end{subfigure}
+	\label{fig:test3}
+	\caption{Testergebnisse für Beispiel 3}
+\end{figure}
+
+Erstmals schafft ein menschlicher Spieler mit der dritten Kreatur die KI zu schlagen. Erneut macht sich die KI zunutze, dass sie die Muskeln verschieden stark aktivieren kann. Das simple Wechseln zwischen den Muskeln 4 und 5 und den beiden Muskeln 1 und 2 erzielte bessere Ergebnisse. Auch andere Spieler konnten mit dem Ergebnis der KI mithalten. Es wird jedoch auch deutlich, dass mit steigender Komplexität keine so hohe  Geschwindigkeiten erzielt werden.
+
 %------------------------------------------------
 %Beispiel für Referenzen: \cite{HanKno06} (Zeitschriftenartikel) und \cite{TarekEtAl07} (Konferenzartikel).
 %------------------------------------------------
