@@ -50,6 +50,7 @@
 % Titelseite
 %------------------------------------------------
 
+\pagenumbering{gobble}
 \begin{titlepage}
 \vspace*{-2cm}
 \newlength{\links}
@@ -104,6 +105,7 @@ Technische Universität Dortmund\\
 \clearpage
 
 
+\pagenumbering{arabic}
 %------------------------------------------------
 % Einführung
 %------------------------------------------------
@@ -514,7 +516,7 @@ Das gleiche gilt für Triviallösungen, wie Fortbewegung durch Umfallen.
 Im Folgenden werden drei Beispiele von EVKs dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
 Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
@@ -564,6 +566,24 @@ Im Gegensatz zum neuronalen Netz, das den Muskel kontinuierlich steuern kann, kö
 Dies stellt einen Vorteil für den Computergegner dar, da diesem so eine genauere Kontrolle möglich ist.
 
 \section{Testergebnisse}
+\label{sec:ergebnisse}
+
+\section{Zusammenfassung}
+In \textsc{Darwin's Avatars} werden Spielgegenstände prozedural generiert.
+Dazu wird zunächst eine Kreatur, bestehend aus Gliedmaßen, Muskeln und Gehirn, evolutionär entwickelt, um möglichst geeignet für das Erreichen des Spielziels zu sein.
+Anschließend wird das Gehirn der Kreatur durch die Kontrolle des Spielers ersetzt.
+Die Testergebnisse in Kapitel \ref{sec:ergebnisse} zeigen, dass sich so ein tragfähiges Spielkonzept ergibt und die EVKs interessante Spielgegenstände darstellen.
+Ein weiteres Ergebnis der Tests ist, dass Menschen den evolutionären Gehirnen generell unterlegen sind.
+Ein Nachteil des evolutionären Vorgehens ist die hohe Rechenleistung, die zur Generierung einer einzelnen Kreatur nötig ist.
+So ist nicht praktikabel, die Kreaturen während des Spiels auf dem Rechner des Spielers zu generieren.
+
+Das Spielkonzept ist in verschiedener Hinsicht erweiterbar.
+Bei Sims werden neben der Fortbewegung weitere Aktivitäten beschrieben, auf die virtuelle Kreaturen trainiert werden können.
+Diese Aktivitäten lassen sich direkt in entsprechende Spielmodi übertragen.
+Dazu gehören Springen, Schwimmen, Klettern und Kämpfen.
+Abgesehen davon nennt Lessin als mögliche Spielmechanik das Sammeln und Tauschen von Kreaturen und Online-Multiplayer.
+Eine weitere mögliche Abwandlung wäre die Beschränkung des evolutionären Gehirns auf binäre Muskelsteuerung.
+So hätte der Computergegner die gleichen Voraussetzungen wie der Mensch.
 
 %------------------------------------------------
 %Beispiel für Referenzen: \cite{HanKno06} (Zeitschriftenartikel) und \cite{TarekEtAl07} (Konferenzartikel).
