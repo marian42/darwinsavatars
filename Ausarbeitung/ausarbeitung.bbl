@@ -1,18 +1,9 @@
 \begin{thebibliography}{1}
 
-\bibitem{TarekEtAl07}
-T.~M. Hamdani, J.-M. Won, A.~M. Alimi, and F.~Karray.
-\newblock Multi-objective feature selection with {NSGA II}.
-\newblock In B.~Beliczynski, A.~Dzielinski, M.~Iwanowski, and B.~Ribeiro,
-  editors, {\em Proceedings of the 8th International Coference on Adaptive and
-  Natural Computing Algorithms (ICANNGA)}, pages 240--247, 2007.
-
-\bibitem{HanKno06}
-J.~Handl and K.~Knowles.
-\newblock Feature subset selection in unsupervised learning via multiobjective
-  optimization.
-\newblock {\em International Journal of Computational Intelligence Research},
-  2(3):217--238, 2006.
+\bibitem{Sims94}
+K.Sims.
+\newblock Evolving virtual creatures.
+\newblock {\em Thinking Machines Corporation}, 1994.
 
 \bibitem{LeFuMi13}
 D.~Lessin, D.~Fussel, and R.~Miikkulainen.

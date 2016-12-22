@@ -113,17 +113,25 @@ Technische Universität Dortmund\\
 In dieser Ausarbeitung wird ein Spiel betrachtet, in dem es darum geht für den Spieler fremde Kreaturen 
 zu steuern. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benötigt, mit der neue Kreaturen erzeugt werden können. Dies wird ermöglicht durch die prozedurale Generierung solcher Kreaturen. Dazu wird ein evolutionärer Algorithmus verwendet. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristiger Spielspaß.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{img/darwin.png}
+	\caption{Screenshot aus dem Spiel, wer zuerst das Ende der Strecke erreicht, gewinnt}
+\end{figure}
+
+
 Darüber hinaus wird im evolutionären Algorithmus ein neuronales Netz entwickelt, welches einer KI die
 Steuerung der Kreatur ermöglicht. Es ergibt sich die Möglichkeit gegen eine KI, oder gegen einen weiteren menschlichen Spieler anzutreten.
 
 Der evolutionäre Algorithmus entstammt einer früheren Arbeit von Lessin \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit und Ästhetik bewertet. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
 
 
+
 \section{Kodierung}
 
-Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Folgenden \textsc{Genotyp} benannt. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten über die Kreatur. Zu den Daten gehört neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, hebelähnlich, verdreht, oder kugelförmig ausfallen. Der Parameter \textsc{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Gelenke werden mit Muskeln bespannt, um Bewegung überhaupt erst zu ermöglichen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textsc{Phänotypen} beschrieben. Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt also zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Damit der Phänotyp eindeutig ist wird an dieser Stelle ein weiterer Parameter benötigt. Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textsc{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
+Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Folgenden \textsc{Genotyp} benannt. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten über die Kreatur. Zu den Daten gehört neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, hebelähnlich, verdreht, oder kugelförmig ausfallen. Der Parameter \textsc{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Gelenke werden mit Muskeln bespannt, um Bewegung überhaupt erst zu ermöglichen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textsc{Phänotypen} beschrieben. Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt also zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Damit der Phänotyp eindeutig ist wird an dieser Stelle ein weiterer Parameter benötigt. Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textsc{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
 
-\begin{figure}
+\begin{figure}[H]
 		\resizebox{0.3\textwidth}{!}{
 		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.7cm,main 				  node/.style={circle,draw,font=\sffamily\Large\bfseries}]
 
@@ -199,7 +207,7 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 		\resizebox{0.24\textwidth}{!}{
 		\includegraphics[width=0.25\textwidth]{img/5.png}
 	}
-	\label{genotyp}
+	\label{fig:genotyp}
 \caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt, die Kanten visualisieren die Beziehungen zueinander.}
 \end{figure}
 
@@ -209,13 +217,13 @@ Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden ka
 
 \subsection{Neuronen}
 
-\textsc{Neuronen} führen arithmetische, oder logische Operationen auf ein Eingangssignal aus und geben es anschließend an ihrem Ausgang wieder zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Die Neuronen arbeiten dabei im Wertebereich [0,1]. Mögliche Funktionen sind: Summe, Produkt, Division, Minimum aus Summe und 1, Größer als, 
-Minimum, Maximum, Wenn dann, Interpolieren, Sinus, Cosinus, Arcustangenz, Logarithmus, Exponent,
-Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Oszilloskop. Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater t abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. aus x wird also 1 - x. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
+\textsc{Neuronen} führen arithmetische, oder logische Operationen auf ein Eingangssignal aus und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich [0,1]. Mögliche Funktionen sind: Summe, Produkt, Division, Minimum aus Summe und 1, Größer als, 
+Minimum, Maximum, Wenn dann, Interpolieren, Sin, Cosin, Arctan, Logarithmus, Exponent,
+Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Oszilloskop. Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater t abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. aus x wird 1 - x. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
 
-\begin{figure}
+\begin{figure}[H]
 	\resizebox{0.24\textwidth}{!}{
-		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,thick] 
 		\node[circle,draw] (1) {wav};
 		\coordinate [right of=1] (h1);
 		\coordinate [left of=1] (h2);
@@ -228,7 +236,7 @@ Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Os
 		\end{tikzpicture}
 	}
 	\resizebox{0.24\textwidth}{!}{
-		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,thick] 
 		\node[circle,draw] (1) {com};
 		\coordinate [right of=1] (h1);
 		\coordinate [left of=1] (h2);
@@ -241,7 +249,7 @@ Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Os
 		\end{tikzpicture}
 	}
 	\resizebox{0.24\textwidth}{!}{
-		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,thick] 
 		\node[circle,draw] (1) {max};
 		\coordinate [right of=1] (h1);
 		\coordinate [left of=1] (h2);
@@ -254,7 +262,7 @@ Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Os
 		\end{tikzpicture}
 	}
 	\resizebox{0.24\textwidth}{!}{
-		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,>=stealth',thick] 
+		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,thick] 
 		\node[circle,draw] (1) {+};
 		\coordinate [right of=1] (h1);
 		\coordinate [left of=1] (h2);
@@ -266,30 +274,30 @@ Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Os
 		\draw [->] (h4) to[] node[auto] {\tiny 0} (1); 			
 		\end{tikzpicture}
 	}
-	\label{neuronen}
+	\label{fig:neuronen}
 	\caption{Neuronen mit verschiedenem Eingangsgrad. Sinus, Komplement, Maximum und das Minimum aus 1 und Summe}
 \end{figure}
 
 \subsection{Sensoren}
 
-Das Eingangssignal kommt von einem weiteren wesentlichen Bestandteil des neuronalen Netz, den \textsc{Sensoren}. Jeder Muskel einer Kreatur besitzt einen Sensor, der die aktuelle Länge des Muskels misst. Dieser Wert variiert je nachdem, ob er gestreckt, oder zusammengezogen ist. Denkbar wären auch andere Sensoren. Sims \cite{Sims94} erweiterte die Kreaturen um Photosensoren, die es der Kreatur ermöglichen, sich auf eine Lichtquelle zu zubewegen. Auch Kontaktsensoren bieten sich an. In dem Spiel wird sich aber auf die Sensoren beschränkt, die die Länge des Muskels messen.
+Das Eingangssignal kommt von einem weiteren wesentlichen Bestandteil des neuronalen Netz, den \textsc{Sensoren}. Jeder Muskel einer Kreatur besitzt einen Sensor, der die aktuelle Länge des Muskels misst. Dieser Wert variiert je nachdem, ob er gestreckt, oder zusammengezogen ist. Denkbar wären auch andere Sensoren. Sims \cite{Sims94} erweiterte die Kreaturen um Photosensoren, die es der Kreatur ermöglichen, sich auf eine Lichtquelle zu zubewegen. Auch Kontaktsensoren bieten sich an. In dem Spiel wird sich auf Sensoren beschränkt, die die Länge des Muskels messen.
 
 \subsection{Effektoren}
 
-Die Neuronen berechnen also in Abhängigkeit von der Länge der Muskeln einen Wert. Dieser Wert landet bei den \textsc{Effektoren}. Wie auch die Sensoren gehören die Effektoren zu den Muskeln. Die Effektoren spannen in Abhängigkeit vom berechneten Wert den Muskel an, oder entspannen ihn. Durch diesen Kreislauf wird der Kreatur eine flüssige Bewegung ermöglicht. Die Sensoren und die Effektoren werden im Genotyp wie die Neuronen als Knoten dargestellt.
+Die Neuronen berechnen in Abhängigkeit von der Länge der Muskeln einen Wert. Dieser Wert landet bei den \textsc{Effektoren}. Wie auch die Sensoren gehören die Effektoren zu den Muskeln. Die Effektoren spannen in Abhängigkeit vom berechneten Wert den Muskel an, oder entspannen ihn. Durch diesen Kreislauf wird der Kreatur eine flüssige Bewegung ermöglicht. Die Sensoren und die Effektoren werden im Genotyp wie die Neuronen als Knoten dargestellt.
 
 \subsection{Grapherweiterung}
 
-Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{extendedgraph} zeigt einen solchen Genotypen. Die fetten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fetten Knoten gibt es in diesem Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält nur Neuronen die für die Kreatur ein einziges Mal zur Kontrolle benötigt werden. Denn dieser Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem bloß in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. 
+Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{fig:extendedgraph} zeigt einen solchen Genotypen. Die fetten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fetten Knoten gibt es in diesem Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält nur Neuronen die für die Kreatur genau ein einziges Mal zur Kontrolle benötigt werden. Denn dieser Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem bloß in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. Bei der Wahl vom rekursiven Limit gleich zwei und dem 
 
-\begin{figure}
+\begin{figure}[H]
 	\resizebox{0.55\textwidth}{!}{
 	\includegraphics[width=0.9\textwidth]{img/evolved_graph.png}
 	}
 	\resizebox{0.45\textwidth}{!}{
 	\includegraphics[width=0.9\textwidth]{img/6.png}
 	}
-	\label{extendedgraph}
+	\label{fig:extendedgraph}
 	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 und der zugehörige Phänotyp}
 \end{figure}
 
