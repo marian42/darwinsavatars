@@ -485,6 +485,16 @@ Eine bestehende Kante der linken Teilkette wird so abgeändert, dass sie auf eine
 
 Im Anschluss werden bei beiden Verfahren unerreichbare Knoten gelöscht. Kanten, die nach der Paarung auf Knoten außerhalb der Liste zeigen, werden zufällig neu gesetzt.
 
+\subsection{Evolution in der Praxis}
+Die Bestimmung der Fitnesswerte der Kreaturen in jeder Generation benï¿½tigt fï¿½r jede Berechnung eine Physiksimulation der Kreatur.
+Diese Simulation ist sehr rechenaufwï¿½ndig und ist fï¿½r lange Rechenzeiten zur Berechnung einer einzelnen Kreatur verantwortlich.
+Da die einzelnen Fitnesswerte innerhalb einer Generation unabhï¿½ngig voneinander sind, kï¿½nnen sie parallel berechnet werden.
+Bei besonders schlechter Fitness wird die Berechnung vorzeitig abgebrochen, um Rechenzeit zu sparen.
+
+Rundungsfehler und Bugs in der Physikengine werden von dem evolutionï¿½ren Algorithmus gefunden und ausgenutzt.
+Das muss verhindert werden, da sonst Lï¿½sungen entstehen, die zwar gute Ergebnisse liefern, aber unrealistisch erscheinen und keine guten Spielgegenstï¿½nde darstellen.
+Das gleiche gilt fï¿½r Triviallï¿½sungen, wie Fortbewegung durch Umfallen.
+
 
 
 %------------------------------------------------
