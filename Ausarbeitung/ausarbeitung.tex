@@ -23,15 +23,12 @@
 \usepackage[T1]{fontenc}                                    % Unterstützung für Umlaute mit Fonts
 \usepackage[pdftex]{graphicx,color}                         % Einbetten von Grafiken, Farbe
 \usepackage[format=plain,small,bf,indention=7.5mm]{caption} % verbesserte Beschriftung von Abbildungen
-\usepackage{subfig}                                         % subfigures
 \usepackage{url}                                            % \url{}-Kommando
 \usepackage{fancyhdr,float}                                 % Kopf-/Fußzeilen
 \usepackage[pdftex,pdfpagelabels]{hyperref}                 % Hyperlinks im PDF
 \usepackage{natbib,doi}                                     % Literaturverzeichnis, DOIs
 \usepackage[section,boxed]{algorithm}                       % Floating-Umgebung für Algorithmen
 \usepackage{algpseudocode}                                  % Pseudocode für Algorithmen
-
-\captionsetup{farskip=10pt,topadjust=0pt,captionskip=10pt,nearskip=0pt,margin=10pt}
 
 \pagestyle{fancy}
 \fancyhead[LE,RO]{\thepage}
@@ -43,6 +40,9 @@
 \usepackage{tikz}
 \usepackage{csquotes}
 \definecolor{hellgruen}{rgb}{0.75,0.75,0.75}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{caption}
 
 \begin{document}
 
@@ -321,7 +321,7 @@ Die Mutation ist die zufällige Veränderung einer bestehenden Kreatur.
 Das Verfahren ist ähnlich zu der zufälligen Generierung einer neuen Kreatur, allerdings werden Werte bevorzugt, die nahe an denen der bestehenden Kreatur sind.
 Eine zufällige Auswahl der Eigenschaften der Kreatur wird geändert.
 Abhängig des Datentyps wird mit den Eigenschaften wie folgt verfahren:
-Booleans werden negiert. Kontinuierliche Werte werden zufällig verschoben. Der Wert der Änderung ist dabei Gauß-verteilt, kleine Änderungen sind also häufiger als große.
+Booleans werden negiert. Kontinuierliche Werte werden zufällig verschoben. Der Wert der Änderung ist dabei Gauß-verteilt, kleine Änderungen sind häufiger als große.
 Diskrete Werte werden zufällig neu gesetzt.
 Im neuronalen Netz und im Graphen der Körperteile werden Knoten und Kanten zufällig hinzugefügt und entfernt.
 
@@ -332,7 +332,7 @@ Im Folgenden werden zwei Verfahren zur Paarung beschrieben, die in \textsc{Darwi
 In beiden Fällen wird der Graph der Kreatur zunächst in eine lineare Form gebracht.
 Die Menge Knoten wird als Liste aufgefasst.
 Die Ziele der Kanten werden durch ihre relative Position gespeichert.
-Eine Kante mit dem Wert $+2$ zeigt also auf den Knoten, der in der Liste der zweite Nachfolger des Ausgangsknotens ist.
+Eine Kante mit dem Wert $+2$ zeigt auf den Knoten, der in der Liste der zweite Nachfolger des Ausgangsknotens ist.
 
 \begin{figure}
 	\begin{center}
@@ -486,14 +486,41 @@ Eine bestehende Kante der linken Teilkette wird so abgeändert, dass sie auf eine
 Im Anschluss werden bei beiden Verfahren unerreichbare Knoten gelöscht. Kanten, die nach der Paarung auf Knoten außerhalb der Liste zeigen, werden zufällig neu gesetzt.
 
 \subsection{Evolution in der Praxis}
-Die Bestimmung der Fitnesswerte der Kreaturen in jeder Generation benï¿½tigt fï¿½r jede Berechnung eine Physiksimulation der Kreatur.
-Diese Simulation ist sehr rechenaufwï¿½ndig und ist fï¿½r lange Rechenzeiten zur Berechnung einer einzelnen Kreatur verantwortlich.
-Da die einzelnen Fitnesswerte innerhalb einer Generation unabhï¿½ngig voneinander sind, kï¿½nnen sie parallel berechnet werden.
+Die Bestimmung der Fitnesswerte der Kreaturen in jeder Generation benötigt für jede Berechnung eine Physiksimulation der Kreatur.
+Diese Simulation ist sehr rechenaufwändig und ist für lange Rechenzeiten zur Berechnung einer einzelnen Kreatur verantwortlich.
+Da die einzelnen Fitnesswerte innerhalb einer Generation unabhängig voneinander sind, können sie parallel berechnet werden.
 Bei besonders schlechter Fitness wird die Berechnung vorzeitig abgebrochen, um Rechenzeit zu sparen.
 
-Rundungsfehler und Bugs in der Physikengine werden von dem evolutionï¿½ren Algorithmus gefunden und ausgenutzt.
-Das muss verhindert werden, da sonst Lï¿½sungen entstehen, die zwar gute Ergebnisse liefern, aber unrealistisch erscheinen und keine guten Spielgegenstï¿½nde darstellen.
-Das gleiche gilt fï¿½r Triviallï¿½sungen, wie Fortbewegung durch Umfallen.
+Rundungsfehler und Bugs in der Physikengine werden von dem evolutionären Algorithmus gefunden und ausgenutzt.
+Das muss verhindert werden, da sonst Lösungen entstehen, die zwar gute Ergebnisse liefern, aber unrealistisch erscheinen und keine guten Spielgegenstände darstellen.
+Das gleiche gilt für Triviallösungen, wie Fortbewegung durch Umfallen.
+
+\section{Beispiele}
+Im Folgenden werden drei Beispiele von EVKs dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
+Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/type1.png}
+		\caption{}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/type2.png}
+		\caption{}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/type3.png}
+		\caption{}
+	\end{subfigure}
+	\caption{Drei evolutionäre virtuelle Kreaturen}
+	\label{fig:beispiele}
+\end{figure}
 
 
 
