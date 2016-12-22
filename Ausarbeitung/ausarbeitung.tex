@@ -110,26 +110,22 @@ Technische Universität Dortmund\\
 
 \section{Einführung}
 
-In dieser Ausarbeitung wird ein Spiel betrachtet, in dem es darum geht für den Spieler fremde Kreaturen 
-zu steuern. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benötigt, mit der neue Kreaturen erzeugt werden können. Dies wird ermöglicht durch die prozedurale Generierung solcher Kreaturen. Dazu wird ein evolutionärer Algorithmus verwendet. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristiger Spielspaß.
+Diese Ausarbeitung beschäftigt sich mit einem neuartigen Spielkonzept. Der Spieler steuert eine prozedural generierte Kreatur mit der Tastatur und kann gegen eine KI, oder einen weiteren menschlichen Spieler antreten. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benötigt, mit der neue Kreaturen erzeugt werden können. Dies wird ermöglicht durch einen evolutionären Algorithmus. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristig motivierender Spielspaß.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/darwin.png}
-	\caption{Screenshot aus dem Spiel, wer zuerst das Ende der Strecke erreicht, gewinnt}
+	\caption{Screenshot aus dem Spiel. Wer zuerst das Ende der Strecke erreicht, gewinnt}
 \end{figure}
 
 
-Darüber hinaus wird im evolutionären Algorithmus ein neuronales Netz entwickelt, welches einer KI die
-Steuerung der Kreatur ermöglicht. Es ergibt sich die Möglichkeit gegen eine KI, oder gegen einen weiteren menschlichen Spieler anzutreten.
-
-Der evolutionäre Algorithmus entstammt einer früheren Arbeit von Lessin \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit und Ästhetik bewertet. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
+Der evolutionäre Algorithmus generiert ein neuronales Netz welches eine KI Steuerung der Kreatur ermöglicht. Der evolutionäre Algorithmus entstammt einer früheren Arbeit von Lessin, Fussel und Miikkulainen \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit bewertet. Auch die Ästhetik jener Kreaturen wird dabei berücksichtigt. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
 
 
 
 \section{Kodierung}
 
-Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Folgenden \textsc{Genotyp} benannt. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten über die Kreatur. Zu den Daten gehört neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, hebelähnlich, verdreht, oder kugelförmig ausfallen. Der Parameter \textsc{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Gelenke werden mit Muskeln bespannt, um Bewegung überhaupt erst zu ermöglichen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textsc{Phänotypen} beschrieben. Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt also zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Damit der Phänotyp eindeutig ist wird an dieser Stelle ein weiterer Parameter benötigt. Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textsc{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
+Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Folgenden \textsc{Genotyp} benannt. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. Zu den Daten gehört neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen. Der Parameter \textsc{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Gelenke werden mit Muskeln bespannt, um Bewegung erst zu ermöglichen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textsc{Phänotypen} beschrieben. Der Phänotyp beschreibt das virtuelle Repräsentation der Kreatur. Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Damit der Phänotyp eindeutig ist wird an dieser Stelle ein weiterer Parameter benötigt. Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textsc{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
 
 \begin{figure}[H]
 		\resizebox{0.3\textwidth}{!}{
@@ -144,7 +140,7 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 		edge [bend left] node[left] {} (3)			
 		;
 		\end{tikzpicture}
-		\small(a)
+		
 	}
 		\resizebox{0.2\textwidth}{!}{
 			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.85cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
@@ -157,7 +153,7 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 			edge [bend left = 20] node[left] {} (2)			
 			;
 			\end{tikzpicture}
-			\small(b)
+			
 		}
 	\resizebox{0.2\textwidth}{!}{
 		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
@@ -173,7 +169,7 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 		edge [bend left = 20] node[left] {} (2)			
 		;
 		\end{tikzpicture}
-		\small(c)
+		
 	}
 		\resizebox{0.2\textwidth}{!}{
 			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
@@ -193,27 +189,38 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 			edge [bend left = 30] node[left] {} (2)
 			;
 			\end{tikzpicture}
-			\small(d)
+			
 		}
-		\resizebox{0.24\textwidth}{!}{
-		\includegraphics[width=0.25\textwidth]{img/1.png}
-	}
-		\resizebox{0.24\textwidth}{!}{
-		\includegraphics[width=0.25\textwidth]{img/1.png}
-	}
-		\resizebox{0.24\textwidth}{!}{
-		\includegraphics[width=0.25\textwidth]{img/4.png}
-	}
-		\resizebox{0.24\textwidth}{!}{
-		\includegraphics[width=0.25\textwidth]{img/5.png}
-	}
+		\begin{subfigure}[b]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{img/1.png}
+			\caption{}
+		\end{subfigure}
+		~
+		\begin{subfigure}[b]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{img/1.png}
+			\caption{}
+		\end{subfigure}
+		~
+		\begin{subfigure}[b]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{img/4.png}
+			\caption{}
+		\end{subfigure}
+		~
+		\begin{subfigure}[b]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\textwidth]{img/5.png}
+			\caption{}
+		\end{subfigure}
 	\label{fig:genotyp}
 \caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt, die Kanten visualisieren die Beziehungen zueinander.}
 \end{figure}
 
 \section{Kontrolle mit neuronalen Netzen}
 
-Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Dieses neuronale Netz ermöglicht es die Kreatur durch eine KI zu steuern. Dafür werden mehrere Komponenten benötigt. 
+Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Dieses neuronale Netz ermöglicht es die Kreatur durch eine KI zu steuern. Dafür werden mehrere Komponenten benötigt, die im Folgenden erklärt werden. 
 
 \subsection{Neuronen}
 
@@ -288,7 +295,7 @@ Die Neuronen berechnen in Abhängigkeit von der Länge der Muskeln einen Wert. Die
 
 \subsection{Grapherweiterung}
 
-Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{fig:extendedgraph} zeigt einen solchen Genotypen. Die fetten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fetten Knoten gibt es in diesem Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält nur Neuronen die für die Kreatur genau ein einziges Mal zur Kontrolle benötigt werden. Denn dieser Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem bloß in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. Bei der Wahl vom rekursiven Limit gleich zwei und dem 
+Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{fig:extendedgraph} zeigt einen solchen Genotypen. Die fetten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fetten Knoten gibt es in diesem Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält nur Neuronen die für die Kreatur genau ein einziges Mal zur Kontrolle benötigt werden. Denn dieser Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem bloß in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. Das rekursive Limit der Kreatur wird auf zwei gesetzt und als Gelenk zwischen den beiden mittleren Segmenten wird ein verdrehtes Gelenk gewählt, für die äußeren Segmente hingegen ein Beugendes. Mit der Wahl dieser Parameter entsteht die Kreatur, die in Abbildung \ref{fig:extendedgraph} gezeigt wird. Die Kreatur kann die beiden Mittelsegmente drehen und bewegt sich durch Flügelschwung.
 
 \begin{figure}[H]
 	\resizebox{0.55\textwidth}{!}{
@@ -529,6 +536,8 @@ Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 	\caption{Drei evolutionäre virtuelle Kreaturen}
 	\label{fig:beispiele}
 \end{figure}
+
+\section{Testergebnisse}
 
 
 
