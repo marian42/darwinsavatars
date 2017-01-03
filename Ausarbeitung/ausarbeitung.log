@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.1)  3 JAN 2017 14:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/W32TeX) (preloaded format=pdflatex 2016.11.1)  3 JAN 2017 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1229,80 +1229,81 @@ Package pdftex.def Info: img/Comparison_B.png used on input line 695.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 701.
+(babel)             in language  on input line 699.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 701.
+(babel)             in language  on input line 699.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 701.
+(babel)             in language  on input line 699.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 701.
- [12]
-Overfull \vbox (20.29755pt too high) has occurred while \output is active []
-
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 701.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 701.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 701.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 701.
-
-[13 <./img/Comparison_A.png> <./img/Comparison_B.png>]
-<img/Comparison_C.png, id=272, 481.8pt x 361.35pt>
+(babel)             in language  on input line 699.
+ [12 <./img/Comparison_A.png>] <img/Comparison_C.png, id=268, 481.8pt x 361.35p
+t>
 File: img/Comparison_C.png Graphic file (type png)
- <use img/Comparison_C.png>
-Package pdftex.def Info: img/Comparison_C.png used on input line 704.
-(pdftex.def)             Requested size: 426.79135pt x 320.10075pt.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 709.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 709.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 715.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 715.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 723.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 723.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 723.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 723.
 
-[14 <./img/Comparison_C.png>] (./ausarbeitung.bbl)
+<use img/Comparison_C.png>
+Package pdftex.def Info: img/Comparison_C.png used on input line 702.
+(pdftex.def)             Requested size: 426.79135pt x 320.10075pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 744.
+(babel)             in language  on input line 706.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 744.
+(babel)             in language  on input line 706.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 747.
+(babel)             in language  on input line 706.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 747.
+(babel)             in language  on input line 706.
+ [13 <./img/Comparison_B.png>]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 747.
+(babel)             in language  on input line 707.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 747.
+(babel)             in language  on input line 707.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 713.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 713.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 721.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 721.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 721.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 721.
+ [14 <./img/Comparison_C.png>] (./ausarbeitung.bbl)
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 742.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 742.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 745.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 745.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 745.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 745.
  [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 747.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 747.
- (./ausarbeitung.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 747.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 747.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 745.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 745.
+
+(./ausarbeitung.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 745.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 745.
 Package rerunfilecheck Info: File `ausarbeitung.out' has not changed.
-(rerunfilecheck)             Checksum: 6A78FFC7F411FA4ABCBA2AAC3B8D6DD7;1100.
+(rerunfilecheck)             Checksum: DC395B4959D10242403F3EB3012E9EDA;1100.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 747.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 745.
  ) 
 Here is how much of TeX's memory you used:
- 19544 strings out of 493013
- 354868 string characters out of 6136993
- 455921 words of memory out of 5000000
- 22648 multiletter control sequences out of 15000+600000
+ 19543 strings out of 493013
+ 354855 string characters out of 6136993
+ 455795 words of memory out of 5000000
+ 22646 multiletter control sequences out of 15000+600000
  25351 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,12n,58p,2039b,959s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1325,10 +1326,10 @@ c:/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfsx1200.pfb><c:/texlive
 f-dist/fonts/type1/public/cm-super/sfsx2074.pfb><c:/texlive/2016/texmf-dist/fon
 ts/type1/public/cm-super/sfti1200.pfb><c:/texlive/2016/texmf-dist/fonts/type1/p
 ublic/cm-super/sftt1200.pfb>
-Output written on ausarbeitung.pdf (17 pages, 1660748 bytes).
+Output written on ausarbeitung.pdf (17 pages, 1660847 bytes).
 PDF statistics:
- 367 PDF objects out of 1000 (max. 8388607)
- 264 compressed objects within 3 object streams
- 53 named destinations out of 1000 (max. 500000)
+ 368 PDF objects out of 1000 (max. 8388607)
+ 265 compressed objects within 3 object streams
+ 54 named destinations out of 1000 (max. 500000)
  345 words of extra memory for PDF output out of 10000 (max. 10000000)
 

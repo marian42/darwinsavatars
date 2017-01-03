@@ -681,22 +681,20 @@ Erstmals schafft ein menschlicher Spieler mit der dritten Kreatur die KI zu schl
 
 Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusammen. Die Ergebnisse stammen aus 5 Durchläufen. Bei allen drei Beispielen verfolgte die KI über alle Durchläufe gleiche Strategie. Das erklärt die konstanten Kurven im Diagramm. Die Kurven der menschlichen Spieler steigen tendenziell mit den späteren Durchläufen. Es zeigt sich eine Lernkurve. Wie schon auf den anderen Diagrammen erkennbar, erreichen die menschlichen Spieler im Normalfall nicht die Geschwindigkeit der KI. Die eine Ausnahme bei der Kreatur C ist sichtbar in den Durchläufen 2 und 5.
 
+
+
 \begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Comparison_A.png}
+	\caption{Vergleichschart zu Beispiel A}
+	\label{fig:comp1}
+\end{figure}
 
-	\begin{subfigure}[b]{\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{img/Comparison_A.png}
-		\caption{Vergleichschart zu Beispiel A}
-		\label{fig:comp1}
-	\end{subfigure}
-
-	\begin{subfigure}[b]{\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{img/Comparison_B.png}
-		\caption{Vergleichschart zu Beispiel B}
-		\label{fig:comp2}
-	\end{subfigure}
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Comparison_B.png}
+	\caption{Vergleichschart zu Beispiel B}
+	\label{fig:comp2}
 \end{figure}
 
 \begin{figure}[H]
@@ -709,7 +707,7 @@ Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusamm
 \section{Weiterführende Betrachtungen}
 Zur Schaffung einer KI der generierten Kreaturen wird ein Verfahren verwendet, welches der Kategorie evolutionärer Algorithmen zugesprochen werden kann. Alternativ eignet sich dafür der Monte Carlo Tree Search, der an Stelle eines neuronalen Netzes aufgrund der effizienteren Datenstruktur oft zur Berechnung von Zügen einer KI gewählt wird (vgl. \cite{MaWi15}). Da dieses Spiel jedoch eine Bewegung in Echtzeit realisieren möchte, eignen sich keine Verfahren die Züge innerhalb von Runden berechnen.  
 
-Einen weiteren interessanten Ansatz zur prozeduralen Generierung findet man im Pflanzenzucht Spiel Petalz \cite{RiLe15}. Ähnlich wie in Darwin's Avatars werden hier die Elemente prozedural generiert, dabei handelt es sich um ein Social Game, welche beispielsweise in Facebook gefunden werden können. Die Blumen sind einzigartig und bieten viele Anpassungsmöglichkeiten. Sie werden durch neuronale Netzwerke generiert, die sich in ihren  Funktionen unterscheiden.
+Einen weiteren interessanten Ansatz zur prozeduralen Generierung findet man im Pflanzenzucht Spiel Petalz \cite{RiLe15}. Ähnlich wie in Darwin's Avatars werden die Inhalte prozedural generiert, dabei handelt es sich um ein Social Game, welche beispielsweise in Facebook gefunden werden können. Die Blumen sind einzigartig und bieten viele Anpassungsmöglichkeiten. Sie werden durch neuronale Netzwerke generiert, die sich in ihren  Funktionen unterscheiden.
 
 
 \section{Zusammenfassung}
