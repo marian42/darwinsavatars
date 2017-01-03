@@ -600,7 +600,7 @@ Für jede der bereits vorgestellten Kreatur wurden nun die erreichten Geschwindig
 		\includegraphics[width=\textwidth]{img/hum16.png}
 	\end{subfigure}
 	\label{fig:test1}
-	\caption{Testergebnisse für Beispiel 1}
+	\caption{Testergebnisse für Beispiel A}
 \end{figure}
 
 In rot markiert sind die Ergebnisse die KI. Die Kreatur aus Beispiel 1 besitzt 3 Muskeln die an der y Achse aufgezählt sind. Gemessen wird die Zeit in Sekunden auf der x-Achse. Die erreichte Geschwindigkeit findet sich oberhalb des Diagramms. Die KI verwendete zur Fortbewegung eine simple Strategie. Sie benutze lediglich die Muskeln 0 und 1 abwechselnd in gleichbleibender Frequenz. Damit erreichte sie die größte Geschwindigkeit. Die menschlichen Spieler nutzten eine ähnliche Strategie, jedoch weniger erfolgreich, da ihre Frequenz nicht gleichbleibend war. Die Spieler 5 und 6 verwendeten als einzige auch den Muskel 2.
@@ -636,7 +636,7 @@ In rot markiert sind die Ergebnisse die KI. Die Kreatur aus Beispiel 1 besitzt 3
 		\includegraphics[width=\textwidth]{img/hum26.png}
 	\end{subfigure}
 	\label{fig:test2}
-	\caption{Testergebnisse für Beispiel 2}
+	\caption{Testergebnisse für Beispiel B}
 \end{figure}
 
 Beim Beispiel zwei macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann die Muskeln in verschiedenen Intensitäten kontrahieren. Dies führt zu erheblich besseren Ergebnissen als die der menschlichen Spieler. Bei dieser etwas komplexeren Kreatur verwendeten die Spieler allesamt verschiedene Strategien. Spieler 4 hat mit der einfachsten Strategie der menschlichen Spieler die beste Geschwindigkeit erreicht.
@@ -672,10 +672,44 @@ Beim Beispiel zwei macht sich der entscheidende Vorteil der KI bemerkbar. Sie ka
 		\includegraphics[width=\textwidth]{img/hum36.png}
 	\end{subfigure}
 	\label{fig:test3}
-	\caption{Testergebnisse für Beispiel 3}
+	\caption{Testergebnisse für Beispiel C}
 \end{figure}
 
 Erstmals schafft ein menschlicher Spieler mit der dritten Kreatur die KI zu schlagen. Erneut macht sich die KI zunutze, dass sie die Muskeln verschieden stark aktivieren kann. Das simple Wechseln zwischen den Muskeln 4 und 5 und den beiden Muskeln 1 und 2 erzielte bessere Ergebnisse. Auch andere Spieler konnten mit dem Ergebnis der KI mithalten. Es wird jedoch auch deutlich, dass mit steigender Komplexität keine so hohe  Geschwindigkeiten erzielt werden.
+
+\subsection{Analyse}
+
+Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusammen. Die Ergebnisse stammen aus 5 Durchläufen. Bei allen drei Beispielen verfolgte die KI über alle Durchläufe gleiche Strategie. Das erklärt die konstanten Kurven im Diagramm. Die Kurven der menschlichen Spieler steigen tendenziell mit den späteren Durchläufen. Es zeigt sich eine Lernkurve. Wie schon auf den anderen Diagrammen erkennbar, erreichen die menschlichen Spieler im Normalfall nicht die Geschwindigkeit der KI. Die eine Ausnahme bei der Kreatur C ist sichtbar in den Durchläufen 2 und 5.
+
+\begin{figure}[H]
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/Comparison_A.png}
+		\caption{Vergleichschart zu Beispiel A}
+		\label{fig:comp1}
+	\end{subfigure}
+
+	\begin{subfigure}[b]{\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{img/Comparison_B.png}
+		\caption{Vergleichschart zu Beispiel B}
+		\label{fig:comp2}
+	\end{subfigure}
+
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{img/Comparison_C.png}
+	\caption{Vergleichschart zu Beispiel C}
+	\label{fig:comp3}
+\end{figure}
+
+\section{Weiterführende Betrachtungen}
+Zur Schaffung einer KI der generierten Kreaturen wird ein Verfahren verwendet, welches der Kategorie evolutionärer Algorithmen zugesprochen werden kann. Alternativ eignet sich dafür der Monte Carlo Tree Search, der an Stelle eines neuronalen Netzes aufgrund der effizienteren Datenstruktur oft zur Berechnung von Zügen einer KI gewählt wird (vgl. \cite{MaWi15}). Da dieses Spiel jedoch eine Bewegung in Echtzeit realisieren möchte, eignen sich keine Verfahren die Züge innerhalb von Runden berechnen.  
+
+Einen weiteren interessanten Ansatz zur prozeduralen Generierung findet man im Pflanzenzucht Spiel Petalz \cite{RiLe15}. Ähnlich wie in Darwin's Avatars werden hier die Elemente prozedural generiert, dabei handelt es sich um ein Social Game, welche beispielsweise in Facebook gefunden werden können. Die Blumen sind einzigartig und bieten viele Anpassungsmöglichkeiten. Sie werden durch neuronale Netzwerke generiert, die sich in ihren  Funktionen unterscheiden.
 
 
 \section{Zusammenfassung}
