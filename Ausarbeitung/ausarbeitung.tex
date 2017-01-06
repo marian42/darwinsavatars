@@ -112,7 +112,7 @@ Technische Universität Dortmund\\
 
 \section{Einführung}
 
-Diese Ausarbeitung beschäftigt sich mit einem neuartigen Spielkonzept. Der Spieler steuert eine prozedural generierte Kreatur mit der Tastatur und kann gegen eine KI, oder einen weiteren menschlichen Spieler antreten. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode benötigt, mit der neue Kreaturen erzeugt werden können. Dies wird ermöglicht durch einen evolutionären Algorithmus. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristig motivierender Spielspaß.
+Diese Ausarbeitung beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine prozedural generierte Kreatur mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristig motivierender Spielspaß.
 
 \begin{figure}[H]
 	\centering
@@ -127,7 +127,9 @@ Der evolutionäre Algorithmus generiert ein neuronales Netz welches eine KI Steue
 
 \section{Kodierung}
 
-Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Folgenden \textsc{Genotyp} benannt. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. Zu den Daten gehört neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen. Der Parameter \textsc{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Gelenke werden mit Muskeln bespannt, um Bewegung erst zu ermöglichen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textsc{Phänotypen} beschrieben. Der Phänotyp beschreibt das virtuelle Repräsentation der Kreatur. Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Damit der Phänotyp eindeutig ist wird an dieser Stelle ein weiterer Parameter benötigt. Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textsc{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
+Die evolutionären virtuellen Kreaturen, im Folgenden EVKs, benötigen einen Bauplan der sie spezifiziert. Dieser heißt \textit{Genotyp}. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. Dazu gehören neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente, Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen. Der Parameter \textit{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Körpersegmente werden mit Muskeln bespannt, um Bewegungen auszulösen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textit{Phänotypen} beschrieben. Der Phänotyp beschreibt die virtuelle Repräsentation der Kreatur.
+
+Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Dadurch entstehen Ketten des gleichen Segments. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textit{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
 
 \begin{figure}[H]
 		\resizebox{0.3\textwidth}{!}{
@@ -216,19 +218,19 @@ Die Kreaturen benötigen nun einen Bauplan der sie spezifiziert. Dieser sei im Fo
 			\includegraphics[width=\textwidth]{img/5.png}
 			\caption{}
 		\end{subfigure}
+	\caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt. Die Kanten visualisieren die Beziehungen zueinander.}
 	\label{fig:genotyp}
-\caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt, die Kanten visualisieren die Beziehungen zueinander.}
 \end{figure}
 
 \section{Kontrolle mit neuronalen Netzen}
 
-Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Dieses neuronale Netz ermöglicht es die Kreatur durch eine KI zu steuern. Dafür werden mehrere Komponenten benötigt, die im Folgenden erklärt werden. 
+Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Das neuronale Netz steuert die Kreatur. Dafür werden mehrere Komponenten benötigt, die im Folgenden erklärt werden. 
 
 \subsection{Neuronen}
 
-\textsc{Neuronen} führen arithmetische, oder logische Operationen auf ein Eingangssignal aus und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich [0,1]. Mögliche Funktionen sind: Summe, Produkt, Division, Minimum aus Summe und 1, Größer als, 
+\textit{Neuronen} wenden arithmetische oder logische Operationen auf ein Eingangssignal an und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich $[0,1]$. Mögliche Funktionen sind: Summe, Produkt, Division, Minimum aus Summe und 1, Größer als, 
 Minimum, Maximum, Wenn dann, Interpolieren, Sin, Cosin, Arctan, Logarithmus, Exponent,
-Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Oszilloskop. Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater t abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. aus x wird 1 - x. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
+Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Oszilloskop. Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater $t$ abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. Aus $x$ wird $1 - x$. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
 
 \begin{figure}[H]
 	\resizebox{0.24\textwidth}{!}{
@@ -289,15 +291,15 @@ Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Os
 
 \subsection{Sensoren}
 
-Das Eingangssignal kommt von einem weiteren wesentlichen Bestandteil des neuronalen Netz, den \textsc{Sensoren}. Jeder Muskel einer Kreatur besitzt einen Sensor, der die aktuelle Länge des Muskels misst. Dieser Wert variiert je nachdem, ob er gestreckt, oder zusammengezogen ist. Denkbar wären auch andere Sensoren. Sims \cite{Sims94} erweiterte die Kreaturen um Photosensoren, die es der Kreatur ermöglichen, sich auf eine Lichtquelle zu zubewegen. Auch Kontaktsensoren bieten sich an. In dem Spiel wird sich auf Sensoren beschränkt, die die Länge des Muskels messen.
+Das Eingangssignal kommt von einem weiteren wesentlichen Bestandteil des neuronalen Netzes, den \textit{Sensoren}. Jeder Muskel einer Kreatur besitzt einen Sensor, der die aktuelle Länge des Muskels misst. Dieser Wert variiert je nachdem, ob er gestreckt, oder zusammengezogen ist. Denkbar wären auch andere Sensoren. Sims \cite{Sims94} erweitert die Kreaturen um Photosensoren, die es der Kreatur ermöglichen, sich auf eine Lichtquelle zu zubewegen. Auch Kontaktsensoren bieten sich an. In dem Spiel wird sich auf Sensoren beschränkt, die die Länge des Muskels messen.
 
 \subsection{Effektoren}
 
-Die Neuronen berechnen in Abhängigkeit von der Länge der Muskeln einen Wert. Dieser Wert landet bei den \textsc{Effektoren}. Wie auch die Sensoren gehören die Effektoren zu den Muskeln. Die Effektoren spannen in Abhängigkeit vom berechneten Wert den Muskel an, oder entspannen ihn. Durch diesen Kreislauf wird der Kreatur eine flüssige Bewegung ermöglicht. Die Sensoren und die Effektoren werden im Genotyp wie die Neuronen als Knoten dargestellt.
+Die Neuronen berechnen in Abhängigkeit von der Länge der Muskeln einen Wert. Dieser Wert landet bei den \textit{Effektoren}. Wie auch die Sensoren gehören die Effektoren zu den Muskeln. Die Effektoren spannen in Abhängigkeit vom berechneten Wert den Muskel an, oder entspannen ihn. Durch diesen Kreislauf wird der Kreatur eine flüssige Bewegung ermöglicht. Die Sensoren und die Effektoren werden im Genotyp wie die Neuronen als Knoten dargestellt.
 
 \subsection{Grapherweiterung}
 
-Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{fig:extendedgraph} zeigt einen solchen Genotypen. Die fetten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fetten Knoten gibt es in diesem Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält nur Neuronen die für die Kreatur genau ein einziges Mal zur Kontrolle benötigt werden. Denn dieser Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem bloß in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. Das rekursive Limit der Kreatur wird auf zwei gesetzt und als Gelenk zwischen den beiden mittleren Segmenten wird ein verdrehtes Gelenk gewählt, für die äußeren Segmente hingegen ein Beugendes. Mit der Wahl dieser Parameter entsteht die Kreatur, die in Abbildung \ref{fig:extendedgraph} gezeigt wird. Die Kreatur kann die beiden Mittelsegmente drehen und bewegt sich durch Flügelschwung.
+Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{fig:extendedgraph} zeigt einen solchen Genotypen. Die fett gezeichneten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fett gezeichneten Knoten gibt es im Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält Neuronen die für die Kreatur genau ein einziges Mal zur Kontrolle benötigt werden. Der Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem nur in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. Das rekursive Limit der Kreatur wird auf $2$ gesetzt und als Gelenk zwischen den beiden mittleren Segmenten wird ein verdrehtes Gelenk gewählt, für die äußeren Segmente hingegen ein beugendes. Mit der Wahl dieser Parameter entsteht die Kreatur, die in Abbildung \ref{fig:extendedgraph} gezeigt wird. Die Kreatur kann die beiden Mittelsegmente drehen und bewegt sich durch Flügelschwung.
 
 \begin{figure}[H]
 	\resizebox{0.55\textwidth}{!}{
@@ -322,12 +324,12 @@ Zusätzlich zur Laufgeschwindigkeit werden für die Fitness ästhetische Eigenschaf
 \subsection{Evolutionärer Algorithmus}
 Zunächst wird ein eine Population von zufälligen Kreaturen generiert.
 Alle Eigenschaften der Kreaturen werden zufällig gesetzt, dazu gehören der Graph der Körperteile, die Muskeln und das neuronale Netz.
-Die in der Arbeit verwendete Populationsgröße ist $500$.
+Die in der Arbeit verwendete Populationsgröße ist $100$.
 
 Nun wird in jeder Generation der Fitnesswert für jede Kreatur bestimmt.
 Dazu wird die Kreatur in der Physikengine \textsc{PhysX} simuliert und die Laufgeschwindigkeit gemessen.
 Dieser Teil des Verfahrens ist besonders rechenaufwändig.
-Nun wird ein Teil der Population, $80\%$, verworfen.
+Ein Teil der Population, $80\%$, wird verworfen.
 Die Population wird mit Mutationen und Nachkommen der verbleibenden Kreaturen auf ihre ursprüngliche Größe aufgefüllt.
 
 Dieser Schritt wird je nach verfügbarer Rechenzeit solange wiederholt, bis die Fitness der besten Kreaturen gut genug ist.
@@ -420,7 +422,7 @@ Eine Kante mit dem Wert $+2$ zeigt auf den Knoten, der in der Liste der zweite N
 	\caption{Paarung durch \enquote{Kreuzung}: Der erste Elternteil wird kopiert und einzelne Knoten werden durch die Knoten des anderen Elternteils an der gleichen Position ersetzt.}
 \end{figure}
 
-Abbildung \ref{paarung1} zeigt die erste Methode zur Paarung, die \enquote{Kreuzung}.
+Abbildung \ref{paarung1} zeigt die erste Methode zur Paarung, die \textit{Kreuzung}.
 Zunächst wird eine Kopie des einen Elternteils angelegt.
 Nun wird eine zufällige Auswahl an Knoten, im Beispiel Knoten 2 und 4, durch die Knoten mit der gleichen Position des anderen Elternteils ersetzt.
 Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber ggf. auf einen anderen Knoten der gleichen relativen Position zeigen.
@@ -495,7 +497,7 @@ Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber g
 	\caption{Paarung durch \enquote{Veredelung}: Teilketten beider Elternteile werden konkateniert und mit einer Kante verbunden.}
 \end{figure}
 
-Abbildung \ref{paarung2} zeigt die zweite Methode zur Paarung, die \enquote{Veredelung}.
+Abbildung \ref{paarung2} zeigt die zweite Methode zur Paarung, die \textit{Veredelung}.
 Es werden von beiden Elternteil Teilketten gebildet, ein Präfix vom ersten Elternteil und ein Suffix vom zweiten.
 Diese beiden Teilketten werden konkateniert.
 Eine bestehende Kante der linken Teilkette wird so abgeändert, dass sie auf einen Knoten der rechten Teilkette zeigt.
@@ -505,7 +507,7 @@ Im Anschluss werden bei beiden Verfahren unerreichbare Knoten gelöscht. Kanten, 
 \subsection{Evolution in der Praxis}
 Die Bestimmung der Fitnesswerte der Kreaturen in jeder Generation benötigt für jede Berechnung eine Physiksimulation der Kreatur.
 Diese Simulation ist sehr rechenaufwändig und ist für lange Rechenzeiten zur Berechnung einer einzelnen Kreatur verantwortlich.
-Da die einzelnen Fitnesswerte innerhalb einer Generation unabhängig voneinander sind, können sie parallel berechnet werden.
+Da die Fitnesswerte innerhalb einer Generation unabhängig voneinander sind, können sie parallel berechnet werden.
 Bei besonders schlechter Fitness wird die Berechnung vorzeitig abgebrochen, um Rechenzeit zu sparen.
 
 Rundungsfehler und Bugs in der Physikengine werden von dem evolutionären Algorithmus gefunden und ausgenutzt.
@@ -557,7 +559,7 @@ Sie führt eine langsame, vierbeinige Fortbewegung aus.
 Im Spiel treten zwei Kopien der gleichen, im Vorfeld berechneten, EVK an.
 Eine Kopie wird durch das evolutionär generierte neuronale Netz gesteuert.
 Die andere Kopie wird durch den menschlichen Spieler gesteuert.
-Das Spielziel ist, möglichst schnell das Ziel zu erreichen.
+Beide Kreaturen versuchen, möglichst schnell das Ziel zu erreichen.
 Das Spiel ist beendet, wenn beide Kreaturen das Ziel erreicht haben oder ein Zeitlimit abgelaufen ist.
 
 Der Mensch steuert seine Kreatur mit der Tastatur.
@@ -603,7 +605,10 @@ Für jede der bereits vorgestellten Kreatur wurden nun die erreichten Geschwindig
 	\caption{Testergebnisse für Beispiel A}
 \end{figure}
 
-In rot markiert sind die Ergebnisse die KI. Die Kreatur aus Beispiel 1 besitzt 3 Muskeln die an der y Achse aufgezählt sind. Gemessen wird die Zeit in Sekunden auf der x-Achse. Die erreichte Geschwindigkeit findet sich oberhalb des Diagramms. Die KI verwendete zur Fortbewegung eine simple Strategie. Sie benutze lediglich die Muskeln 0 und 1 abwechselnd in gleichbleibender Frequenz. Damit erreichte sie die größte Geschwindigkeit. Die menschlichen Spieler nutzten eine ähnliche Strategie, jedoch weniger erfolgreich, da ihre Frequenz nicht gleichbleibend war. Die Spieler 5 und 6 verwendeten als einzige auch den Muskel 2.
+Die Diagramme in Abbildung \ref{fig:test1} zeigen den Grad der Aktivierung der Muskeln in Abhängigkeit der Zeit.
+Menschliche Spieler sind in grün dargestellt, das evolutionär generierte neuronale Netz ist in rot dargestellt.
+Die erreichte Geschwindigkeit findet sich oberhalb des Diagramms.
+Die KI verwendete zur Fortbewegung eine simple Strategie. Sie benutze lediglich die Muskeln 0 und 1 abwechselnd mit konstanter Frequenz. Damit erreichte sie die größte Geschwindigkeit. Die menschlichen Spieler nutzten eine ähnliche Strategie, jedoch weniger erfolgreich, da ihre Frequenz nicht konstant war. Die Spieler 5 und 6 verwendeten als einzige auch den Muskel 2.
 
 \begin{figure}[H]
 	\centering
@@ -639,7 +644,7 @@ In rot markiert sind die Ergebnisse die KI. Die Kreatur aus Beispiel 1 besitzt 3
 	\caption{Testergebnisse für Beispiel B}
 \end{figure}
 
-Beim Beispiel zwei macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann die Muskeln in verschiedenen Intensitäten kontrahieren. Dies führt zu erheblich besseren Ergebnissen als die der menschlichen Spieler. Bei dieser etwas komplexeren Kreatur verwendeten die Spieler allesamt verschiedene Strategien. Spieler 4 hat mit der einfachsten Strategie der menschlichen Spieler die beste Geschwindigkeit erreicht.
+Beim Beispiel B macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann die Muskeln in verschiedenen Intensitäten kontrahieren. Dies führt zu erheblich besseren Ergebnissen als die der menschlichen Spieler. Bei dieser komplexeren Kreatur verwendeten die Spieler allesamt verschiedene Strategien. Spieler 4 hat mit der einfachsten Strategie der menschlichen Spieler die beste Geschwindigkeit erreicht.
 
 \begin{figure}[H]
 	\centering
@@ -679,7 +684,7 @@ Erstmals schafft ein menschlicher Spieler mit der dritten Kreatur die KI zu schl
 
 \subsection{Analyse}
 
-Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusammen. Die Ergebnisse stammen aus 5 Durchläufen. Bei allen drei Beispielen verfolgte die KI über alle Durchläufe gleiche Strategie. Das erklärt die konstanten Kurven im Diagramm. Die Kurven der menschlichen Spieler steigen tendenziell mit den späteren Durchläufen. Es zeigt sich eine Lernkurve. Wie schon auf den anderen Diagrammen erkennbar, erreichen die menschlichen Spieler im Normalfall nicht die Geschwindigkeit der KI. Die eine Ausnahme bei der Kreatur C ist sichtbar in den Durchläufen 2 und 5.
+Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusammen. Die Ergebnisse stammen aus 5 Durchläufen. Bei allen drei Beispielen verfolgte die KI über alle Durchläufe die gleiche Strategie. Das erklärt die konstanten Kurven im Diagramm. Die Kurven der menschlichen Spieler steigen tendenziell mit den späteren Durchläufen. Es zeigt sich eine Lernkurve. Wie schon bei den anderen Diagrammen erkennbar, erreichen die menschlichen Spieler im Normalfall nicht die Geschwindigkeit der KI. Eine Ausnahme bei der Kreatur C ist sichtbar in den Durchläufen 2 und 5.
 
 
 
@@ -705,9 +710,9 @@ Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusamm
 \end{figure}
 
 \section{Weiterführende Betrachtungen}
-Zur Schaffung einer KI der generierten Kreaturen wird ein Verfahren verwendet, welches der Kategorie evolutionärer Algorithmen zugesprochen werden kann. Alternativ eignet sich dafür der Monte Carlo Tree Search, der an Stelle eines neuronalen Netzes aufgrund der effizienteren Datenstruktur oft zur Berechnung von Zügen einer KI gewählt wird (vgl. \cite{MaWi15}). Da dieses Spiel jedoch eine Bewegung in Echtzeit realisieren möchte, eignen sich keine Verfahren die Züge innerhalb von Runden berechnen.  
+Zur Schaffung einer KI der generierten Kreaturen wird ein evolutionärer Algorithmus verwendet. Alternativ eignet sich dafür der Monte Carlo Tree Search, der an Stelle eines neuronalen Netzes aufgrund der effizienteren Datenstruktur oft zur Berechnung von Zügen einer KI gewählt wird (vgl. \cite{MaWi15}). Da dieses Spiel jedoch eine Bewegung in Echtzeit realisieren möchte, eignen sich keine Verfahren die Züge innerhalb von Runden berechnen.  
 
-Einen weiteren interessanten Ansatz zur prozeduralen Generierung findet man im Pflanzenzucht Spiel Petalz \cite{RiLe15}. Ähnlich wie in Darwin's Avatars werden die Inhalte prozedural generiert, dabei handelt es sich um ein Social Game, welche beispielsweise in Facebook gefunden werden können. Die Blumen sind einzigartig und bieten viele Anpassungsmöglichkeiten. Sie werden durch neuronale Netzwerke generiert, die sich in ihren  Funktionen unterscheiden.
+Einen weiteren interessanten Ansatz zur prozeduralen Generierung findet man im Pflanzenzuchtspiel \textsc{Petalz} \cite{RiLe15}. Dabei handelt es sich um ein Social Game, welche beispielsweise in Facebook gefunden werden können. Ähnlich wie in \textsc{Darwin's Avatars} werden die Inhalte prozedural generiert. Die Blumen sind einzigartig und bieten viele Anpassungsmöglichkeiten. Sie werden durch neuronale Netzwerke generiert, die sich in ihren Funktionen unterscheiden.
 
 
 \section{Zusammenfassung}
@@ -720,7 +725,7 @@ Ein Nachteil des evolutionären Vorgehens ist die hohe Rechenleistung, die zur Ge
 So ist nicht praktikabel, die Kreaturen während des Spiels auf dem Rechner des Spielers zu generieren.
 
 Das Spielkonzept ist in verschiedener Hinsicht erweiterbar.
-Bei Sims werden neben der Fortbewegung weitere Aktivitäten beschrieben, auf die virtuelle Kreaturen trainiert werden können.
+Bei Sims werden neben der Fortbewegung weitere Aktivitäten beschrieben, auf die virtuelle Kreaturen trainiert werden können \cite{Sims94}.
 Diese Aktivitäten lassen sich direkt in entsprechende Spielmodi übertragen.
 Dazu gehören Springen, Schwimmen, Klettern und Kämpfen.
 Abgesehen davon nennt Lessin als mögliche Spielmechanik das Sammeln und Tauschen von Kreaturen und Online-Multiplayer.
