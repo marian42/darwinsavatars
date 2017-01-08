@@ -228,9 +228,19 @@ Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden ka
 
 \subsection{Neuronen}
 
-\textit{Neuronen} wenden arithmetische oder logische Operationen auf ein Eingangssignal an und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich $[0,1]$. Mögliche Funktionen sind: Summe, Produkt, Division, Minimum aus Summe und 1, Größer als, 
-Minimum, Maximum, Wenn dann, Interpolieren, Sin, Cosin, Arctan, Logarithmus, Exponent,
-Integrieren, Differenzieren, Glätten, Speichern, Oszilloskop und sägeförmiges Oszilloskop. Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater $t$ abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. Aus $x$ wird $1 - x$. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
+\textit{Neuronen} wenden arithmetische oder logische Operationen auf ein Eingangssignal an und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich $[0,1]$. Mögliche Funktionen sind:
+
+\vspace{0.7em}
+\begin{tabular}{l l l l}
+	Summe & Produkt & Division & Minimum aus Summe und 1\\
+	Größer als & Minimum & Maximum & Wenn dann\\
+	Interpolieren & Sinus & Cosinus & Arcus Tangens \\
+	Logarithmus & Exponent & Integrieren & Differenzieren \\
+	Glätten & Speichern & Oszilloskop & sägeförmiges Oszilloskop
+\end{tabular}
+\vspace{0.7em}
+
+Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater $t$ abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. Aus $x$ wird $1 - x$. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
 
 \begin{figure}[H]
 	\resizebox{0.24\textwidth}{!}{
