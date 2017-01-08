@@ -81,7 +81,7 @@ Wintersemester 2016/17
 \normalsize \raggedright
 
 \textbf{Basierend auf:}\\
-D.Lessin, S.Risi, Darwin's Avatars: a Novel Combination of Gameplay and Procedural Content Generation, GECCO '15, July 11 - 16
+D.Lessin, S.Risi, Darwin's Avatars: a Novel Combination of Gameplay and Procedural Content Generation, GECCO '15, July 11 - 16 
 \end{minipage}
 
 \definecolor{TUGreen}{rgb}{0.517,0.721,0.094}
@@ -112,7 +112,7 @@ Technische Universität Dortmund\\
 
 \section{Einführung}
 
-Diese Ausarbeitung beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine prozedural generierte Kreatur mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristig motivierender Spielspaß.
+Diese Ausarbeitung \nocite{LeRi15} beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine prozedural generierte Kreatur mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristig motivierender Spielspaß.
 
 \begin{figure}[H]
 	\centering
@@ -121,7 +121,7 @@ Diese Ausarbeitung beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Av
 \end{figure}
 
 
-Der evolutionäre Algorithmus generiert ein neuronales Netz welches eine KI Steuerung der Kreatur ermöglicht. Der evolutionäre Algorithmus entstammt einer früheren Arbeit von Lessin, Fussel und Miikkulainen \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit bewertet. Auch die Ästhetik jener Kreaturen wird dabei berücksichtigt. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
+Der evolutionäre Algorithmus generiert ein neuronales Netz welches eine KI Steuerung der Kreatur ermöglicht. Dieser Algorithmus entstammt einer früheren Arbeit von Lessin, Fussel und Miikkulainen \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit bewertet. Auch die Ästhetik jener Kreaturen wird dabei berücksichtigt. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
 
 
 
@@ -236,11 +236,11 @@ Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden ka
 	Größer als & Minimum & Maximum & Wenn dann\\
 	Interpolieren & Sinus & Cosinus & Arcus Tangens \\
 	Logarithmus & Exponent & Integrieren & Differenzieren \\
-	Glätten & Speichern & Oszilloskop & sägeförmiges Oszilloskop
+	Glätten & Speichern & Oszillierend & Sägeförmig oszillierend
 \end{tabular}
 \vspace{0.7em}
 
-Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparamater $t$ abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. Aus $x$ wird $1 - x$. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
+Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Der Sinus errechnet einen vom Zeitparameter $t$ abhängigen Wert aus der Sinusfunktion. Das Komplement dreht den eingehenden Wert um. Aus $x$ wird $1 - x$. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
 
 \begin{figure}[H]
 	\resizebox{0.24\textwidth}{!}{
