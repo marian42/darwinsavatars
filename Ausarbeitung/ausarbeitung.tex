@@ -112,22 +112,29 @@ Technische Universität Dortmund\\
 
 \section{Einführung}
 
-Diese Ausarbeitung \nocite{LeRi15} beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine prozedural generierte Kreatur mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Durch die Vielfalt der daraus resultierenden Kreaturen entsteht ein langfristig motivierender Spielspaß.
+Diese Ausarbeitung \nocite{LeRi15} beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine eine Evolutionäre Virtuelle Kreatur, im Folgenden EVK, mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Die Vielfalt der daraus resultierenden Kreaturen ermöglicht ein langfristig motivierender Spielspaß.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{img/darwin.png}
-	\caption{Screenshot aus dem Spiel. Wer zuerst das Ende der Strecke erreicht, gewinnt}
+	\caption{Screenshot aus \textsc{Darwin's Avatars}. Wer zuerst das Ende der Strecke erreicht, gewinnt}
 \end{figure}
 
 
-Der evolutionäre Algorithmus generiert ein neuronales Netz welches eine KI Steuerung der Kreatur ermöglicht. Dieser Algorithmus entstammt einer früheren Arbeit von Lessin, Fussel und Miikkulainen \cite{LeFuMi13}. Er berechnet für jede Kreatur einen Fitnesswert, der ihre Bewegungsgeschwindigkeit bewertet. Auch die Ästhetik jener Kreaturen wird dabei berücksichtigt. Über mehrere hundert Generationen werden die Kreaturen mit dem höchsten Fitnesswert selektiert und durch Paarung oder Mutation neue Kreaturen generiert.
+Ein evolutionärer Algorithmus generiert die Kreatur zusammen mit einem neuronalen Netz welches eine automatische Steuerung der Kreatur ermöglicht. Über mehrere hundert Generationen werden die Kreaturen selektiert, die bezüglich des Spielziels am fittesten sind. Durch Paarung oder Mutation werden Kreaturen abgeändert.
 
-
+In Kapitel \ref{sec:kodierung} wird zunächst dargestellt, wie der Körper einer EVK als Datenstruktur modelliert wird.
+Anschließend wird in Kapitel \ref{sec:kontrolle} beschrieben, wie die Kreaturen mit neuronalen Netzen gesteuert werden.
+Anschließend werden in Kapitel \ref{sec:evolution} Kreaturen evolutionär generiert.
+Einige Ergebnisse dieses Verfahrens werden in \ref{sec:beispiele} vorgestellt.
+Kapitel \ref{sec:spiel} beschreibt, wie die bisherigen Techniken zu einem Computerspiel zusammengesetzt werden.
+Das Spiel wurde mit Probanden getestet.
+Die Testergebnisse werden in Kapitel \ref{sec:ergebnisse} vorgestellt.
 
 \section{Kodierung}
+\label{sec:kodierung}
 
-Die evolutionären virtuellen Kreaturen, im Folgenden EVKs, benötigen einen Bauplan der sie spezifiziert. Dieser heißt \textit{Genotyp}. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. Dazu gehören neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente, Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen. Der Parameter \textit{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Körpersegmente werden mit Muskeln bespannt, um Bewegungen auszulösen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textit{Phänotypen} beschrieben. Der Phänotyp beschreibt die virtuelle Repräsentation der Kreatur.
+Die EVKs benötigen einen Bauplan der sie spezifiziert. Dieser heißt \textit{Genotyp}. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. Dazu gehören neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente, Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen. Der Parameter \textit{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Körpersegmente werden mit Muskeln bespannt, um Bewegungen auszulösen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textit{Phänotypen} beschrieben. Der Phänotyp beschreibt die virtuelle Repräsentation der Kreatur.
 
 Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Dadurch entstehen Ketten des gleichen Segments. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textit{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
 
@@ -223,6 +230,7 @@ Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, d
 \end{figure}
 
 \section{Kontrolle mit neuronalen Netzen}
+\label{sec:kontrolle}
 
 Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Das neuronale Netz steuert die Kreatur. Dafür werden mehrere Komponenten benötigt, die im Folgenden erklärt werden. 
 
@@ -321,6 +329,7 @@ Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammen
 \end{figure}
 
 \section{Evolutionäre Generierung}
+\label{sec:evolution}
 
 EVKs werden mithilfe eines evolutionären Algorithmus generiert.
 Bei einem evolutionären Algorithmus werden nach dem Vorbild der Evolution in der Natur Entitäten, in diesem Fall EVKs, bezüglich einer Fitnessfunktion optimiert.
@@ -328,6 +337,8 @@ Das Verfahren soll Entitäten von besonders hoher Fitness produzieren.
 In \textsc{Darwin's Avatars} ist die Fitness die Laufgeschwindigkeit der Kreaturen.
 Dabei ist besonders wichtig, dass die Fitnessfunktion mit dem Spielziel übereinstimmt.
 Zusätzlich zur Laufgeschwindigkeit werden für die Fitness ästhetische Eigenschaften berücksichtigt. 
+
+Dieser Algorithmus wird bei Lessin, Fussel und Miikkulainen \cite{LeFuMi13} im Detail beschrieben und basiert auf der Arbeit von Sims \cite{Sims94}.
 
 \subsection{Evolutionärer Algorithmus}
 Zunächst wird ein eine Population von zufälligen Kreaturen generiert.
@@ -522,6 +533,7 @@ Das muss verhindert werden, da sonst Lösungen entstehen, die zwar gute Ergebniss
 Das gleiche gilt für Triviallösungen, wie Fortbewegung durch Umfallen.
 
 \section{Beispiele}
+\label{sec:beispiele}
 Im Folgenden werden drei Beispiele von EVKs dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
 Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 
@@ -559,6 +571,7 @@ Die dritte Kreatur \ref{fig:bsp3} besteht aus sieben Gliedmaßen und sechs Muskel
 Sie führt eine langsame, vierbeinige Fortbewegung aus.
 
 \section{Spielmechanik}
+\label{sec:spiel}
 Im Spiel treten zwei Kopien der gleichen, im Vorfeld berechneten, EVK an.
 Eine Kopie wird durch das evolutionär generierte neuronale Netz gesteuert.
 Die andere Kopie wird durch den menschlichen Spieler gesteuert.
