@@ -218,8 +218,8 @@ Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, d
 			\includegraphics[width=\textwidth]{img/5.png}
 			\caption{}
 		\end{subfigure}
-	\caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt. Die Kanten visualisieren die Beziehungen zueinander.}
-	\label{fig:genotyp}
+	\caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt. Die Kanten visualisieren die Beziehungen zueinander. \label{fig:genotyp}}
+	
 \end{figure}
 
 \section{Kontrolle mit neuronalen Netzen}
@@ -295,8 +295,7 @@ Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neurone
 		\draw [->] (h4) to[] node[auto] {\tiny 0} (1); 			
 		\end{tikzpicture}
 	}
-	\label{fig:neuronen}
-	\caption{Neuronen mit verschiedenem Eingangsgrad. Sinus, Komplement, Maximum und das Minimum aus 1 und Summe}
+	\caption{Neuronen mit verschiedenem Eingangsgrad. Sinus, Komplement, Maximum und das Minimum aus 1 und Summe \label{fig:neuronen}}
 \end{figure}
 
 \subsection{Sensoren}
@@ -318,8 +317,7 @@ Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammen
 	\resizebox{0.45\textwidth}{!}{
 	\includegraphics[width=0.9\textwidth]{img/6.png}
 	}
-	\label{fig:extendedgraph}
-	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 und der zugehörige Phänotyp}
+	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 und der zugehörige Phänotyp \label{fig:extendedgraph}}
 \end{figure}
 
 \section{Evolutionäre Generierung}
@@ -428,8 +426,7 @@ Eine Kante mit dem Wert $+2$ zeigt auf den Knoten, der in der Liste der zweite N
 		\end{tikzpicture}
 	}
 
-	\label{paarung1}
-	\caption{Paarung durch \enquote{Kreuzung}: Der erste Elternteil wird kopiert und einzelne Knoten werden durch die Knoten des anderen Elternteils an der gleichen Position ersetzt.}
+	\caption{Paarung durch \enquote{Kreuzung}: Der erste Elternteil wird kopiert und einzelne Knoten werden durch die Knoten des anderen Elternteils an der gleichen Position ersetzt. \label{paarung1}}
 \end{figure}
 
 Abbildung \ref{paarung1} zeigt die erste Methode zur Paarung, die \textit{Kreuzung}.
@@ -503,8 +500,8 @@ Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber g
 	}
 	\end{center}
 
-	\label{paarung2}
-	\caption{Paarung durch \enquote{Veredelung}: Teilketten beider Elternteile werden konkateniert und mit einer Kante verbunden.}
+	
+	\caption{Paarung durch \enquote{Veredelung}: Teilketten beider Elternteile werden konkateniert und mit einer Kante verbunden. \label{paarung2}}
 \end{figure}
 
 Abbildung \ref{paarung2} zeigt die zweite Methode zur Paarung, die \textit{Veredelung}.
@@ -533,25 +530,21 @@ Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type1.png}
-		\caption{}
-		\label{fig:bsp1}
+		\caption{\label{fig:bsp1}}		
 	\end{subfigure}
 	~
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type2.png}
-		\caption{}
-		\label{fig:bsp2}
+		\caption{\label{fig:bsp2}}		
 	\end{subfigure}
 	~
 	\begin{subfigure}[b]{0.3\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{img/type3.png}
-		\caption{}
-		\label{fig:bsp3}
+		\caption{\label{fig:bsp3}}		
 	\end{subfigure}
-	\caption{Drei evolutionäre virtuelle Kreaturen}
-	\label{fig:beispiele}
+	\caption{Drei evolutionäre virtuelle Kreaturen \label{fig:beispiele}}
 \end{figure}
 
 Die erste Kreatur \ref{fig:bsp1} besteht aus zwei Gliedmaßen und drei Muskeln.
@@ -613,8 +606,7 @@ Für jede der bereits vorgestellten Kreatur wurden nun die erreichten Geschwindig
 		\centering
 		\includegraphics[width=\textwidth]{img/hum16.png}
 	\end{subfigure}
-	\label{fig:test1}
-	\caption{Testergebnisse für Beispiel A}
+	\caption{Testergebnisse für Beispiel A \label{fig:test1}}
 \end{figure}
 
 Die Diagramme in Abbildung \ref{fig:test1} zeigen den Grad der Aktivierung der Muskeln in Abhängigkeit der Zeit.
@@ -654,8 +646,7 @@ Die KI verwendete zur Fortbewegung eine simple Strategie. Sie benutze lediglich 
 		\centering
 		\includegraphics[width=\textwidth]{img/hum26.png}
 	\end{subfigure}
-	\label{fig:test2}
-	\caption{Testergebnisse für Beispiel B}
+	\caption{Testergebnisse für Beispiel B \label{fig:test2}}
 \end{figure}
 
 Beim Beispiel B macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann die Muskeln in verschiedenen Intensitäten kontrahieren. Dies führt zu erheblich besseren Ergebnissen als die der menschlichen Spieler. Bei dieser komplexeren Kreatur verwendeten die Spieler allesamt verschiedene Strategien. Spieler 4 hat mit der einfachsten Strategie der menschlichen Spieler die beste Geschwindigkeit erreicht.
@@ -692,8 +683,7 @@ Beim Beispiel B macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann 
 		\centering
 		\includegraphics[width=\textwidth]{img/hum36.png}
 	\end{subfigure}
-	\label{fig:test3}
-	\caption{Testergebnisse für Beispiel C}
+	\caption{Testergebnisse für Beispiel C \label{fig:test3}}
 \end{figure}
 
 Erstmals schafft ein menschlicher Spieler mit der dritten Kreatur die KI zu schlagen. Erneut macht sich die KI zunutze, dass sie die Muskeln verschieden stark aktivieren kann. Das simple Wechseln zwischen den Muskeln 4 und 5 und den beiden Muskeln 1 und 2 erzielte bessere Ergebnisse. Auch andere Spieler konnten mit dem Ergebnis der KI mithalten. Es wird jedoch auch deutlich, dass mit steigender Komplexität keine so hohe  Geschwindigkeiten erzielt werden.
@@ -706,22 +696,18 @@ Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusamm
 	
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/Comparison_A.png}
-		\caption{Vergleichschart zu Beispiel A}
-		\label{fig:comp1}
+		\caption{Vergleichschart zu Beispiel A \label{fig:comp1}}		
 	
 \end{figure}
 \begin{figure}[H]	
 		\centering
 		\includegraphics[width=0.7\textwidth]{img/Comparison_B.png}
-		\caption{Vergleichschart zu Beispiel B}
-		\label{fig:comp2}
+		\caption{Vergleichschart zu Beispiel B \label{fig:comp2}}		
 \end{figure}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{img/Comparison_C.png}
-	\caption{Vergleichschart zu Beispiel C}
-	\label{fig:comp3}
-	
+	\caption{Vergleichschart zu Beispiel C \label{fig:comp3}}	
 \end{figure}
 
 \section{Weiterführende Betrachtungen}
