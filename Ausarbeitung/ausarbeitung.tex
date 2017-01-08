@@ -266,9 +266,12 @@ Die Kreatur, die aus dem Graphen gebildet wird, heißt \textit{Phänotyp}.
 
 Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden kann. Der Genotyp wird jetzt um ein neuronales Netz erweitert. Das neuronale Netz steuert die Kreatur. Dafür werden mehrere Komponenten benötigt, die im Folgenden erklärt werden. 
 
+Künstliche Neuronale Netze wurden erstmals von McCulloch und Pitts vorgeschlagen und  werden zur Klassifikation und Synthetisierung von Mustern verwendet \cite{McCulloch1943}.
+
 \subsection{Neuronen}
 
-\textit{Neuronen} wenden arithmetische oder logische Operationen auf ein Eingangssignal an und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich $[0,1]$. Mögliche Funktionen sind:
+\textit{Neuronen} wenden arithmetische oder logische Operationen auf ein Eingangssignal an und geben es anschließend an ihrem Ausgang zurück. Im Graphen werden die Neuronen als Knoten dargestellt. Sie arbeiten dabei im Wertebereich $[0,1]$.
+Mögliche Funktionen sind:
 
 \vspace{0.7em}
 \begin{tabular}{l l l l}
@@ -365,12 +368,16 @@ Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammen
 
 EVKs werden mithilfe eines evolutionären Algorithmus generiert.
 Bei einem evolutionären Algorithmus werden nach dem Vorbild der Evolution in der Natur Entitäten, in diesem Fall EVKs, bezüglich einer Fitnessfunktion optimiert.
+Der hier vorgestellte Algorithmus gehört zu den \textit{genetischen Algorithmen}, einer Unterklasse der evolutionären Algorithmen.
+Genetische Algorithmen zeichnen sich dadurch aus, dass sie zwischen Genotyp und Phänotyp unterscheiden.
+Sie wurden erstmalig von Holland vorgeschlagen \cite{Holland1992}.
+
 Das Verfahren soll Entitäten von besonders hoher Fitness produzieren.
 In \textsc{Darwin's Avatars} ist die Fitness die Laufgeschwindigkeit der Kreaturen.
 Dabei ist besonders wichtig, dass die Fitnessfunktion mit dem Spielziel übereinstimmt.
 Zusätzlich zur Laufgeschwindigkeit werden für die Fitness ästhetische Eigenschaften berücksichtigt. 
 
-Dieser Algorithmus wird bei Lessin, Fussel und Miikkulainen \cite{LeFuMi13} im Detail beschrieben und basiert auf der Arbeit von Sims \cite{Sims94}.
+Die Generierung von EVKs wird bei Lessin, Fussel und Miikkulainen \cite{LeFuMi13} im Detail beschrieben und basiert auf der Arbeit von Sims \cite{Sims94}.
 
 \subsection{Evolutionärer Algorithmus}
 Zunächst wird ein eine Population von zufälligen Kreaturen generiert.

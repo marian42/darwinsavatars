@@ -1,31 +1,49 @@
 \begin{thebibliography}{1}
 
-\bibitem{LeFuMi13}
-D.Lessin, D.Fussel, and R.Miikkulainen.
-\newblock Open-ended behavioral complexity for evolved virtual creatures.
-\newblock {\em Genetic and Evolutionary Computation Conference (GECCO)}, 2013.
-
 \bibitem{LeRi15}
-D.Lessin and S.Risi.
-\newblock Darwin´s avatars: a novel combination of gameplay and procedural
-  content generation.
+Dan Lessin and Sebastian Risi.
+\newblock Darwin's Avatars.
+\newblock In {\em Proceedings of the 2015 on Genetic and Evolutionary
+Computation Conference - {GECCO} '15}. Association for Computing Machinery
+({ACM}), 2015.
 
-\bibitem{Sims94}
-K.Sims.
-\newblock Evolving virtual creatures.
-\newblock {\em Thinking Machines Corporation}, 1994.
+\bibitem{Holland1992}
+John~H. Holland.
+\newblock Genetic algorithms.
+\newblock {\em Scientific American}, pages 66--72, Jul 1992.
 
-\bibitem{MaWi15}
-M.Winands.
-\newblock Neural networks for video game ai.
-\newblock {\em Artificial and Computational Intelligence in Games: Integration,
-  Dagstuhl Reports, Vol. 5, Issue 1, pp. 207 to 242}, 2015.
+\bibitem{LeFuMi13}
+Dan Lessin, Don Fussell, and Risto Miikkulainen.
+\newblock Open-ended behavioral complexity for evolved virtual creatures.
+\newblock In {\em Proceeding of the fifteenth annual conference on Genetic and
+  evolutionary computation conference - {GECCO} '13}. Association for Computing
+  Machinery ({ACM}), 2013.
+
+\bibitem{McCulloch1943}
+Warren~S. McCulloch and Walter Pitts.
+\newblock A logical calculus of the ideas immanent in nervous activity.
+\newblock {\em The Bulletin of Mathematical Biophysics}, 5(4):115--133, Dec
+  1943.
 
 \bibitem{RiLe15}
-D.D'Ambrosio R.Hall~K.Stanley S.Risi, J.Lehman.
+Sebastian Risi, Joel Lehman, David~B. D'Ambrosio, Ryan Hall, and Kenneth~O.
+  Stanley.
 \newblock Petalz: Search-based procedural content generation for the casual
   gamer.
-\newblock {\em IEEE Transactions on Computational Intelligence and AI in Games,
-  not yet officialy published}, 2015.
+\newblock {\em {IEEE} Transactions on Computational Intelligence and {AI} in
+  Games}, 8(3):244--255, sep 2016.
+
+\bibitem{Sims94}
+Karl Sims.
+\newblock Evolving virtual creatures.
+\newblock In {\em Proceedings of the 21st annual conference on Computer
+  graphics and interactive techniques - {SIGGRAPH} '94}. Association for
+  Computing Machinery ({ACM}), 1994.
+
+\bibitem{MaWi15}
+Mark Winands.
+\newblock Neural networks for video game {AI}.
+\newblock {Artificial and Computational Intelligence in Games: Integration,
+  Dagstuhl Reports, Vol. 5, Issue 1, pp. 207-242}, 2015.
 
 \end{thebibliography}
