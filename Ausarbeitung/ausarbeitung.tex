@@ -134,26 +134,46 @@ Die Testergebnisse werden in Kapitel \ref{sec:ergebnisse} vorgestellt.
 \section{Kodierung}
 \label{sec:kodierung}
 
-Die EVKs benötigen einen Bauplan der sie spezifiziert. Dieser heißt \textit{Genotyp}. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. Dazu gehören neben Struktur und Muskeln auch komplexere Informationen wie die Art der Verbindung zweier Segmente zueinander. Wie bei den Lebewesen brauchen die Knochen, in dem Fall die Körpersegmente, Gelenke um eine bestimmte Bewegungsart auszuführen. Es eignen sich dafür verschiedene Gelenktypen. So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen. Der Parameter \textit{Gelenkfreiheit} bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt. Die Körpersegmente werden mit Muskeln bespannt, um Bewegungen auszulösen. Gespeichert werden die Daten in einem Graphen wie in Abbildung \ref{fig:genotyp}. Gleich unter dem jeweiligen Graphen ist die zugehörige Kreatur abgebildet. Sie wird durch den \textit{Phänotypen} beschrieben. Der Phänotyp beschreibt die virtuelle Repräsentation der Kreatur.
+Die EVKs benötigen einen Bauplan der sie spezifiziert. Dieser heißt \textit{Genotyp}. Analog zu dem Begriff aus der Biologie speichert der Genotyp die Daten der Kreatur. 
 
-Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph (a) redundante Informationen enthält. Die Kreatur besteht zwar aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen. Es genügt zu speichern, dass das eine Segment mit zwei anderen gleichartigen Segmenten verbunden ist. Die Graphen (c) und (d) formen komplexere Kreaturen. Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt. Diese Kanten bilden auf ein gleichartiges Körpersegment ab. Dadurch entstehen Ketten des gleichen Segments. Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur (c), oder den Gliedmaßen von Figur (d). Die reflexiven Kanten können beliebig oft verfolgt werden. Damit ist eine endlose Rekursion möglich. Da unendlich große Kreaturen am Computer nicht dargestellt werden können wird durch das Setzen eines \textit{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
+Die Kreatur ist zusammengesetzt aus Körperteilen, Gelenken und Muskeln.
+Die Kreatur wird später in der Physikengine \textsc{PhysX} simuliert.
+Aus diesem Grund werden für die Körpersegmente und Gelenke die entsprechenden primitiven Elemente der Physikengine verwendet.
+Die möglichen Körpersegmente sind Quader, Ellipsoide und Kapseln.
 
-\begin{figure}[H]
-		\resizebox{0.3\textwidth}{!}{
-		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.7cm,main 				  node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+Wie bei Lebewesen in der Natur brauchen die Körpersegmente Gelenkverbindungen um ihre Struktur beizubehalten.
+Dazu werden wieder die von der Physikengine bereitgestellten Optionen verwendet.
+So können die Gelenke starr, beugend, verdreht, oder kugelförmig ausfallen.
+Ein Parameter für die Gelenkfreiheit bestimmt den Grad bis zu dem sich das Gelenk bewegen lässt.
 
-		\node[main node] (1) {};
-		\node[main node] (2) [below left of = 1] {};
-		\node[main node] (3) [below right of = 1] {};
+Die Körpersegmente werden mit Muskeln bespannt, um Bewegungen auszulösen.
+In der Physikengine werden diese als Federn modelliert, die an zwei unterschiedlichen Segmenten befestigt sind.
+Die Kontraktion der Muskeln wird durch Variation der Federkonstante erreicht.
 
-		\path[every node/.style={font=\sffamily\small}]
-		(1) edge [bend right] node[left] {} (2)
-		edge [bend left] node[left] {} (3)			
-		;
-		\end{tikzpicture}
-		
-	}
-		\resizebox{0.2\textwidth}{!}{
+\begin{figure}
+	\begin{subfigure}[b]{0.23\textwidth}
+		\centering
+		\resizebox{\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.7cm,main 				  node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below left of = 1] {};
+			\node[main node] (3) [below right of = 1] {};
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right] node[left] {} (2)
+			edge [bend left] node[left] {} (3)			
+			;
+			\end{tikzpicture}	
+		}
+		\vspace{9.5em}\linebreak			
+		\includegraphics[width=\textwidth]{img/1.png}
+		\caption{\label{fig:graph1}}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.23\textwidth}
+		\centering
+		\resizebox{0.7\textwidth}{!}{
 			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.85cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
 			
 			\node[main node] (1) {};
@@ -163,26 +183,38 @@ Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, d
 			(1) edge [bend right = 20] node[left] {} (2)
 			edge [bend left = 20] node[left] {} (2)			
 			;
-			\end{tikzpicture}
-			
+			\end{tikzpicture}				
 		}
-	\resizebox{0.2\textwidth}{!}{
-		\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
-		
-		\node[main node] (1) {};
-		\node[main node] (2) [below of = 1] {};
-		
-		\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
-		\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
-		
-		\path[every node/.style={font=\sffamily\small}]
-		(1) edge [bend right = 20] node[left] {} (2)
-		edge [bend left = 20] node[left] {} (2)			
-		;
-		\end{tikzpicture}
-		
-	}
-		\resizebox{0.2\textwidth}{!}{
+		\vspace{8em}\linebreak			
+		\includegraphics[width=\textwidth]{img/1.png}
+		\caption{\label{fig:graph2}}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.23\textwidth}
+		\centering
+		\resizebox{0.9\textwidth}{!}{
+			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=1cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+			
+			\node[main node] (1) {};
+			\node[main node] (2) [below of = 1] {};
+			
+			\draw (1) to [out=60,in=120,looseness=8, min distance=0.5cm] (1);
+			\draw (2) to [out=300,in=240,looseness=8, min distance=0.5cm] (2);
+			
+			\path[every node/.style={font=\sffamily\small}]
+			(1) edge [bend right = 20] node[left] {} (2)
+			edge [bend left = 20] node[left] {} (2)			
+			;
+			\end{tikzpicture}
+		}
+		\vspace{1.8em}\linebreak			
+		\includegraphics[width=\textwidth]{img/4.png}
+		\caption{\label{fig:graph3}}
+	\end{subfigure}
+	~
+	\begin{subfigure}[b]{0.23\textwidth}
+		\centering
+		\resizebox{0.9\textwidth}{!}{
 			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
 			
 			\node[main node] (1) {};
@@ -199,35 +231,35 @@ Die Graphen (a) und (b) führen zur gleichen Kreatur. Das erklärt sich dadurch, d
 			edge [bend right = 30] node[left] {} (2)
 			edge [bend left = 30] node[left] {} (2)
 			;
-			\end{tikzpicture}
-			
+			\end{tikzpicture}				
 		}
-		\begin{subfigure}[b]{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{img/1.png}
-			\caption{}
-		\end{subfigure}
-		~
-		\begin{subfigure}[b]{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{img/1.png}
-			\caption{}
-		\end{subfigure}
-		~
-		\begin{subfigure}[b]{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{img/4.png}
-			\caption{}
-		\end{subfigure}
-		~
-		\begin{subfigure}[b]{0.23\textwidth}
-			\centering
-			\includegraphics[width=\textwidth]{img/5.png}
-			\caption{}
-		\end{subfigure}
+		\includegraphics[width=\textwidth]{img/5.png}
+		\caption{\label{fig:graph4}}
+	\end{subfigure}
 	\caption{Der Genotyp als Graph: Die Körpersegmente werden durch Knoten dargestellt. Die Kanten visualisieren die Beziehungen zueinander. \label{fig:genotyp}}
 	
 \end{figure}
+
+Der Aufbau wird durch einen Graphen beschrieben. In Abbildung \ref{fig:genotyp} sind beispielhaft einige Graphen mit den resultierenden Kreaturen dargestellt.
+Jeder Knoten des Graphen repräsentiert einen Prototyp für ein Körpersegment, bestehend aus der Form des Segments und weiteren Eigenschaften wie der Größe.
+Die Kanten im Graphen können als Instanziierung eines solchen Prototypen verstanden werden.
+Zu jeder Kante gehört ein Gelenktyp und eine Transformation, die beschreibt, wo sich das Körpersegment relativ zum ursprünglichen Segment befindet.
+Eine solche Transformation besteht aus einer Translation, einer Rotation und einer Skalierung.
+
+Die Graphen \ref{fig:graph1} und \ref{fig:graph2} führen zur gleichen Kreatur. Das erklärt sich dadurch, dass Graph \ref{fig:graph1} redundante Informationen enthält.
+Die Kreatur besteht aus drei Körpersegmenten, aber nur aus zwei verschiedenen Körpersegmenttypen.
+Es genügt, für die äußeren Segmente einen gemeinsamen Prototypen zu speichern, der mit den inneren Segment durch zwei Kanten verbunden ist.
+
+Die Graphen \ref{fig:graph3} und \ref{fig:graph4} formen komplexere Kreaturen.
+Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt.
+Diese Kanten bilden auf instantiieren ihren eigenen Prototypen.
+Dadurch entstehen Ketten des gleichen Segments.
+Oft ist das eine gewünschte Eigenschaft wie bei den Flügeln der Kreatur \ref{fig:graph3}, oder den Gliedmaßen von Figur \ref{fig:graph4}.
+Die reflexiven Kanten können beliebig oft verfolgt werden.
+Damit ist eine endlose Rekursion möglich.
+Da unendlich große Kreaturen am Computer nicht dargestellt werden können, wird durch das Setzen eines \textit{rekursiven Limits} die Anzahl der Körpersegmente beschränkt. 
+
+Die Kreatur, die aus dem Graphen gebildet wird, heißt \textit{Phänotyp}.
 
 \section{Kontrolle mit neuronalen Netzen}
 \label{sec:kontrolle}
@@ -250,7 +282,7 @@ Das Ergebnis der Kodierung ist eine Kreatur wie sie im Spiel gesteuert werden ka
 
 Wie die Neuronen mit konkreten Werten arbeiten ist in Abbildung \ref{fig:neuronen} ersichtlich. Das Sinus- bzw. Sägezahnsignal errechnet einen vom Zeitparameter $t$ abhängigen Wert. Das Komplement dreht den eingehenden Wert um. Aus $x$ wird $1 - x$. Dieser Parameter wird allerdings nicht als Eingangssignal gegeben, er kommt vom System.
 
-\begin{figure}[H]
+\begin{figure}
 	\resizebox{0.24\textwidth}{!}{
 		\begin{tikzpicture}[shorten >=1pt,node distance=1.5cm,thick] 
 		\node[circle,draw] (1) {wav};
