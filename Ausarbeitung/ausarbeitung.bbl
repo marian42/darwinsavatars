@@ -1,16 +1,9 @@
 \begin{thebibliography}{1}
 
-\bibitem{LeRi15}
-Dan Lessin and Sebastian Risi.
-\newblock Darwin's Avatars.
-\newblock In {\em Proceedings of the 2015 on Genetic and Evolutionary
-Computation Conference - {GECCO} '15}. Association for Computing Machinery
-({ACM}), 2015.
-
 \bibitem{Holland1992}
 John~H. Holland.
 \newblock Genetic algorithms.
-\newblock {\em Scientific American}, pages 66--72, Jul 1992.
+\newblock {\em Scientific American}, pages 66--72, jul 1992.
 
 \bibitem{LeFuMi13}
 Dan Lessin, Don Fussell, and Risto Miikkulainen.
@@ -19,10 +12,17 @@ Dan Lessin, Don Fussell, and Risto Miikkulainen.
   evolutionary computation conference - {GECCO} '13}. Association for Computing
   Machinery ({ACM}), 2013.
 
+\bibitem{LeRi15}
+Dan Lessin and Sebastian Risi.
+\newblock Darwin's avatars.
+\newblock In {\em Proceedings of the 2015 on Genetic and Evolutionary
+  Computation Conference - {GECCO} '15}. Association for Computing Machinery
+  ({ACM}), 2015.
+
 \bibitem{McCulloch1943}
 Warren~S. McCulloch and Walter Pitts.
 \newblock A logical calculus of the ideas immanent in nervous activity.
-\newblock {\em The Bulletin of Mathematical Biophysics}, 5(4):115--133, Dec
+\newblock {\em The Bulletin of Mathematical Biophysics}, 5(4):115--133, dec
   1943.
 
 \bibitem{RiLe15}
@@ -43,7 +43,7 @@ Karl Sims.
 \bibitem{MaWi15}
 Mark Winands.
 \newblock Neural networks for video game {AI}.
-\newblock {Artificial and Computational Intelligence in Games: Integration,
-  Dagstuhl Reports, Vol. 5, Issue 1, pp. 207-242}, 2015.
+\newblock {\em Artificial and Computational Intelligence in Games: Integration,
+  Dagstuhl Reports, Vol. 5, Issue 1, pp. 207–242}, 2015.
 
 \end{thebibliography}
