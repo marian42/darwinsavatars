@@ -112,7 +112,7 @@ Technische Universität Dortmund\\
 
 \section{Einführung}
 
-Diese Ausarbeitung \nocite{LeRi15} beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine eine evolutionäre virtuelle Kreatur, im Folgenden EVK, mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Die Vielfalt der daraus resultierenden Kreaturen ermöglicht einen langfristig motivierenden Spielspaß.
+Diese Ausarbeitung \nocite{LeRi15} beschäftigt sich mit dem Spielkonzept von \textsc{Darwin's Avatars}. Der Spieler steuert eine \textit{evolutionäre virtuelle Kreatur}, im Folgenden EVK, mit der Tastatur und kann gegen eine KI oder einen weiteren menschlichen Spieler antreten. Das Ziel des Spiels ist, die Kreatur möglichst schnell durch eine Rennstrecke zu bewegen. Damit der Spieler stets für ihn unbekannte Kreaturen kontrollieren kann wird eine Methode verwendet, mit der neue Kreaturen erzeugt werden. Dies wird ermöglicht durch einen evolutionären Algorithmus. Die Vielfalt der daraus resultierenden Kreaturen ermöglicht einen langfristig motivierenden Spielspaß.
 
 \begin{figure}[H]
 	\centering
@@ -252,7 +252,7 @@ Es genügt, für die äußeren Segmente einen gemeinsamen Prototypen zu speichern, d
 
 Die Graphen \ref{fig:graph3} und \ref{fig:graph4} formen komplexere Kreaturen.
 Dazu wird die Eigenschaft reflexiver Kanten ausgenutzt.
-Diese Kanten zeigen auf den gleichen Knoten von dem sie ausgehen.
+Diese Kanten zeigen auf den Knoten von dem sie ausgehen.
 Dadurch entstehen Ketten des gleichen Segments.
 Oft ist das eine gewünschte Eigenschaft, wie bei den Flügeln der Kreatur \ref{fig:graph3}, oder den Gliedmaßen von Figur \ref{fig:graph4}.
 Die reflexiven Kanten können beliebig oft verfolgt werden.
@@ -363,7 +363,7 @@ Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammen
 	\resizebox{0.45\textwidth}{!}{
 	\includegraphics[width=0.9\textwidth]{img/6.png}
 	}
-	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 und der zugehörige Phänotyp \cite{Sims94} \label{fig:extendedgraph}}
+	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 \cite{Sims94} und der zugehörige Phänotyp \label{fig:extendedgraph}}
 \end{figure}
 
 \section{Evolutionäre Generierung}
@@ -374,7 +374,7 @@ Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammen
 %----------------------------------------------------------------------------------
 
 EVK werden mithilfe eines evolutionären Algorithmus generiert.
-Bei einem evolutionären Algorithmus werden nach dem Vorbild der Evolution in der Natur Entitäten, in diesem Fall EVKs, bezüglich einer Fitnessfunktion optimiert.
+Bei einem evolutionären Algorithmus werden nach dem Vorbild der Evolution in der Natur Entitäten, in diesem Fall EVK, bezüglich einer Fitnessfunktion optimiert.
 Der hier vorgestellte Algorithmus gehört zu den \textit{genetischen Algorithmen}, einer Unterklasse der evolutionären Algorithmen.
 Genetische Algorithmen zeichnen sich dadurch aus, dass sie zwischen Genotyp und Phänotyp unterscheiden.
 Sie wurden erstmalig von Holland vorgeschlagen \cite{Holland1992}.
@@ -384,7 +384,7 @@ In \textsc{Darwin's Avatars} ist die Fitness die Laufgeschwindigkeit der Kreatur
 Dabei ist besonders wichtig, dass die Fitnessfunktion mit dem Spielziel übereinstimmt.
 Zusätzlich zur Laufgeschwindigkeit werden für die Fitness ästhetische Eigenschaften berücksichtigt. 
 
-Die Generierung von EVKs wird bei Lessin, Fussel und Miikkulainen \cite{LeFuMi13} im Detail beschrieben und basiert auf der Arbeit von Sims \cite{Sims94}.
+Die Generierung von EVK wird bei Lessin, Fussel und Miikkulainen \cite{LeFuMi13} im Detail beschrieben und basiert auf der Arbeit von Sims \cite{Sims94}.
 
 \subsection{Evolutionärer Algorithmus}
 Zunächst wird ein eine Population von zufälligen Kreaturen generiert.
@@ -418,9 +418,6 @@ Die Menge Knoten wird als Liste aufgefasst.
 Die Ziele der Kanten werden durch ihre relative Position gespeichert.
 Eine Kante mit dem Wert $+2$ zeigt auf den Knoten, der in der Liste der zweite Nachfolger des Ausgangsknotens ist.
 
-%-----------------------------------------------------------------------------
-% Abbildung muss ggf. noch nachgebessert werden
-%-----------------------------------------------------------------------------
 
 \begin{figure}
 	\begin{center}
@@ -556,7 +553,7 @@ Die neuen Knoten behalten ihre Kanten mit den relativen Werten, die jetzt aber g
 		\path[] (7) edge [bend left = 30] node[left] {} (8);
 		\path[] (7) edge [bend left = 60] node[left] {} (9);
 		
-		\draw (4) to [out=110,in=70,looseness=8] (4);				
+		\draw (9) to [out=110,in=70,looseness=8] (9);				
 		\end{tikzpicture}
 	}
 	\end{center}
@@ -588,7 +585,7 @@ Das gleiche gilt für Triviallösungen, wie Fortbewegung durch Umfallen.
 
 \section{Beispiele}
 \label{sec:beispiele}
-Im Folgenden werden drei Beispiele von EVKs dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
+Im Folgenden werden drei Beispiele von EVK dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
 Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 
 \renewcommand\thesubfigure{\Alph{subfigure}}
@@ -788,7 +785,7 @@ Einen weiteren interessanten Ansatz zur prozeduralen Generierung findet man im P
 In \textsc{Darwin's Avatars} werden Spielgegenstände prozedural generiert.
 Dazu wird zunächst eine Kreatur, bestehend aus Gliedmaßen, Muskeln und Gehirn, evolutionär entwickelt, um möglichst geeignet für das Erreichen des Spielziels zu sein.
 Anschließend wird das Gehirn der Kreatur durch die Kontrolle des Spielers ersetzt.
-Die Testergebnisse in Kapitel \ref{sec:ergebnisse} zeigen, dass sich so ein tragfähiges Spielkonzept ergibt und die EVKs interessante Spielgegenstände darstellen.
+Die Testergebnisse in Kapitel \ref{sec:ergebnisse} zeigen, dass sich so ein tragfähiges Spielkonzept ergibt und die EVK interessante Spielgegenstände darstellen.
 Ein weiteres Ergebnis der Tests ist, dass Menschen den evolutionären Gehirnen generell unterlegen sind.
 Ein Nachteil des evolutionären Vorgehens ist die hohe Rechenleistung, die zur Generierung einer einzelnen Kreatur nötig ist.
 So ist nicht praktikabel, die Kreaturen während des Spiels auf dem Rechner des Spielers zu generieren.
