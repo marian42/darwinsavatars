@@ -744,25 +744,21 @@ Beim Beispiel B macht sich der entscheidende Vorteil der KI bemerkbar. Sie kann 
 
 Erstmals schafft ein menschlicher Spieler mit der dritten Kreatur die KI zu schlagen. Erneut macht sich die KI zunutze, dass sie die Muskeln verschieden stark aktivieren kann. Das simple Wechseln zwischen den Muskeln 4 und 5 und den beiden Muskeln 1 und 2 erzielte bessere Ergebnisse. Auch andere Spieler konnten mit dem Ergebnis der KI mithalten. Es wird jedoch auch deutlich, dass mit steigender Komplexität keine so hohe  Geschwindigkeiten erzielt werden.
 
-%-------------------------------------------------------------------------------
-% Formatierungsfehler muss noch behoben werden
-%-------------------------------------------------------------------------------
-
 \subsection{Analyse}
 
 Die folgenden Diagramme fassen die Testergebnisse der einzelnen Kreaturen zusammen. Die Ergebnisse stammen aus 5 Durchläufen. Bei allen drei Beispielen verfolgte die KI über alle Durchläufe die gleiche Strategie. Das erklärt die konstanten Kurven im Diagramm. Ist die Kurve des besten Werts und des durchschnittlichen Werts der KI konstant, so folglich auch der Bereich der Standartabweichung. Das Chart zu Beispiel A \ref{fig:comp1} zeigt eine hohe Geschwindigkeit der KI von bis zu 2,5 Metern pro Sekunde. Die menschlichen Spieler konnten diese Geschwindigkeit auch nach mehreren Durchläufen nicht erreichen. Es zeigt sich aber in den ersten 3 Durchläufen eine Steigung der Ergebnisse. Nach Durchlauf 3 blieben sie aber konstant und fielen nach Durchlauf 4 sogar wieder ein Stück. Diese Kurve ist zu erwarten, denn zu Anfang weiß der menschliche Spieler nicht, wie er die Kreatur zu steuern hat. Er lernt es mit der Zeit jedoch, weswegen er nach mehreren Durchläufen bessere Ergebnisse erzielt. Die Ergebnisse zu Beispiel B \ref{fig:comp2} zeigen eine flachere Lernkurve der menschlichen Spieler. Hier wird deutlich, dass sowohl die KI, als auch die menschlichen Spieler eine geringere Geschwindigkeit als mit Kreatur A erreicht haben. Erneut tritt die Anomalie der fallenden Geschwindigkeitskurve im letzten Durchlauf auf. Dies könnte sich durch eine wechselnde Strategie der Spieler erklären, nachdem sie eine gewisse Sicherheit bei der Steuerung gewonnen haben. Das Vergleichschart zu Beispiel C \ref{fig:comp3} zeigt die interessantesten Kurven, denn hier gelangt die Spitze der Kurve mit den besten Werten der menschlichen Spieler in den Bereich der Standartabweichung der KI. Bei der KI fällt zudem auf, dass die beste Geschwindigkeit ein größeres Stück oberhalb der durchschnittlichen Werte liegt, als bei den anderen Beispielen. Auch die Kurven der menschlichen Spieler unterscheiden sich gegenüber denen von vorherigen Beispielen. So wurde in Durchlauf 2 ein lokales Maximum beim besten Wert erreicht, dadurch aber die Streuung in der Standartabweichung erhöht. In Durchlauf 3 konnten keine so hohen Geschwindigkeiten von den menschlichen Spielern erzielt werden, doch mit den beiden folgenden Durchläufen haben sich die Werte wieder gebessert. 
 
-\begin{figure}[H]	
+\begin{figure}	
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/Comparison_A.png}
 	\caption{Vergleichschart zu Beispiel A \cite{LeRi15}\label{fig:comp1}}
 \end{figure}
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/Comparison_B.png}
 	\caption{Vergleichschart zu Beispiel B \cite{LeRi15}\label{fig:comp2}}		
 \end{figure}
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{img/Comparison_C.png}
 	\caption{Vergleichschart zu Beispiel C \cite{LeRi15}\label{fig:comp3}}	
