@@ -579,16 +579,11 @@ Rundungsfehler und Bugs in der Physikengine werden von dem evolutionären Algorit
 Das muss verhindert werden, da sonst Lösungen entstehen, die zwar gute Ergebnisse liefern, aber unrealistisch erscheinen und keine guten Spielgegenstände darstellen.
 Das gleiche gilt für Triviallösungen, wie Fortbewegung durch Umfallen.
 
-%----------------------------------------------------------------------------
-% Die Buchstaben müssen noch klein gemacht werden
-%----------------------------------------------------------------------------
-
 \section{Beispiele}
 \label{sec:beispiele}
 Im Folgenden werden drei Beispiele von EVK dargestellt, die mit dem zuvor beschriebenen Verfahren entwickelt wurden.
 Die Kreaturen sind in Abbildung \ref{fig:beispiele} dargestellt.
 
-\renewcommand\thesubfigure{\Alph{subfigure}}
 \begin{figure}[H]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
@@ -672,12 +667,12 @@ Für jede der bereits vorgestellten Kreaturen wurden nun die erreichten Geschwind
 
 Die Diagramme in Abbildung \ref{fig:test1} zeigen den Grad der Aktivierung aller Muskeln in Abhängigkeit der Zeit.
 Menschliche Spieler sind in grün dargestellt, das evolutionär generierte neuronale Netz ist in rot dargestellt.
+Menschliche Spieler haben können Tasten nur entweder vollständig oder gar nicht betätigen.
+Folglich sollten in den Diagrammen für Menschen nur weiße oder grüne Blöcke auftreten.
+In der ursprünglichen Arbeit wird nicht erklärt, warum dennoch hellgrüne Bereiche zu sehen sind.
+
 Die erreichte Geschwindigkeit findet sich oberhalb des Diagramms.
 Die KI verwendete zur Fortbewegung eine simple Strategie. Sie benutzte lediglich die Muskeln 0 und 1 abwechselnd mit konstanter Frequenz. Damit erreichte sie die größte Geschwindigkeit. Die menschlichen Spieler nutzten eine ähnliche Strategie, jedoch weniger erfolgreich, da ihre Frequenz nicht konstant war. Die Spieler 5 und 6 verwendeten als einzige auch den Muskel 2. 
-
-%------------------------------------------------------------------------
-% Keinerlei Informationen im Paper zu den hellgrünen Flächen im Diagramm
-%------------------------------------------------------------------------
 
 \begin{figure}[H]
 	\centering
