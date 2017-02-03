@@ -357,13 +357,14 @@ Die Neuronen berechnen in Abhängigkeit von der Länge der Muskeln einen Wert. Die
 Mit den Bestandteilen ist das neuronale Netz komplett und es lässt sich zusammengefügt im Genotyp einsetzen. Abbildung  \ref{fig:extendedgraph} (links) zeigt einen solchen Genotypen. Die fett gezeichneten Knoten beschreiben wie in den vorherigen Beispielen die Körpersegmente. J0 und J1 generieren je einen Wert, der durch verschiedene Neuronen reist und zum Schluss in den Effektoren ankommt. Neben den fett gezeichneten Knoten gibt es im Genotypen auch einen durch eine gestrichelte Linie markierten Knoten. Dieser enthält Neuronen die für die Kreatur genau ein einziges Mal zur Kontrolle benötigt werden. Der Knoten ist unabhängig vom gewählten Parameter des rekursiven Limits. Die Sensoren und Effektoren der Muskeln sind zudem nur in einem Segment eingetragen, obwohl sie zwei Körpersegmente verbinden. Sie dienen im Graph jedoch nur als Quelle und Ziel eines Signals, es ist nicht notwendig sie doppelt aufzuführen. Das rekursive Limit der Kreatur wird auf $2$ gesetzt und als Gelenk zwischen den beiden mittleren Segmenten wird ein verdrehtes Gelenk gewählt, für die äußeren Segmente hingegen ein beugendes. Mit der Wahl dieser Parameter entsteht die Kreatur, die in Abbildung \ref{fig:extendedgraph} (rechts) gezeigt wird. Die Kreatur kann die beiden Mittelsegmente drehen und bewegt sich durch Flügelschwung.
 
 \begin{figure}[H]
-	\resizebox{0.55\textwidth}{!}{
+	\centering
+	\resizebox{0.45\textwidth}{!}{
 	\includegraphics[width=0.9\textwidth]{img/evolved_graph.png}
 	}
-	\resizebox{0.45\textwidth}{!}{
+	\resizebox{0.35\textwidth}{!}{
 	\includegraphics[width=0.9\textwidth]{img/6.png}
 	}
-	\caption{Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 \cite{Sims94} und der zugehörige Phänotyp \label{fig:extendedgraph}}
+	\caption{links: Genotyp mit Sensoren J0, J1 und Effektoren E0, E1 \cite{Sims94}; rechts: der zugehörige Phänotyp \label{fig:extendedgraph}}
 \end{figure}
 
 \section{Evolutionäre Generierung}
@@ -377,7 +378,9 @@ EVK werden mithilfe eines evolutionären Algorithmus generiert.
 Bei einem evolutionären Algorithmus werden nach dem Vorbild der Evolution in der Natur Entitäten, in diesem Fall EVK, bezüglich einer Fitnessfunktion optimiert.
 Der hier vorgestellte Algorithmus gehört zu den \textit{genetischen Algorithmen}, einer Unterklasse der evolutionären Algorithmen.
 Genetische Algorithmen zeichnen sich dadurch aus, dass sie zwischen Genotyp und Phänotyp unterscheiden.
-Sie wurden erstmalig von Holland vorgeschlagen \cite{Holland1992}.
+Es werden sowohl Mutation als auch Rekombination zum Variieren der Lösungskandidaten verwendet.
+Eine häufig verwendete Methode zur Rekombination ist die Kreuzung, die auch bei Darwin's Avatars zum Einsatz kommt.
+Genetische Algorithmen wurden erstmalig von Holland vorgeschlagen \cite{Holland1992}.
 
 Das Verfahren soll Entitäten von besonders hoher Fitness produzieren.
 In \textsc{Darwin's Avatars} ist die Fitness die Laufgeschwindigkeit der Kreaturen.
@@ -419,7 +422,7 @@ Die Ziele der Kanten werden durch ihre relative Position gespeichert.
 Eine Kante mit dem Wert $+2$ zeigt auf den Knoten, der in der Liste der zweite Nachfolger des Ausgangsknotens ist.
 
 
-\begin{figure}
+\begin{figure}[H]
 	\begin{center}
 		\resizebox{0.48\textwidth}{!}{
 			\begin{tikzpicture}[->,shorten >=1pt,auto,node distance=0.8cm,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
